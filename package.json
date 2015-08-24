@@ -1,0 +1,15 @@
+{
+  "name": "generator-matise",
+  "version": "0.1.0",
+  "description": "Matise Project setup generator",
+  "files": [
+    "app",
+    "router"
+  ],
+  "keywords": [
+    "matise-generator"
+  ],
+  "dependencies": {
+    "yeoman-generator": "^0.20.3"
+  }
+}
