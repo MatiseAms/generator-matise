@@ -7,9 +7,20 @@
     "router"
   ],
   "keywords": [
-    "matise-generator"
+    "matise-generator",
+    "yeoman-generator"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatiseAms/generator-matise.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MatiseAms/generator-matise/issues"
+  },
+  "homepage": "https://github.com/MatiseAms/generator-matise#readme",
   "dependencies": {
+    "chalk": "^1.1.1",
     "yeoman-generator": "^0.20.3"
   }
 }
