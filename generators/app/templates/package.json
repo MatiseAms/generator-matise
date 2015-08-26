@@ -1,0 +1,8 @@
+{
+	"name": "<%= appName %>",
+	"version": "1.0.0",
+	"description": "<%= appDesc %>",
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {}
+}

@@ -1,47 +1,61 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title><%= title %></title>
-		<meta name="description" content="">
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-		<meta name="apple-mobile-web-app-title" content="Styleguide">
 
-		<link rel="icon" href="img/favicon.png" type="image/png" sizes="64x64">
-		<link rel="icon" href="img/icon_128.png" type="image/png" sizes="128x128">
-		<link rel="icon" href="img/icon_512.png" type="image/png" sizes="512x512">
-		<link rel="icon" href="img/icon_1024.png" type="image/png" sizes="1024x1024">
-		<link rel="apple-touch-startup-image" href="img/startup.png">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>
+		<%= title %>
+	</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="apple-mobile-web-app-title" content="Styleguide">
 
-		<link rel="apple-touch-icon" href="img/icon_1024.png">
-		<link rel="stylesheet" href="css/app.css">
+	<link rel="icon" href="img/favicon.png" type="image/png" sizes="64x64">
+	<link rel="icon" href="img/icon_128.png" type="image/png" sizes="128x128">
+	<link rel="icon" href="img/icon_512.png" type="image/png" sizes="512x512">
+	<link rel="icon" href="img/icon_1024.png" type="image/png" sizes="1024x1024">
+	<link rel="apple-touch-startup-image" href="img/startup.png">
 
-		<script> var Browser = {isIE:false};</script><!-- By default we will assume that the browser is not IE -->
-		<!--[if IE 5]><script>Browser = {isIE:true,version:5};</script><![endif]-->
-		<!--[if IE 6]><script>Browser = {isIE:true,version:6};</script><![endif]-->
-		<!--[if IE 7]><script>Browser = {isIE:true,version:7};</script><![endif]-->
-		<!--[if IE 8]><script>Browser = {isIE:true,version:8};</script><![endif]-->
-		<!--[if IE 9]><script>Browser = {isIE:true,version:9};</script><![endif]-->
-		<base href="/">
-	</head>
-	<body ng-app="styleguide" class="ng-cloak">
-		<div ui-view="header"></div>
-		<div ui-view="content"></div>
-		<div ui-view="footer"></div>
-		<!-- build:remove dist,staging -->
-		<script src="vendor/modernizr.js"></script>
-		<script src="vendor/jquery.js"></script>
-		<script src="vendor/angular.js"></script>
-		<script src="vendor/angular-ui-router.js"></script>
-		<!-- /build -->
-		<!-- build:remove dev -->
-		<script src="/vendor.js"></script>
-		<!-- /build -->
-		<script src="/<%= appName %>.js"></script>
+	<link rel="apple-touch-icon" href="img/icon_1024.png">
+	<link rel="stylesheet" href="css/app.css">
 
-	</body>
+	<script>
+		var Browser = {
+			isIE: false
+		};
+	</script>
+	<!-- By default we will assume that the browser is not IE -->
+	<!--[if IE 5]><script>Browser = {isIE:true,version:5};</script><![endif]-->
+	<!--[if IE 6]><script>Browser = {isIE:true,version:6};</script><![endif]-->
+	<!--[if IE 7]><script>Browser = {isIE:true,version:7};</script><![endif]-->
+	<!--[if IE 8]><script>Browser = {isIE:true,version:8};</script><![endif]-->
+	<!--[if IE 9]><script>Browser = {isIE:true,version:9};</script><![endif]-->
+	<base href="/">
+</head>
+
+<body ng-app="<%= appName %>" class="ng-cloak">
+
+	<div ui-view="header"></div>
+	<div ui-view="content"></div>
+	<div ui-view="footer"></div>
+
+	<!-- build:remove dist,staging -->
+	<script src="vendor/modernizr.js"></script>
+	<script src="vendor/jquery.js"></script>
+	<script src="vendor/angular.js"></script>
+	<script src="vendor/angular-ui-router.js"></script>
+	<!-- /build -->
+
+	<!-- build:remove dev -->
+	<script src="/vendor.js"></script>
+	<!-- /build -->
+
+	<script src="/<%= appName %>.js"></script>
+
+</body>
+
 </html>
