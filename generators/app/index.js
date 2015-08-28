@@ -202,6 +202,81 @@ module.exports = generators.Base.extend({
 				appName: answers.appName
 			}
 		);
+		this.fs.copy(
+			this.templatePath('sections/root/footer.html'),
+			this.destinationPath('src/app/sections/root/footer.html')
+		);
+		this.fs.copyTpl(
+			this.templatePath('sections/root/footer-controller.js'),
+			this.destinationPath('src/app/sections/root/footer-controller.js'), {
+				appName: answers.appName
+			}
+		);
+		this.fs.copy(
+			this.templatePath('sections/root/header.html'),
+			this.destinationPath('src/app/sections/root/header.html')
+		);
+		this.fs.copyTpl(
+			this.templatePath('sections/root/header-controller.js'),
+			this.destinationPath('src/app/sections/root/header-controller.js'), {
+				appName: answers.appName
+			}
+		);
+		this.fs.copy(
+			this.templatePath('sections/about/about.html'),
+			this.destinationPath('src/app/sections/about/about.html')
+		);
+		this.fs.copyTpl(
+			this.templatePath('sections/about/about-controller.js'),
+			this.destinationPath('src/app/sections/about/about-controller.js'), {
+				appName: answers.appName
+			}
+		);
+		this.fs.copy(
+			this.templatePath('sections/home/home.html'),
+			this.destinationPath('src/app/sections/home/home.html')
+		);
+		this.fs.copyTpl(
+			this.templatePath('sections/home/home-controller.js'),
+			this.destinationPath('src/app/sections/home/home-controller.js'), {
+				appName: answers.appName
+			}
+		);
+		this.fs.copy(
+			this.templatePath('sections/home/top.html'),
+			this.destinationPath('src/app/sections/home/top.html')
+		);
+		this.fs.copyTpl(
+			this.templatePath('sections/home/top-controller.js'),
+			this.destinationPath('src/app/sections/home/top-controller.js'), {
+				appName: answers.appName
+			}
+		);
+		this.fs.copy(
+			this.templatePath('sections/home/middle.html'),
+			this.destinationPath('src/app/sections/home/middle.html')
+		);
+		this.fs.copyTpl(
+			this.templatePath('sections/home/middle-controller.js'),
+			this.destinationPath('src/app/sections/home/middle-controller.js'), {
+				appName: answers.appName
+			}
+		);
+		this.fs.copy(
+			this.templatePath('sections/home/bottom.html'),
+			this.destinationPath('src/app/sections/home/bottom.html')
+		);
+		this.fs.copyTpl(
+			this.templatePath('sections/home/bottom-controller.js'),
+			this.destinationPath('src/app/sections/home/bottom-controller.js'), {
+				appName: answers.appName
+			}
+		);
+		// ============= App scss files ==============
+		this.fs.copy(
+			this.templatePath('scss/app.scss'),
+			this.destinationPath('src/app/scss/app.scss')
+		);
 	},
 	conflicts: function mergeTheConflicts() {
 		this.log('conflicts');
@@ -239,7 +314,8 @@ module.exports = generators.Base.extend({
 			'postcss-verthorz',
 			'postcss-vmin',
 			'serve-static',
-			'time-grunt'
+			'time-grunt',
+			'postcss-custom-selectors'
 		], {
 			'saveDev': true
 		});

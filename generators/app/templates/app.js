@@ -34,14 +34,14 @@ angular.module('<%= appName %>', [
 				'abstract': true,
 				views: {
 					header: {
-						templateUrl: 'sections/header/header.html',
+						templateUrl: 'sections/root/header.html',
 						controller: 'HeaderController as headerCtrl'
 					},
 					content: {
 						template: '<div ui-view></div>'
 					},
 					footer: {
-						templateUrl: 'sections/footer/footer.html',
+						templateUrl: 'sections/root/footer.html',
 						controller: 'FooterController as footerCtrl'
 					}
 				}
@@ -61,15 +61,15 @@ angular.module('<%= appName %>', [
 						controller: 'HomeController as homeCtrl'
 					},
 					'top@home': {
-						templateUrl: 'sections/top/top.html',
+						templateUrl: 'sections/home/top.html',
 						controller: 'TopController as topCtrl'
 					},
 					'middle@home': {
-						templateUrl: 'sections/middle/middle.html',
+						templateUrl: 'sections/home/middle.html',
 						controller: 'MiddleController as middleCtrl'
 					},
 					'bottom@home': {
-						templateUrl: 'sections/bottom/bottom.html',
+						templateUrl: 'sections/home/bottom.html',
 						controller: 'BottomController as bottomCtrl'
 					}
 				}
