@@ -284,7 +284,7 @@ module.exports = generators.Base.extend({
 	install: function installThePackages() {
 		this.log('installing dependencies...');
 		this.npmInstall([
-			'autoprefixer-core',
+			'autoprefixer',
 			'bower',
 			'connect-modrewrite',
 			'css-byebye',
