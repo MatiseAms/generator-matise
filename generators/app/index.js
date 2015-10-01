@@ -90,6 +90,10 @@ module.exports = generators.Base.extend({
 			this.destinationPath('grunt/config/project.json')
 		);
 		this.fs.copy(
+			this.templatePath('grunt/config/csscomb.json'),
+			this.destinationPath('grunt/config/csscomb.json')
+		);
+		this.fs.copy(
 			this.templatePath('grunt/aliases.json'),
 			this.destinationPath('grunt/aliases.json')
 		);
@@ -116,6 +120,10 @@ module.exports = generators.Base.extend({
 		this.fs.copy(
 			this.templatePath('grunt/copy.js'),
 			this.destinationPath('grunt/copy.js')
+		);
+		this.fs.copy(
+			this.templatePath('grunt/csscomb.js'),
+			this.destinationPath('grunt/csscomb.js')
 		);
 		this.fs.copy(
 			this.templatePath('grunt/htmlbuild.js'),
@@ -334,6 +342,7 @@ module.exports = generators.Base.extend({
 			'grunt-html-build',
 			'grunt-notify',
 			'grunt-postcss',
+			'grunt-csscomb',
 			'jit-grunt',
 			'jshint-stylish',
 			'load-grunt-config',
