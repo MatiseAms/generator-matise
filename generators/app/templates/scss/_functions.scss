@@ -1,0 +1,57 @@
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
+}
+
+@function convert-to-rem($value, $base-value: $rem-base)  {
+  $value: strip-unit($value) / strip-unit($base-value) * 1rem;
+  @if ($value == 0rem) { $value: 0; } // Turn 0rem into 0
+  @return $value;
+}
+
+@function rem-calc($values, $base-value: $base-fontsize) {
+	$max: length($values);
+	@if $max == 1 {
+		@return convert-to-rem(nth($values, 1), $base-value);
+	}
+
+	$remValues: ();
+
+	@for $i from 1 through $max {
+		$remValues: append($remValues, convert-to-rem(nth($values, $i), $base-value));
+	}
+
+	@return $remValues;
+}
+@function rem($value){
+	$size: rem-calc($value);
+	@return $size;
+}
+
+@function calculateRem($size) {
+  $remSize: $size / #{$base-fontsize}px;
+  @return $remSize * 1rem;
+}
+
+@function color($value){
+	$usecolor: unquote($value);
+  $color: map-get($colors, $usecolor);
+  @return $color;
+}
+
+
+@function social($value){
+	$color: map-get($social-colors, $value);
+	@return $color;
+}
+
+
+@function grid-size($value){
+	$size: map-get($grid-size,$value);
+	@return $size;
+}
+
+// List Functions
+
+@function prepend($list, $value) {
+	@return join($value, $list);
+}

@@ -46,30 +46,30 @@ angular.module('<%= appName %>', [
 					}
 				}
 			})
-			.state('about', {
-				url: '/about',
-				parent: 'root',
-				templateUrl: 'sections/about/about.html',
-				controller: 'AboutController as aboutCtrl'
-			})
 			.state('home', {
 				url: '/',
 				parent: 'root',
+				templateUrl: 'sections/home/home.html',
+				controller: 'HomeController as homeCtrl'
+			})
+			.state('about', {
+				url: '/about',
+				parent: 'root',
 				views: {
 					'': {
-						templateUrl: 'sections/home/home.html',
-						controller: 'HomeController as homeCtrl'
+						templateUrl: 'sections/about/about.html',
+						controller: 'AboutController as aboutCtrl'
 					},
-					'top@home': {
-						templateUrl: 'sections/home/top.html',
+					'top@about': {
+						templateUrl: 'sections/about/top.html',
 						controller: 'TopController as topCtrl'
 					},
-					'middle@home': {
-						templateUrl: 'sections/home/middle.html',
+					'middle@about': {
+						templateUrl: 'sections/about/middle.html',
 						controller: 'MiddleController as middleCtrl'
 					},
-					'bottom@home': {
-						templateUrl: 'sections/home/bottom.html',
+					'bottom@about': {
+						templateUrl: 'sections/about/bottom.html',
 						controller: 'BottomController as bottomCtrl'
 					}
 				}

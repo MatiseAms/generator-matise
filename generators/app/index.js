@@ -223,16 +223,6 @@ module.exports = generators.Base.extend({
 			}
 		);
 		this.fs.copy(
-			this.templatePath('sections/about/about.html'),
-			this.destinationPath('src/app/sections/about/about.html')
-		);
-		this.fs.copyTpl(
-			this.templatePath('sections/about/about-controller.js'),
-			this.destinationPath('src/app/sections/about/about-controller.js'), {
-				appName: answers.appName
-			}
-		);
-		this.fs.copy(
 			this.templatePath('sections/home/home.html'),
 			this.destinationPath('src/app/sections/home/home.html')
 		);
@@ -243,36 +233,78 @@ module.exports = generators.Base.extend({
 			}
 		);
 		this.fs.copy(
-			this.templatePath('sections/home/top.html'),
-			this.destinationPath('src/app/sections/home/top.html')
+			this.templatePath('sections/about/about.html'),
+			this.destinationPath('src/app/sections/about/about.html')
 		);
 		this.fs.copyTpl(
-			this.templatePath('sections/home/top-controller.js'),
-			this.destinationPath('src/app/sections/home/top-controller.js'), {
+			this.templatePath('sections/about/about-controller.js'),
+			this.destinationPath('src/app/sections/about/about-controller.js'), {
 				appName: answers.appName
 			}
 		);
 		this.fs.copy(
-			this.templatePath('sections/home/middle.html'),
-			this.destinationPath('src/app/sections/home/middle.html')
+			this.templatePath('sections/about/top.html'),
+			this.destinationPath('src/app/sections/about/top.html')
 		);
 		this.fs.copyTpl(
-			this.templatePath('sections/home/middle-controller.js'),
-			this.destinationPath('src/app/sections/home/middle-controller.js'), {
+			this.templatePath('sections/about/top-controller.js'),
+			this.destinationPath('src/app/sections/about/top-controller.js'), {
 				appName: answers.appName
 			}
 		);
 		this.fs.copy(
-			this.templatePath('sections/home/bottom.html'),
-			this.destinationPath('src/app/sections/home/bottom.html')
+			this.templatePath('sections/about/middle.html'),
+			this.destinationPath('src/app/sections/about/middle.html')
 		);
 		this.fs.copyTpl(
-			this.templatePath('sections/home/bottom-controller.js'),
-			this.destinationPath('src/app/sections/home/bottom-controller.js'), {
+			this.templatePath('sections/about/middle-controller.js'),
+			this.destinationPath('src/app/sections/about/middle-controller.js'), {
+				appName: answers.appName
+			}
+		);
+		this.fs.copy(
+			this.templatePath('sections/about/bottom.html'),
+			this.destinationPath('src/app/sections/about/bottom.html')
+		);
+		this.fs.copyTpl(
+			this.templatePath('sections/about/bottom-controller.js'),
+			this.destinationPath('src/app/sections/about/bottom-controller.js'), {
 				appName: answers.appName
 			}
 		);
 		// ============= App scss files ==============
+		this.fs.copy(
+			this.templatePath('scss/_base.scss'),
+			this.destinationPath('src/app/scss/_base.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/_colors.scss'),
+			this.destinationPath('src/app/scss/_colors.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/_foundation.scss'),
+			this.destinationPath('src/app/scss/_foundation.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/_functions.scss'),
+			this.destinationPath('src/app/scss/_functions.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/_mixins.scss'),
+			this.destinationPath('src/app/scss/_mixins.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/_settings.scss'),
+			this.destinationPath('src/app/scss/_settings.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/_slick.scss'),
+			this.destinationPath('src/app/scss/_slick.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/_typography.scss'),
+			this.destinationPath('src/app/scss/_typography.scss')
+		);
 		this.fs.copy(
 			this.templatePath('scss/app.scss'),
 			this.destinationPath('src/app/scss/app.scss')

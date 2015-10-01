@@ -1,3 +1,16 @@
+// foundation
+@import
+  "settings",
+  "foundation";
+// main styles
+@import
+  "functions",
+  "mixins",
+  "colors",
+  "base",
+  "typography",
+  "slick";
+
 body {
   background-color: blue;
 }
