@@ -4,7 +4,7 @@ module.exports = {
 		verbose: true,
 		processors: [
 			require('postcss-assets')({ loadPaths: ['./dist/img/'] }),
-			require('autoprefixer-core')({ browsers: ['last 2 versions'] }),
+			require('autoprefixer')({ browsers: ['last 2 versions'] }),
 		//	require('postcss-sprites')({stylesheetPath: './dist/css', spritePath: './dist/img/sprite.png', retina: true}),
 			require('postcss-svg')({ paths: ['dist/img/svg/'] }),
 			require('postcss-size')({}),
