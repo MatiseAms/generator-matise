@@ -355,7 +355,7 @@ module.exports = generators.Base.extend({
 			'angular',
 			'angular-ui-router',
 			'foundation',
-			'modernizr'
+			'modernizr#2.8.3'
 		], {
 			'save': true
 		});
