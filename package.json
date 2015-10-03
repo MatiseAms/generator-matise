@@ -9,6 +9,7 @@
   "keywords": [
     "yeoman-generator"
   ],
+  "main": "app/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MatiseAms/generator-matise.git"
