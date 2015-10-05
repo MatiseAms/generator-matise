@@ -1,15 +1,15 @@
 {
   "name": "generator-matise",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Matise Project setup generator",
   "files": [
     "app",
     "router"
   ],
-  "main": "app/index.js",
   "keywords": [
     "yeoman-generator"
   ],
+  "main": "app/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MatiseAms/generator-matise.git"
