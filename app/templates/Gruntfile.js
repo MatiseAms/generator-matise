@@ -7,9 +7,7 @@ module.exports = function(grunt) {
     mapping = grunt.file.readJSON('./grunt/config/jit-mapping.json');
 
   var gruntConfig = {
-    configPath: [
-      path.join(process.cwd(), 'grunt')
-    ],
+    configPath: path.join(process.cwd(), 'grunt'),
     jitGrunt: {
       staticMappings: mapping
     },
