@@ -3,9 +3,6 @@ module.exports = {
 		spawn: false
 	},
 	scripts: {
-		options: {
-			livereload: true
-		},
 		files: [
 			'<%= config.src.app %>**/*.js'
 		],
@@ -16,9 +13,6 @@ module.exports = {
 		]
 	},
 	html: {
-		options: {
-			livereload: true
-		},
 		files: '<%= config.src.app %>*.html',
 		tasks: [
 			'copy:html',
@@ -26,9 +20,6 @@ module.exports = {
 		]
 	},
 	htmlPartials: {
-		options: {
-			livereload: true
-		},
 		files: [
 			'<%= config.src.app %>**/*.html',
 			'!<%= config.src.app %>*.html'
@@ -40,26 +31,17 @@ module.exports = {
 	},
 	images: {
 		files: '<%= config.src.app %>img/*',
-		tasks: ['copy:images'],
-		options: {
-			livereload: true
-		}
+		tasks: ['copy:images']
 	},
 	fonts: {
 		files: '<%= config.src.app %>fonts/*',
-		tasks: ['copy:fonts'],
-		options: {
-			livereload: true
-		}
+		tasks: ['copy:fonts']
 	},
 	scss: {
 		files:  [
 			'<%= config.src.app %>scss/*',
 			'<%= config.src.app %>scss/**/*'
 		],
-		tasks: ['sass','postcss'],
-		options: {
-			livereload: true
-		}
+		tasks: ['sass','postcss']
 	}
 };

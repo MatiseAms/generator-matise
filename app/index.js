@@ -65,21 +65,14 @@ module.exports = generators.Base.extend({
 			}
 		);
 		this.fs.copyTpl(
-			this.templatePath('.bowerrc'),
-			this.destinationPath('.bowerrc'), {}
-		);
-		this.fs.copyTpl(
-			this.templatePath('gitignore'),
+			this.templatePath('.gitignore'),
 			this.destinationPath('.gitignore'), {}
 		);
 		this.fs.copyTpl(
 			this.templatePath('Gruntfile.js'),
 			this.destinationPath('Gruntfile.js'), {}
 		);
-		this.fs.copyTpl(
-			this.templatePath('Gemfile'),
-			this.destinationPath('Gemfile'), {}
-		);
+
 		// ============= Grunt files ==============
 		this.fs.copy(
 			this.templatePath('grunt/config/jit-mapping.json'),
@@ -105,6 +98,10 @@ module.exports = generators.Base.extend({
 			this.templatePath('grunt/clean.js'),
 			this.destinationPath('grunt/clean.js')
 		);
+		this.fs.copy(
+			this.templatePath('grunt/shell.js'),
+			this.destinationPath('grunt/shell.js')
+		);
 		this.fs.copyTpl(
 			this.templatePath('grunt/concat.js'),
 			this.destinationPath('grunt/concat.js'), {
@@ -114,8 +111,8 @@ module.exports = generators.Base.extend({
 			}
 		);
 		this.fs.copy(
-			this.templatePath('grunt/connect.js'),
-			this.destinationPath('grunt/connect.js')
+			this.templatePath('grunt/browserSync.js'),
+			this.destinationPath('grunt/browserSync.js')
 		);
 		this.fs.copy(
 			this.templatePath('grunt/copy.js'),
@@ -330,19 +327,20 @@ module.exports = generators.Base.extend({
 			'css-byebye',
 			'grunt',
 			'grunt-angular-templates',
-			'grunt-bower-task',
+			'grunt-bower',
 			'grunt-cli',
 			'grunt-contrib-clean',
 			'grunt-contrib-concat',
-			'grunt-contrib-connect',
+			'grunt-browser-sync',
 			'grunt-contrib-copy',
 			'grunt-contrib-jshint',
-			'grunt-contrib-sass',
+			'grunt-sass',
 			'grunt-contrib-watch',
 			'grunt-html-build',
 			'grunt-notify',
 			'grunt-postcss',
 			'grunt-csscomb',
+			'grunt-shell',
 			'jit-grunt',
 			'jshint-stylish',
 			'load-grunt-config',
@@ -363,12 +361,12 @@ module.exports = generators.Base.extend({
 		this.bowerInstall([
 			'angular',
 			'angular-ui-router',
-			'foundation',
+			'foundation-sites',
+			'parse',
 			'modernizr#2.8.3'
 		], {
 			'save': true
 		});
-		this.spawnCommand('bundle', ['install']);
 	},
 	end: function ItAintOverTillItsOver() {
 		this.log(chalk.green('The End, All done!'));

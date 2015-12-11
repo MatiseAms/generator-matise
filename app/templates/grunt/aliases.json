@@ -2,12 +2,12 @@
 	"default": [
 		"notify",
 		"dev",
-		"connect",
+		"browserSync",
 		"watch"
 	],
 	"dev": [
 		"jshint:src",
-		"clean",
+		"clean:dist",
 		"concat:scripts",
 		"copy:html",
 		"htmlbuild:dev",
@@ -19,8 +19,7 @@
 		"postcss"
 	],
 	"dist": [
-		"jshint:src",
-		"clean",
+		"clean:dist",
 		"concat:scripts",
 		"copy:html",
 		"htmlbuild:dist",
@@ -31,10 +30,13 @@
 		"sass:dist",
 		"postcss"
 	],
-	"staging": [
-
-	],
 	"cssmagic": [
 		"csscomb:dynamic_mappings"
+	],
+	"doedingen": [
+		"clean:bower",
+		"clean:vendor",
+		"shell:bowerinstall",
+		"bower"
 	]
 }

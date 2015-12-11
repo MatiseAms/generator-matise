@@ -1,25 +1,46 @@
-var path = require('path');
-
 module.exports = {
-  install: {
-    options: {
-      targetDir: '<%= config.src.vendor %>',
-      layout: function(type, component) {
-        if (component === 'foundation') {
-          console.log(component);
-          return path.join(component, type);
-        } else {
-          return '';
-        }
-
-      },
-      install: true, // You don't want to do this in Jenkins!
-      verbose: true,
-      cleanTargetDir: true,
-      cleanBowerDir: true,
-      bowerOptions: {
-        production: true
-      }
-    }
-  }
+	dev: {
+		dest: '<%= config.src.vendor %>',
+		options: {
+			keepExpandedHierarchy: false,
+			ignorePackages: [
+				'what-input'
+			],
+			packageSpecific: {
+				'foundation-sites': {
+					dest: '<%= config.src.vendor %>/foundation',
+					stripGlobBase: true,
+					keepExpandedHierarchy: true,
+					files: [
+						"scss/**"
+					]
+				},
+				'angular': {
+					files: [
+						'angular.js'
+					]
+				},
+				'angular-ui-router': {
+					files: [
+						'release/angular-ui-router.js'
+					]
+				},
+				'jquery': {
+					files: [
+						'dist/jquery.js'
+					]
+				},
+				'modernizr': {
+					files: [
+						'modernizr.js'
+					]
+				},
+				'parse': {
+					files: [
+						'parse.js'
+					]
+				}
+			}
+		}
+	}
 };

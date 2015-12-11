@@ -1,7 +1,9 @@
 // foundation
 @import
+  "foundation/global",
   "settings",
   "foundation";
+
 // main styles
 @import
   "functions",
@@ -11,6 +13,7 @@
   "typography",
   "slick";
 
+
 body {
-  background-color: blue;
+  background-color: gray;
 }
