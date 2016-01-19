@@ -17,3 +17,6 @@ Yeoman generator for matise projects
 
 ## If not on a registred machine yet
 https://docs.npmjs.com/getting-started/publishing-npm-packages
+
+### References (Inspiration)
+- https://github.com/wesleytodd/YeoPress
