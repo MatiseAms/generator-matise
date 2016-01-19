@@ -34,11 +34,6 @@ module.exports = {
 					files: [
 						'modernizr.js'
 					]
-				},
-				'parse': {
-					files: [
-						'parse.js'
-					]
 				}
 			}
 		}
