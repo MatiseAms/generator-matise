@@ -473,33 +473,47 @@ module.exports = generators.Base.extend({
 			);
 
 			// ============= Theme php files ==============
-			this.fs.copy(
+			this.fs.copyTpl(
 				this.templatePath('wordpress/theme/index.php'),
-				this.destinationPath('themesrc/index.php')
+				this.destinationPath('themesrc/index.php'), {
+					appName: answers.appName
+				}
 			);
-			this.fs.copy(
+			this.fs.copyTpl(
 				this.templatePath('wordpress/theme/archive.php'),
-				this.destinationPath('themesrc/archive.php')
+				this.destinationPath('themesrc/archive.php'), {
+					appName: answers.appName
+				}
 			);
 			this.fs.copyTpl(
 				this.templatePath('wordpress/theme/footer.php'),
-				this.destinationPath('themesrc/footer.php'), {}
+				this.destinationPath('themesrc/footer.php'), {
+					appName: answers.appName
+				}
 			);
 			this.fs.copyTpl(
 				this.templatePath('wordpress/theme/functions.php'),
-				this.destinationPath('themesrc/functions.php'), {}
+				this.destinationPath('themesrc/functions.php'), {
+					appName: answers.appName
+				}
 			);
 			this.fs.copyTpl(
 				this.templatePath('wordpress/theme/header.php'),
-				this.destinationPath('themesrc/header.php'), {}
+				this.destinationPath('themesrc/header.php'), {
+					appName: answers.appName
+				}
 			);
 			this.fs.copyTpl(
 				this.templatePath('wordpress/theme/page.php'),
-				this.destinationPath('themesrc/page.php'), {}
+				this.destinationPath('themesrc/page.php'), {
+					appName: answers.appName
+				}
 			);
 			this.fs.copyTpl(
 				this.templatePath('wordpress/theme/single.php'),
-				this.destinationPath('themesrc/single.php'), {}
+				this.destinationPath('themesrc/single.php'), {
+					appName: answers.appName
+				}
 			);
 
 			// ============= Theme css file ==============
