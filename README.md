@@ -8,6 +8,18 @@ Yeoman generator for matise projects
 - npm install -g generator-matise
 - yo matise
 
+# Wordpress
+- npm install
+- grunt doedingen
+- grunt
+
+# Angular
+- CHANGE vagrant IP in Vagrantfile!!!!!
+- vagrant up
+- npm install
+- grunt doedingen
+- grunt
+
 
 # Releasing new version
 - `npm login`
