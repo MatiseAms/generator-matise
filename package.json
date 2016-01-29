@@ -21,6 +21,9 @@
   "homepage": "https://github.com/MatiseAms/generator-matise#readme",
   "dependencies": {
     "chalk": "^1.1.1",
+    "mkdirp": "^0.5.1",
+    "request": "^2.69.0",
+    "simple-git": "^1.21.0",
     "yeoman-generator": "^0.21.1"
   }
 }
