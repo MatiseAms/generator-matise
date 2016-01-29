@@ -540,6 +540,18 @@ module.exports = generators.Base.extend({
 				this.destinationPath('public/index.php')
 			);
 			this.fs.copy(
+				this.templatePath('wordpress/matiseisgolden.php'),
+				this.destinationPath('public/content/index.php')
+			);
+			this.fs.copy(
+				this.templatePath('wordpress/matiseisgolden.php'),
+				this.destinationPath('public/content/themes/index.php')
+			);
+			this.fs.copy(
+				this.templatePath('wordpress/index.php'),
+				this.destinationPath('public/index.php')
+			);
+			this.fs.copy(
 				this.templatePath('wordpress/htaccess'),
 				this.destinationPath('public/.htaccess')
 			);
