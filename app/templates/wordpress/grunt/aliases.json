@@ -1,0 +1,28 @@
+{
+	"default": [
+		"notify",
+		"dev",
+		"browserSync",
+		"watch"
+	],
+	"dev": [
+		"clean:dist",
+		"copy:theme",
+		"copy:images",
+		"copy:fonts",
+		"copy:vendor",
+		"sass",
+		"postcss"
+	],
+	"dist": [],
+	"staging": [],
+	"doedingen": [
+		"clean:bower",
+		"clean:vendor",
+		"shell:bowerinstall",
+		"bower"
+	],
+	"getdb": [
+		"shell:pulldatabase"
+	]
+}
