@@ -50,6 +50,9 @@
 @function color($value){
 	$usecolor: $value;
   $color: map-get($colors, $usecolor);
+  @if $color == null{
+    @warn 'color: "#{$value}" doesn\'t exist';
+  }
   @return $color;
 }
 
