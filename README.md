@@ -1,7 +1,7 @@
 # Generator-matise
 [![npm version](https://badge.fury.io/js/generator-matise.svg)](http://badge.fury.io/js/generator-matise)
 
-Yeoman generator for matise projects
+Yeoman generator for matise projects with Docker
 
 
 # Getting Started
@@ -9,9 +9,15 @@ Yeoman generator for matise projects
 - yo matise
 
 # Wordpress
+- bash run.sh
 - npm install
 - grunt doedingen
 - grunt
+
+# Wordpress Docker Database
+- User: admin
+- Pass: matise
+- DB: wordpress
 
 # Angular
 - CHANGE vagrant IP in Vagrantfile!!!!!
@@ -19,7 +25,6 @@ Yeoman generator for matise projects
 - npm install
 - grunt doedingen
 - grunt
-
 
 # Releasing new version
 - `npm login`
