@@ -1,6 +1,6 @@
 {
   "name": "generator-matise",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "Matise Project setup generator",
   "files": [
     "app",
