@@ -622,7 +622,8 @@ module.exports = generators.Base.extend({
 				'angular',
 				'angular-ui-router',
 				'foundation-sites',
-				'modernizr#2.8.3'
+				'modernizr#2.8.3',
+				'angulartics-google-analytics'
 			], {
 				'save': true
 			});
