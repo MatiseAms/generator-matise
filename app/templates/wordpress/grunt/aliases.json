@@ -22,6 +22,15 @@
 		"shell:bowerinstall",
 		"bower"
 	],
+	"builddockercontainer": [
+		"shell:builddockercontainer"
+	],
+	"startcontainer": [
+		"shell:startcontainer"
+	],
+	"stopcontainer": [
+		"shell:stopcontainer"
+	],
 	"getdb": [
 		"shell:pulldatabase"
 	]

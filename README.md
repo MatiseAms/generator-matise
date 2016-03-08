@@ -10,9 +10,16 @@ Yeoman generator for matise projects with Docker
 
 # Wordpress
 - bash run.sh
-- npm install
+- grunt builddockercontainer
+- docker start 'appName'
 - grunt doedingen
 - grunt
+
+To stop a docker container use:
+- docker stop 'appName'
+
+Destroy a docker container:
+- docker rm 'appName'
 
 # Wordpress Docker Database
 - User: admin
