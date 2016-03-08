@@ -52,7 +52,7 @@ module.exports = generators.Base.extend({
 			type: 'input',
 			name: 'appname',
 			message: 'Your app/theme name (lowercase!)',
-			default: 'newproject'
+			default: this.appname.toLowerCase()
 		}, {
 			type: 'input',
 			name: 'title',
