@@ -1,47 +1,33 @@
 $colors:(
-	"jacksBlack": #000,
-	"jacksWhite": #FFF,
-	"bali": #FFD313,
-	"baliDark": #EDB214,
-	"maldives": #03C7EC,
-	"maldivesDark": #00BADC,
-	"miami": #21D2CE,
-	"miamiDark": #0BB4AF,
-	"monaco": #0FECC5,
-	"monacoDark": #01DC9D,
-	"ny": #A8DF32,
-	"nyDark": #97D13D,
-	"carpetRed": #d01212,
-	"borderGray": #d9d9d9,
-	"flipGrayLight": #303030,
-	"flipGrayDark": #151515,
-	"seatGray": #dcdcdc,
-	"seatRed": #870707,
-	"seatRedDark": #7b0000,
-	"seatRedLight": #e45e5e ,
-	"seatGreen": #91cb4c,
-	"whatsappGreen": #29c540
+	"dark": #222,
+	"light": #FFF,
+  "naranja": #fbaf3f
 );
 
-$jacksBlack: color(jacksBlack);
-$jacksWhite: color(jacksWhite);
-$bali: color(bali);
-$baliDark: color(baliDark);
-$maldives: color(maldives);
-$maldivesDark: color(maldivesDark);
-$miami: color(miami);
-$miamiDark: color(miamiDark);
-$monaco: color(monaco);
-$monacoDark: color(monacoDark);
-$ny: color(ny);
-$nyDark: color(nyDark);
-$carpetRed: color(carpetRed);
-$borderGray: color(borderGray);
-$seatGray: color(seatGray);
-$seatRed: color(seatRed);
-$seatRedDark: color(seatRedDark);
-$seatRedLight: color(seatRedLight);
-$seatGreen: color(seatGreen);
-$flipGrayLight: color(flipGrayLight);
-$flipGrayDark: color(flipGrayDark);
-$whatsappGreen: color(whatsappGreen);
+$dark: color(dark);
+$light: color(light);
+$naranja: color(naranja);
+
+
+$social-colors: (
+  "dribbble": #ea4c89,
+  "facebook": #3b5998,
+  "flickr": #ff0084,
+  "foursquare": #0072b1,
+  "git": #0f0d0e,
+  "googleplus": #dd4b39,
+  "twitter": #00aced,
+  "linkedin": #007bb6,
+  "instagram": #517fa4,
+  "pinterest": #cb2027,
+  "skype": #12A5F4,
+  "snapchat": #fffc00,
+  "soundcloud": #ff7700,
+  "spotify": #2ebd59,
+  "tumblr": #32506d,
+  "vimeo": #aad450,
+  "vine": #00bf8f,
+  "vkontakte": #45668e,
+  "youtube": #bb0000,
+  "wordpress": #21759b
+);
