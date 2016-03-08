@@ -45,9 +45,9 @@ define('WP_CACHE', false); // Added by W3 Total Cache
 // }
 
 	$folder = '';
-	$db_user = 'root';
-	$db_name = 'scotchbox';
-	$db_pass = 'root';
+	$db_user = 'admin';
+	$db_name = 'wordpress';
+	$db_pass = 'matise';
 	$db_host = 'localhost';
 
 // ftp credentials

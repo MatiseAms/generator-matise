@@ -12,7 +12,7 @@ var wordpressRepo = 'git://github.com/WordPress/WordPress.git',
 var answers = {
 	appName: '',
 	siteTitle: '',
-	projectType: ''
+	projectType: '',
 };
 
 var request = require('request');
@@ -402,8 +402,8 @@ module.exports = generators.Base.extend({
 				}
 			);
 			this.fs.copyTpl(
-				this.templatePath('wordpress/Vagrantfile'),
-				this.destinationPath('Vagrantfile'), {
+				this.templatePath('wordpress/run.sh'),
+				this.destinationPath('run.sh'), {
 					appName: answers.appName.replace(' ', '')
 				}
 			);
