@@ -9,7 +9,6 @@ Yeoman generator for matise projects with Docker
 - yo matise
 
 # Wordpress
-- bash run.sh
 - grunt builddockercontainer
 - docker start 'appName'
 - grunt doedingen
