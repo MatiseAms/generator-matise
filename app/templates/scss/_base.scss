@@ -9,12 +9,12 @@ $main-font-family: '';
 $transition-time: .3;
 $transition: #{$transition-time}s;
 $border-radius: rem(3);
-$round-border-radius: 1.5rem;
+$round-border-radius: .5rem;
 $border-round: 50%;
 $space: 20px;
 
 $cubic-bezier:cubic-bezier(.75,.75,.25,.50);
-
+$bezier: $cubic-bezier;
 
 %round{ border-radius: 50%; }
 %rounded{ border-radius: $border-radius; }
@@ -30,6 +30,7 @@ $cubic-bezier:cubic-bezier(.75,.75,.25,.50);
 nav{
 	li{ display: inline-block; }
 }
+hr{ width: 100%; clear: both; background: rgba(color(dark),.5); color: rgba(color(dark),.5); margin: 1rem 0; border: none; }
 
 // foundation fix for last child
 [class*="column"]+[class*="column"]:last-child { float: left !important; }

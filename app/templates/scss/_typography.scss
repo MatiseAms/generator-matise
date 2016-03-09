@@ -11,22 +11,22 @@ $font-bold: map-get($main-font-weights,Bold);
 $font-black: map-get($main-font-weights,Black);
 
 // Base font
-$main-font: "VAG Rounded";
-$main-font-name: "VAGRoundedStd-";
+$main-font: "{{Main Font Title}}";
+$main-font-name: "{{Main Font Filename}}";
 $main-font-family: #{$main-font},sans-serif;
 // include main font
-@include font-list($main-font,$main-font-name,$main-font-weights,normal);
+//@include font-list($main-font,$main-font-name,$main-font-weights,normal);
 
 
-// $second-font: "AudiType Extended";
-// $second-font-name: "AudiType-Extended";
-// $second-font-family: #{$second-font},sans-serif;
+$second-font: "{{Second Font Title}}";
+$second-font-name: "{{Second Font Filename}}";
+$second-font-family: #{$second-font},sans-serif;
 // include main font
 // @include font-list($second-font,$second-font-name,$main-font-weights,normal); */
 //
-// $social-font:"Audi Social"; */
-// $social-font-name: "audi-social"; */
-// $social-font-family: #{$social-font},sans-serif; */
+$social-font:"Social";
+$social-font-name: "social";
+$social-font-family: #{$social-font},sans-serif;
 // include main font
 // @include font-include($social-font,$social-font-name,normal,normal); */
 
