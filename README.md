@@ -5,6 +5,7 @@ Yeoman generator for matise projects with Docker
 
 
 # Getting Started
+- Install docker
 - npm install -g generator-matise
 - yo matise
 
