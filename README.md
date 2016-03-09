@@ -5,14 +5,14 @@ Yeoman generator for matise projects with Docker
 
 
 # Getting Started
-- Install docker
+- Install [docker](https://www.docker.com/)
 - npm install -g generator-matise
 - yo matise
 
 # Wordpress
 - grunt builddockercontainer
 - docker start 'appName'
-- grunt doedingen
+- grunt bowerinit
 - grunt
 
 To stop a docker container use:
@@ -30,7 +30,7 @@ Destroy a docker container:
 - CHANGE vagrant IP in Vagrantfile!!!!!
 - vagrant up
 - npm install
-- grunt doedingen
+- grunt bowerinit
 - grunt
 
 # Releasing new version
