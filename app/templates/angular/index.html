@@ -27,9 +27,9 @@
 
 <body ng-app="<%= appName %>" class="ng-cloak">
 
-	<div ui-view="header"></div>
-	<div ui-view="content"></div>
-	<div ui-view="footer"></div>
+	<header id="header" ui-view="header"></header>
+	<main id="main" ui-view="content"></main>
+	<footer id="footer" ui-view="footer"></footer>
 
 	<script>
 		(function(i, s, o, g, r, a, m) {

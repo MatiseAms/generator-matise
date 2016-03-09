@@ -47,7 +47,7 @@
   @return $remSize * 1rem;
 }
 
-@function color($value,$colorset: $colors, $warning: true, $boolean: false){
+@function color($value, $rgba: false, $colorset: $colors, $warning: true, $boolean: false){
   $color: map-get($colorset, $value);
   @if $warning == true{
     @if $color == null{
@@ -59,7 +59,11 @@
       @return false;
     } @else { @return true; }
   } @else {
-    @return $color;
+    @if $rgba != false{
+      @return rgba($color,$rgba);
+    } @else{
+      @return $color;
+    }
   }
 }
 
