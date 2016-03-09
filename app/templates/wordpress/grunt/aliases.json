@@ -16,7 +16,7 @@
 	],
 	"dist": [],
 	"staging": [],
-	"doedingen": [
+	"bowerinit": [
 		"clean:bower",
 		"clean:vendor",
 		"shell:bowerinstall",

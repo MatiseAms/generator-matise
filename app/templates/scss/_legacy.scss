@@ -31,6 +31,9 @@ $xxlarge-only: "#{$screen} and (min-width:#{nth($xxlarge-range,1)}) and (max-wid
 $tablet-up: "#{$screen} and (min-width:769px)";
 $tablet-down: "#{$screen} and (max-width:768px)";
 
+$row-up: "#{$screen} and (min-width:#{$row-width})";
+$row-down: "#{$screen} and (max-width:#{$row-width})";
+
 
 @media #{$small-only}{
   .hide-for-small-only{ display: none; }

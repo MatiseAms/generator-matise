@@ -4,6 +4,6 @@
 start new project on this branch run:
 * vagrant up
 * npm install
-* grunt doedingen
+* grunt bowerinit
 
 To work on this project in this branch run: grunt
