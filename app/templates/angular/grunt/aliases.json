@@ -29,7 +29,8 @@
 		"ngtemplates:dist",
 		"sass:dist",
 		"postcss",
-		"cssnano"
+		"cssnano",
+		"uglify"
 	],
 	"cssmagic": [
 		"csscomb:dynamic_mappings"

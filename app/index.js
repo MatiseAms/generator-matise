@@ -250,6 +250,10 @@ module.exports = generators.Base.extend({
 				this.destinationPath('grunt/csscomb.js')
 			);
 			this.fs.copy(
+				this.templatePath('angular/grunt/cssnano.js'),
+				this.destinationPath('grunt/cssnano.js')
+			);
+			this.fs.copy(
 				this.templatePath('angular/grunt/htmlbuild.js'),
 				this.destinationPath('grunt/htmlbuild.js')
 			);
@@ -602,14 +606,15 @@ module.exports = generators.Base.extend({
 				'grunt',
 				'grunt-angular-templates',
 				'grunt-bower',
+				'grunt-browser-sync',
 				'grunt-cli',
 				'grunt-contrib-clean',
 				'grunt-contrib-concat',
-				'grunt-browser-sync',
 				'grunt-contrib-copy',
 				'grunt-contrib-jshint',
-				'grunt-sass',
+				'grunt-contrib-uglify',
 				'grunt-contrib-watch',
+				'grunt-sass',
 				'grunt-html-build',
 				'grunt-notify',
 				'grunt-postcss',
