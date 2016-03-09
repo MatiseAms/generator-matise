@@ -28,12 +28,13 @@
 		"copy:fonts",
 		"ngtemplates:dist",
 		"sass:dist",
-		"postcss"
+		"postcss",
+		"cssnano"
 	],
 	"cssmagic": [
 		"csscomb:dynamic_mappings"
 	],
-	"doedingen": [
+	"bowerinit": [
 		"clean:bower",
 		"clean:vendor",
 		"shell:bowerinstall",
