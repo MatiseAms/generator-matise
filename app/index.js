@@ -3,6 +3,12 @@ var generators = require('yeoman-generator'),
 	git = require('simple-git')(),
 	mkdirp = require('mkdirp');
 
+	const updateNotifier = require('update-notifier');
+	const pkg = require('../package.json');
+
+	const notifier = updateNotifier({'pkg':pkg,updateCheckInterval: 0});
+	notifier.notify();
+
 var consoleMatiseLogo = ' __  __   _ _____ ___ ___ ___   \n|  \\/  | /_|_   _|_ _/ __| __|  \n| |\\/| |/ _ \\| |  | |\\__ | _| _ \n|_|  |_/_/ \\_|_| |___|___|___(_)';
 var wordpressRepo = 'git://github.com/WordPress/WordPress.git',
 	wpDir = 'public/wordpress',
@@ -12,7 +18,7 @@ var wordpressRepo = 'git://github.com/WordPress/WordPress.git',
 var answers = {
 	appName: '',
 	siteTitle: '',
-	projectType: ''
+	projectType: '',
 };
 
 var request = require('request');
@@ -39,6 +45,14 @@ module.exports = generators.Base.extend({
 	initializing: function initialization() {
 		this.log(consoleMatiseLogo);
 		this.log(chalk.blue('Here we go, creating a new Matise project:'));
+		if(notifier.update!==undefined){
+			this.log('\n'+chalk.yellow('----------------------------------------'));
+			this.log(chalk.red('UPDATE AVAILABLE:'));
+			this.log(chalk.red('Update your generator to ')+chalk.green(notifier.update.latest));
+			this.log('Run: '+chalk.cyan('npm i -g generator-matise')+' to update');
+			this.log(chalk.yellow('----------------------------------------')+'\n');
+
+		}
 	},
 	prompting: function askThemEverything() {
 		var done = this.async();
@@ -52,7 +66,7 @@ module.exports = generators.Base.extend({
 			type: 'input',
 			name: 'appname',
 			message: 'Your app/theme name (lowercase!)',
-			default: 'newproject'
+			default: this.appname.toLowerCase()
 		}, {
 			type: 'input',
 			name: 'title',
@@ -236,6 +250,10 @@ module.exports = generators.Base.extend({
 				this.destinationPath('grunt/csscomb.js')
 			);
 			this.fs.copy(
+				this.templatePath('angular/grunt/cssnano.js'),
+				this.destinationPath('grunt/cssnano.js')
+			);
+			this.fs.copy(
 				this.templatePath('angular/grunt/htmlbuild.js'),
 				this.destinationPath('grunt/htmlbuild.js')
 			);
@@ -402,8 +420,8 @@ module.exports = generators.Base.extend({
 				}
 			);
 			this.fs.copyTpl(
-				this.templatePath('wordpress/Vagrantfile'),
-				this.destinationPath('Vagrantfile'), {
+				this.templatePath('wordpress/run.sh'),
+				this.destinationPath('run.sh'), {
 					appName: answers.appName.replace(' ', '')
 				}
 			);
@@ -588,19 +606,21 @@ module.exports = generators.Base.extend({
 				'grunt',
 				'grunt-angular-templates',
 				'grunt-bower',
+				'grunt-browser-sync',
 				'grunt-cli',
 				'grunt-contrib-clean',
 				'grunt-contrib-concat',
-				'grunt-browser-sync',
 				'grunt-contrib-copy',
 				'grunt-contrib-jshint',
-				'grunt-sass',
+				'grunt-contrib-uglify',
 				'grunt-contrib-watch',
+				'grunt-sass',
 				'grunt-html-build',
 				'grunt-notify',
 				'grunt-postcss',
 				'grunt-csscomb',
 				'grunt-shell',
+				'grunt-cssnano',
 				'jit-grunt',
 				'jshint-stylish',
 				'load-grunt-config',
@@ -622,7 +642,8 @@ module.exports = generators.Base.extend({
 				'angular',
 				'angular-ui-router',
 				'foundation-sites',
-				'modernizr#2.8.3'
+				'modernizr#2.8.3',
+				'angulartics-google-analytics'
 			], {
 				'save': true
 			});

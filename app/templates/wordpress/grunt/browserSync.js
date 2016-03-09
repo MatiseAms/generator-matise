@@ -4,7 +4,7 @@ module.exports = {
 			files: [
 				'public/content/themes/**/*.*'
 			],
-			proxy: 'localhost.<%= appName %>.com',
+			proxy: '<%= appName %>.dev',
 			watchTask: true
 		}
 	}

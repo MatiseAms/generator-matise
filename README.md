@@ -1,25 +1,37 @@
 # Generator-matise
 [![npm version](https://badge.fury.io/js/generator-matise.svg)](http://badge.fury.io/js/generator-matise)
 
-Yeoman generator for matise projects
+Yeoman generator for matise projects with Docker
 
 
 # Getting Started
+- Install [docker](https://www.docker.com/)
 - npm install -g generator-matise
 - yo matise
 
 # Wordpress
-- npm install
-- grunt doedingen
+- grunt builddockercontainer
+- docker start 'appName'
+- grunt bowerinit
 - grunt
+
+To stop a docker container use:
+- docker stop 'appName'
+
+Destroy a docker container:
+- docker rm 'appName'
+
+# Wordpress Docker Database
+- User: admin
+- Pass: matise
+- DB: wordpress
 
 # Angular
 - CHANGE vagrant IP in Vagrantfile!!!!!
 - vagrant up
 - npm install
-- grunt doedingen
+- grunt bowerinit
 - grunt
-
 
 # Releasing new version
 - `npm login`

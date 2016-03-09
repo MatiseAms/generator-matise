@@ -1,11 +1,11 @@
 module.exports = {
 	dist: [
-		'<%= config.themedist.root %>'
+		'/public/content/themes/<%= appName %>/'
 	],
 	vendor: [
-		'<%= config.themesrc.vendor %>'
+		'/public/content/themes/<%= appName %>/vendor/'
 	],
 	bower: [
-		'bower_components'
+		'/bower_components'
 	]
 };

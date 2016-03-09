@@ -16,11 +16,20 @@
 	],
 	"dist": [],
 	"staging": [],
-	"doedingen": [
+	"bowerinit": [
 		"clean:bower",
 		"clean:vendor",
 		"shell:bowerinstall",
 		"bower"
+	],
+	"builddockercontainer": [
+		"shell:builddockercontainer"
+	],
+	"startcontainer": [
+		"shell:startcontainer"
+	],
+	"stopcontainer": [
+		"shell:stopcontainer"
 	],
 	"getdb": [
 		"shell:pulldatabase"
