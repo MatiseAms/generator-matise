@@ -615,6 +615,7 @@ module.exports = generators.Base.extend({
 				'grunt-postcss',
 				'grunt-csscomb',
 				'grunt-shell',
+				'grunt-cssnano',
 				'jit-grunt',
 				'jshint-stylish',
 				'load-grunt-config',
