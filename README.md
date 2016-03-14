@@ -5,12 +5,12 @@ Yeoman generator for matise projects with Docker
 
 
 # Getting Started
-- Install [docker](https://www.docker.com/)
+- Install [Docker toolbox](https://docs.docker.com/toolbox/overview/)
 - npm install -g generator-matise
 - yo matise
 
 # Wordpress
-- grunt builddockercontainer
+- grunt buildcontainer
 - grunt startcontainer
 - grunt bowerinit
 - grunt
@@ -44,6 +44,10 @@ Destroy a docker container:
 - commit new code
 - `npm version <update_type>` (update type can be: patch, minor, major)
 - `npm publish`
+
+# Docker docs
+[Docker documentation](https://docs.docker.com/)
+[Tutum/Lamp Docker image](https://github.com/tutumcloud/lamp)
 
 ## If not on a registred machine yet
 https://docs.npmjs.com/getting-started/publishing-npm-packages
