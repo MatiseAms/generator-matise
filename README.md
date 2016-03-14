@@ -11,15 +11,21 @@ Yeoman generator for matise projects with Docker
 
 # Wordpress
 - grunt builddockercontainer
-- docker start 'appName'
+- grunt startcontainer
 - grunt bowerinit
 - grunt
 
+To see the running containers use:
+- docker ps
+
+To see all containers (both running en not running):
+- docker ps -a
+
 To stop a docker container use:
-- docker stop 'appName'
+- grunt stopcontainer
 
 Destroy a docker container:
-- docker rm 'appName'
+- grunt destroycontainer
 
 # Wordpress Docker Database
 - User: admin

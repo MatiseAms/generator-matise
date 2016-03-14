@@ -481,9 +481,11 @@ module.exports = generators.Base.extend({
 				this.templatePath('wordpress/grunt/sass.js'),
 				this.destinationPath('grunt/sass.js')
 			);
-			this.fs.copy(
+			this.fs.copyTpl(
 				this.templatePath('wordpress/grunt/shell.js'),
-				this.destinationPath('grunt/shell.js')
+				this.destinationPath('grunt/shell.js'), {
+					appName: answers.appName
+				}
 			);
 			this.fs.copy(
 				this.templatePath('wordpress/grunt/watch.js'),

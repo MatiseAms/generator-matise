@@ -31,6 +31,9 @@
 	"stopcontainer": [
 		"shell:stopcontainer"
 	],
+	"destroycontainer": [
+		"shell:destroycontainer"
+	],
 	"getdb": [
 		"shell:pulldatabase"
 	]
