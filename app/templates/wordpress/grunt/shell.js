@@ -5,7 +5,7 @@ module.exports = {
 	pulldatabase: {
 		command: 'sh pulldatabase.sh'
 	},
-	builddockercontainer: {
+	buildcontainer: {
 		command: 'sh run.sh'
 	},
 	startcontainer: {
@@ -15,6 +15,6 @@ module.exports = {
 		command: 'docker stop <%= appName %>'
 	},
 	destroycontainer: {
-		command: 'docker kill <% appName %> && docker rm <%= appName %>'
+		command: 'docker kill <%= appName %> && docker rm <%= appName %>'
 	}
 };

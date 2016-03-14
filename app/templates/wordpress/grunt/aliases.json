@@ -22,8 +22,8 @@
 		"shell:bowerinstall",
 		"bower"
 	],
-	"builddockercontainer": [
-		"shell:builddockercontainer"
+	"buildcontainer": [
+		"shell:buildcontainer"
 	],
 	"startcontainer": [
 		"shell:startcontainer"
