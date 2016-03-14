@@ -46,8 +46,8 @@ Destroy a docker container:
 - `npm publish`
 
 # Docker docs
-[Docker documentation](https://docs.docker.com/)
-[Tutum/Lamp Docker image](https://github.com/tutumcloud/lamp)
+- [Docker documentation](https://docs.docker.com/)
+- [Tutum/Lamp Docker image](https://github.com/tutumcloud/lamp)
 
 ## If not on a registred machine yet
 https://docs.npmjs.com/getting-started/publishing-npm-packages
