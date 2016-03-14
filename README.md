@@ -25,6 +25,7 @@ To stop a docker container use:
 - grunt stopcontainer
 
 Destroy a docker container:
+- grunt stopcontainer (only if container is still running)
 - grunt destroycontainer
 
 # Wordpress Docker Database
