@@ -1,0 +1,40 @@
+{
+	"default": [
+		"notify",
+		"dev",
+		"browserSync",
+		"watch"
+	],
+	"dev": [
+		"clean:dist",
+		"copy:theme",
+		"copy:images",
+		"copy:fonts",
+		"copy:vendor",
+		"sass",
+		"postcss"
+	],
+	"dist": [],
+	"staging": [],
+	"bowerinit": [
+		"clean:bower",
+		"clean:vendor",
+		"shell:bowerinstall",
+		"bower"
+	],
+	"buildcontainer": [
+		"shell:buildcontainer"
+	],
+	"startcontainer": [
+		"shell:startcontainer"
+	],
+	"stopcontainer": [
+		"shell:stopcontainer"
+	],
+	"destroycontainer": [
+		"shell:destroycontainer"
+	],
+	"getdb": [
+		"shell:pulldatabase"
+	]
+}

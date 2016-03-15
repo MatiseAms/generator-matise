@@ -1,12 +1,13 @@
 // foundation
 @import
-  "foundation/global",
+  "global",
   "settings",
   "foundation";
 
 // main styles
 @import
   "functions",
+  "legacy",
   "mixins",
   "colors",
   "base",
@@ -15,5 +16,5 @@
 
 
 body {
-  background-color: gray;
+  background-color: fuchsia;
 }
