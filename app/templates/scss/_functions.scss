@@ -23,7 +23,7 @@
 	@return $remValues;
 }
 @function rem($value){
-  $sizes: '';
+  $sizes: null;
   @if length($value) > 1{
     @each $size in $value{
       $sizes: $sizes #{rem-calc($size)};
@@ -34,8 +34,15 @@
 	@return $sizes;
 }
 @function space($value){
-  $size: $value*$space;
-  @return rem-calc($size);
+  $sizes: null;
+  @if length($value) > 1{
+    @each $size in $value{
+      $sizes: $sizes #{rem($size*$space)};
+    }
+  } @else {
+  	$sizes: #{rem($value*$space)};
+  }
+	@return $sizes;
 }
 @function spc($value){
   $size: space($value);
