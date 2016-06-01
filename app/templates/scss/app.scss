@@ -1,17 +1,18 @@
 // foundation
 @import
-  "global",
-  "settings",
-  "foundation";
+  "foundation/global",
+  "foundation/settings",
+  "foundation/foundation";
 
 // main styles
 @import
   "functions",
-  "legacy",
+  "grid",
   "mixins",
   "colors",
   "base",
   "typography",
+  "family",
   "slick";
 
 
