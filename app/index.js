@@ -446,8 +446,8 @@ module.exports = generators.Base.extend({
 			);
 
 			this.fs.copy(
-				this.templatePath('rsync_exclude.txt'),
-				this.destinationPath('rsync_exclude.txt')
+				this.templatePath('wordpress/rsync_exclude.txt'),
+				this.destinationPath('wordpress/rsync_exclude.txt')
 			);
 
 			// ============= Grunt files ==============
