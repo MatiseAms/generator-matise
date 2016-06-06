@@ -23,7 +23,7 @@
 	@return $remValues;
 }
 @function rem($value){
-  $sizes: '';
+  $sizes: null;
   @if length($value) > 1{
     @each $size in $value{
       $sizes: $sizes #{rem-calc($size)};
@@ -34,8 +34,15 @@
 	@return $sizes;
 }
 @function space($value){
-  $size: $value*$space;
-  @return rem-calc($size);
+  $sizes: null;
+  @if length($value) > 1{
+    @each $size in $value{
+      $sizes: $sizes #{rem($size*$space)};
+    }
+  } @else {
+  	$sizes: #{rem($value*$space)};
+  }
+	@return $sizes;
 }
 @function spc($value){
   $size: space($value);
@@ -50,6 +57,16 @@
   $remSize: $size / #{$base-fontsize}px;
   @return $remSize * 1rem;
 }
+
+@function letter-spacing($font-size: rem($base-fontsize),$space: $base-letter-spacing){
+  @if $font-size > 10{ @debug 'Give size in Rem'; }
+  $size: (($font-size*$base-fontsize)*$space)/1000;
+  @return rem($size);
+}
+@function ls($font-size: rem($base-fontsize),$space: $base-letter-spacing){
+  @return letter-spacing($font-size,$space);
+}
+
 
 @function color($value, $rgba: false, $colorset: $colors, $warning: true, $boolean: false){
   $color: map-get($colorset, $value);

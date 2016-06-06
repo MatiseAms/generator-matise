@@ -121,6 +121,18 @@ module.exports = generators.Base.extend({
 			scssDestination = 'themesrc/';
 		}
 		this.fs.copy(
+			this.templatePath('scss/zurb/_foundation.scss'),
+			this.destinationPath(scssDestination + 'scss/_foundation.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/zurb/_global.scss'),
+			this.destinationPath(scssDestination + 'scss/_global.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/zurb/_settings.scss'),
+			this.destinationPath(scssDestination + 'scss/zurb/_settings.scss')
+		);
+		this.fs.copy(
 			this.templatePath('scss/_base.scss'),
 			this.destinationPath(scssDestination + 'scss/_base.scss')
 		);
@@ -129,28 +141,16 @@ module.exports = generators.Base.extend({
 			this.destinationPath(scssDestination + 'scss/_colors.scss')
 		);
 		this.fs.copy(
-			this.templatePath('scss/_foundation.scss'),
-			this.destinationPath(scssDestination + 'scss/_foundation.scss')
-		);
-		this.fs.copy(
 			this.templatePath('scss/_functions.scss'),
 			this.destinationPath(scssDestination + 'scss/_functions.scss')
 		);
 		this.fs.copy(
-			this.templatePath('scss/_global.scss'),
-			this.destinationPath(scssDestination + 'scss/_global.scss')
-		);
-		this.fs.copy(
-			this.templatePath('scss/_legacy.scss'),
-			this.destinationPath(scssDestination + 'scss/_legacy.scss')
+			this.templatePath('scss/_grid.scss'),
+			this.destinationPath(scssDestination + 'scss/_grid.scss')
 		);
 		this.fs.copy(
 			this.templatePath('scss/_mixins.scss'),
 			this.destinationPath(scssDestination + 'scss/_mixins.scss')
-		);
-		this.fs.copy(
-			this.templatePath('scss/_settings.scss'),
-			this.destinationPath(scssDestination + 'scss/_settings.scss')
 		);
 		this.fs.copy(
 			this.templatePath('scss/_slick.scss'),
@@ -159,6 +159,10 @@ module.exports = generators.Base.extend({
 		this.fs.copy(
 			this.templatePath('scss/_typography.scss'),
 			this.destinationPath(scssDestination + 'scss/_typography.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/_family.scss'),
+			this.destinationPath(scssDestination + 'scss/_family.scss')
 		);
 		this.fs.copy(
 			this.templatePath('scss/app.scss'),

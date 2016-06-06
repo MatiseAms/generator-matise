@@ -40,7 +40,7 @@ angular.module('<%= appName %>', [
 						controller: 'HeaderController as headerCtrl'
 					},
 					content: {
-						template: '<div ui-view></div>'
+						template: '<main ui-view></main>'
 					},
 					footer: {
 						templateUrl: 'sections/root/footer.html',

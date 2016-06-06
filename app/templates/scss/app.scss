@@ -1,17 +1,18 @@
 // foundation
 @import
-  "global",
-  "settings",
-  "foundation";
+  "zurb/global",
+  "zurb/settings",
+  "zurb/foundation";
 
 // main styles
 @import
   "functions",
-  "legacy",
+  "grid",
   "mixins",
   "colors",
   "base",
   "typography",
+  "family",
   "slick";
 
 
