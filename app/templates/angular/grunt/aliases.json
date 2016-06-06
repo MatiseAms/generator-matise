@@ -11,6 +11,7 @@
 		"concat:scripts",
 		"copy:html",
 		"htmlbuild:dev",
+		"tinypng",
 		"copy:vendor",
 		"copy:images",
 		"copy:fonts",

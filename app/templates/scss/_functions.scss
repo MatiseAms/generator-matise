@@ -58,6 +58,16 @@
   @return $remSize * 1rem;
 }
 
+@function letter-spacing($font-size: rem($base-fontsize),$space: $base-letter-spacing){
+  @if $font-size > 10{ @debug 'Give size in Rem'; }
+  $size: (($font-size*$base-fontsize)*$space)/1000;
+  @return rem($size);
+}
+@function ls($font-size: rem($base-fontsize),$space: $base-letter-spacing){
+  @return letter-spacing($font-size,$space);
+}
+
+
 @function color($value, $rgba: false, $colorset: $colors, $warning: true, $boolean: false){
   $color: map-get($colorset, $value);
   @if $warning == true{
