@@ -1,6 +1,6 @@
 module.exports = {
   options: {
-    apiKey: "xMF2xazwBJWzAUPEhpk_dFunLksjZuUg",
+    apiKey: "<%= tinyPNGKey %>",
     checkSigs: true,
     sigFile: 'grunt/tinypng_file_sigs.json',
     summarize: true,
@@ -9,7 +9,7 @@ module.exports = {
   },
   compressPNG: {
     expand: true,
-    src: ['<%= config.src.app %>img/**/*.png', '<%= config.src.app %>img/**/*.jpg'],
+    src: ['<%= config.themedist.root %>img/**/*.png', '<%= config.themedist.root %>img/**/*.jpg'],
     dest: ''
   }
 };

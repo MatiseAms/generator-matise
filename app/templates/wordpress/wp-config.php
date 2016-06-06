@@ -21,34 +21,11 @@ define('WP_CACHE', false); // Added by W3 Total Cache
  * to "wp-config.php" and fill in the values.
  */
 
-// $enviroment = getenv("APPLICATION_ENV");
-// if($enviroment!=false&&$enviroment=='dev_dev'){
-// 	$folder = '/tourismvictoria';
-// 	$db_user = 'tourismvictoria';
-// 	$db_name = 'tourismvictoria';
-// 	$db_pass = 'i7RRJi4Qzbdnqbc';
-// 	$db_host = 'matise.nl';
-// }
-// else if($enviroment=='dev_local'){
-// 	$folder = ':8000';
-// 	$db_user = 'tourismvictoria';
-// 	$db_name = 'tourismvictoria';
-// 	$db_pass = 'i7RRJi4Qzbdnqbc';
-// 	$db_host = 'matise.nl';
-// }
-// else{
-// 	$folder = '';
-// 	$db_user = 'australcom_wp';
-// 	$db_name = 'australcom_wp';
-// 	$db_pass = 't0@0+2Zi]l';
-// 	$db_host = 'localhost';
-// }
-
-	$folder = '';
-	$db_user = 'admin';
-	$db_name = 'wordpress';
-	$db_pass = 'matise';
-	$db_host = 'localhost';
+$folder = '';
+$db_user = '';
+$db_name = '';
+$db_pass = '';
+$db_host = '';
 
 // ftp credentials
 // define('FTP_USER', ''); // Your FTP username
