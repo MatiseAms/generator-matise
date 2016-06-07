@@ -1,6 +1,6 @@
 <?php
-define( 'DB_NAME', 'root' );
-define( 'DB_USER', 'scotchbox' );
+define( 'DB_NAME', 'scotchbox' );
+define( 'DB_USER', 'root' );
 define( 'DB_PASSWORD', 'root' );
 define( 'DB_HOST', 'localhost' );
 // define( 'WPLANG', '' );
