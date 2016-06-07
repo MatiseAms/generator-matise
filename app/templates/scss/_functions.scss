@@ -8,7 +8,7 @@
   @return $value;
 }
 
-@function rem-calc($values, $base-value: $base-fontsize) {
+@function rem-calc($values, $base-value: $base-font-size) {
 	$max: length($values);
 	@if $max == 1 {
 		@return convert-to-rem(nth($values, 1), $base-value);
@@ -54,16 +54,16 @@
 
 
 @function calculateRem($size) {
-  $remSize: $size / #{$base-fontsize}px;
+  $remSize: $size / #{$base-font-size}px;
   @return $remSize * 1rem;
 }
 
-@function letter-spacing($font-size: rem($base-fontsize),$space: $base-letter-spacing){
+@function letter-spacing($font-size: rem($base-font-size),$space: $base-letter-spacing){
   @if $font-size > 10{ @debug 'Give size in Rem'; }
-  $size: (($font-size*$base-fontsize)*$space)/1000;
+  $size: (($font-size*$base-font-size)*$space)/1000;
   @return rem($size);
 }
-@function ls($font-size: rem($base-fontsize),$space: $base-letter-spacing){
+@function ls($font-size: rem($base-font-size),$space: $base-letter-spacing){
   @return letter-spacing($font-size,$space);
 }
 
