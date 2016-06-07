@@ -9,8 +9,9 @@
         @content;
       }
     } @else {
-    &:nth-child(-n + #{$num + $from}):nth-child(n + #{$from+1}) {
-     @content;
+      &:nth-child(-n + #{$num + $from}):nth-child(n + #{$from+1}) {
+        @content;
+      }
     }
   } @else if $type == even or $type == odd {
     &:nth-child(#{$type}):nth-child(-n + #{$num + $from}):nth-child(n + #{$from+1}) {

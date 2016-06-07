@@ -174,11 +174,11 @@ module.exports = generators.Base.extend({
 		);
 		this.fs.copy(
 			this.templatePath('scss/zurb/_foundation.scss'),
-			this.destinationPath(scssDestination + 'scss/_foundation.scss')
+			this.destinationPath(scssDestination + 'scss/zurb/_foundation.scss')
 		);
 		this.fs.copy(
 			this.templatePath('scss/zurb/_global.scss'),
-			this.destinationPath(scssDestination + 'scss/_global.scss')
+			this.destinationPath(scssDestination + 'scss/zurb/_global.scss')
 		);
 		this.fs.copy(
 			this.templatePath('scss/zurb/_settings.scss'),
