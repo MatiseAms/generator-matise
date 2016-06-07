@@ -285,6 +285,10 @@ module.exports = generators.Base.extend({
 				this.templatePath('angular/grunt/shell.js'),
 				this.destinationPath('grunt/shell.js')
 			);
+			this.fs.copy(
+				this.templatePath('angular/grunt/tinypng.js'),
+				this.destinationPath('grunt/tinypng.js')
+			);
 			this.fs.copyTpl(
 				this.templatePath('angular/grunt/concat.js'),
 				this.destinationPath('grunt/concat.js'), {
@@ -507,6 +511,10 @@ module.exports = generators.Base.extend({
 				this.templatePath('wordpress/grunt/bower.js'),
 				this.destinationPath('grunt/bower.js')
 			);
+			this.fs.copy(
+				this.templatePath('wordpress/grunt/tinypng.js'),
+				this.destinationPath('grunt/tinypng.js')
+			);
 			this.fs.copyTpl(
 				this.templatePath('wordpress/grunt/browserSync.js'),
 				this.destinationPath('grunt/browserSync.js'), {
@@ -661,7 +669,7 @@ module.exports = generators.Base.extend({
 				'bower',
 				'connect-modrewrite',
 				'css-byebye',
-				'grunt',
+				'grunt@^0.4.5',
 				'grunt-angular-templates',
 				'grunt-bower',
 				'grunt-browser-sync',
@@ -679,6 +687,7 @@ module.exports = generators.Base.extend({
 				'grunt-csscomb',
 				'grunt-shell',
 				'grunt-cssnano',
+				'grunt-tinypng',
 				'jit-grunt',
 				'jshint-stylish',
 				'load-grunt-config',
@@ -712,7 +721,7 @@ module.exports = generators.Base.extend({
 				'autoprefixer',
 				'bower',
 				'css-byebye',
-				'grunt',
+				'grunt@^0.4.5',
 				'grunt-bower',
 				'grunt-browser-sync',
 				'grunt-cli',
@@ -724,6 +733,7 @@ module.exports = generators.Base.extend({
 				'grunt-postcss',
 				'grunt-sass',
 				'grunt-shell',
+				'grunt-tinypng',
 				'jit-grunt',
 				'load-grunt-config',
 				'postcss-alias',
