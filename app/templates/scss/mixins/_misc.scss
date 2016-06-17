@@ -1,0 +1,37 @@
+@mixin calc($property, $expression) {
+  #{$property}: -moz-calc(#{$expression});
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: calc(#{$expression});
+}
+
+@mixin selection {
+    ::-moz-selection { @content; }
+    ::selection { @content; }
+}
+@mixin extend($name) {
+  @extend %#{$name};
+}
+@mixin border-radius($radius: $base-radius) {
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+@mixin size($size,$height: false) {
+  width: nth($size,1);
+  @if length($size) > 1{
+	  height: nth($size,2);
+  }
+  @else {
+	  height: nth($size,1);
+  }
+  @if $height == true{
+	  height: nth($size,1);
+  }
+}
+@mixin position($list){
+	top: nth($list,1);
+	right: nth($list,2);
+	bottom: nth($list,3);
+	left: nth($list,4);
+}

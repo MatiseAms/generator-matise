@@ -126,6 +126,58 @@ module.exports = generators.Base.extend({
 			scssDestination = 'themesrc/';
 		}
 		this.fs.copy(
+			this.templatePath('scss/mixins/_animation.scss'),
+			this.destinationPath(scssDestination + 'scss/_animation.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_background.scss'),
+			this.destinationPath(scssDestination + 'scss/_background.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_breakpoints.scss'),
+			this.destinationPath(scssDestination + 'scss/_breakpoints.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_elements.scss'),
+			this.destinationPath(scssDestination + 'scss/_elements.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_flex.scss'),
+			this.destinationPath(scssDestination + 'scss/_flex.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_input.scss'),
+			this.destinationPath(scssDestination + 'scss/_input.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_menu.scss'),
+			this.destinationPath(scssDestination + 'scss/_menu.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_misc.scss'),
+			this.destinationPath(scssDestination + 'scss/_misc.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_parent.scss'),
+			this.destinationPath(scssDestination + 'scss/_parent.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_placeholder.scss'),
+			this.destinationPath(scssDestination + 'scss/_placeholder.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_string.scss'),
+			this.destinationPath(scssDestination + 'scss/_string.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_typography.scss'),
+			this.destinationPath(scssDestination + 'scss/_typography.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_wildcard.scss'),
+			this.destinationPath(scssDestination + 'scss/_wildcard.scss')
+		);
+		this.fs.copy(
 			this.templatePath('scss/zurb/_foundation.scss'),
 			this.destinationPath(scssDestination + 'scss/zurb/_foundation.scss')
 		);

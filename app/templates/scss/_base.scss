@@ -1,7 +1,14 @@
 $base-img-dir: "../img";
-$base-fontsize: 16;
+$base-font-size: 16;
+$base-line-height: 	1.5;
 $base-letter-spacing: 50;
 $base-fontpath: '../fonts';
+
+// this value may vary for each font
+// unitless value relative to 1em
+$cap-height: 		0.68;
+
+
 
 $icon-font-family: '';
 $main-font-family: '';
