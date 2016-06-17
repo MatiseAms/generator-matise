@@ -150,6 +150,10 @@ module.exports = generators.Base.extend({
 			this.destinationPath(scssDestination + 'scss/mixins/_breakpoints.scss')
 		);
 		this.fs.copy(
+			this.templatePath('scss/mixins/_calc.scss'),
+			this.destinationPath(scssDestination + 'scss/mixins/_calc.scss')
+		);
+		this.fs.copy(
 			this.templatePath('scss/mixins/_elements.scss'),
 			this.destinationPath(scssDestination + 'scss/mixins/_elements.scss')
 		);
