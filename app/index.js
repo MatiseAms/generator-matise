@@ -51,7 +51,6 @@ module.exports = generators.Base.extend({
 			this.log(chalk.red('Update your generator to ')+chalk.green(notifier.update.latest));
 			this.log('Run: '+chalk.cyan('npm i -g generator-matise')+' to update');
 			this.log(chalk.yellow('----------------------------------------')+'\n');
-
 		}
 	},
 	prompting: function askThemEverything() {
@@ -72,10 +71,16 @@ module.exports = generators.Base.extend({
 			name: 'title',
 			message: 'Your site title',
 			default: 'Amazing website'
+		}, {
+			type: 'input',
+			name: 'tinypng',
+			message: 'Tiny png api key',
+			default: ''
 		}], function(promptAnswers) {
 			answers.projectType = promptAnswers.projecttype;
 			answers.appName = promptAnswers.appname;
 			answers.siteTitle = promptAnswers.title;
+			answers.tinyPNGKey = promptAnswers.tinypng;
 			done();
 		}.bind(this));
 	},
@@ -183,6 +188,62 @@ module.exports = generators.Base.extend({
 		this.fs.copy(
 			this.templatePath('scss/zurb/_settings.scss'),
 			this.destinationPath(scssDestination + 'scss/zurb/_settings.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_animation.scss'),
+			this.destinationPath(scssDestination + 'scss/mixins/_animation.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_background.scss'),
+			this.destinationPath(scssDestination + 'scss/mixins/_background.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_breakpoints.scss'),
+			this.destinationPath(scssDestination + 'scss/mixins/_breakpoints.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_calc.scss'),
+			this.destinationPath(scssDestination + 'scss/mixins/_calc.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_elements.scss'),
+			this.destinationPath(scssDestination + 'scss/mixins/_elements.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_flex.scss'),
+			this.destinationPath(scssDestination + 'scss/mixins/_flex.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_input.scss'),
+			this.destinationPath(scssDestination + 'scss/mixins/_input.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_menu.scss'),
+			this.destinationPath(scssDestination + 'scss/mixins/_menu.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_misc.scss'),
+			this.destinationPath(scssDestination + 'scss/mixins/_misc.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_parent.scss'),
+			this.destinationPath(scssDestination + 'scss/mixins/_parent.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_placeholder.scss'),
+			this.destinationPath(scssDestination + 'scss/mixins/_placeholder.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_string.scss'),
+			this.destinationPath(scssDestination + 'scss/mixins/_string.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_typography.scss'),
+			this.destinationPath(scssDestination + 'scss/mixins/_typography.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_wildcard.scss'),
+			this.destinationPath(scssDestination + 'scss/mixins/_wildcard.scss')
 		);
 		this.fs.copy(
 			this.templatePath('scss/_base.scss'),
@@ -480,8 +541,8 @@ module.exports = generators.Base.extend({
 				}
 			);
 			this.fs.copyTpl(
-				this.templatePath('wordpress/run.sh'),
-				this.destinationPath('run.sh'), {
+				this.templatePath('wordpress/Vagrantfile'),
+				this.destinationPath('Vagrantfile'), {
 					appName: answers.appName.replace(' ', '')
 				}
 			);
@@ -490,6 +551,11 @@ module.exports = generators.Base.extend({
 				this.destinationPath('README.md'), {
 					appTitle: answers.siteTitle
 				}
+			);
+
+			this.fs.copy(
+				this.templatePath('wordpress/rsync_exclude.txt'),
+				this.destinationPath('rsync_exclude.txt')
 			);
 
 			// ============= Grunt files ==============
@@ -632,6 +698,10 @@ module.exports = generators.Base.extend({
 				this.destinationPath('public/wp-config.php'), {
 					salts: wpSaltKeys
 				}
+			);
+			this.fs.copy(
+				this.templatePath('wordpress/local-config.php'),
+				this.destinationPath('public/local-config.php')
 			);
 			this.fs.copy(
 				this.templatePath('wordpress/index.php'),

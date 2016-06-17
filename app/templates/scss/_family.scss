@@ -10,7 +10,7 @@
       }
     } @else {
       &:nth-child(-n + #{$num + $from}):nth-child(n + #{$from+1}) {
-        @content;
+       @content;
       }
     }
   } @else if $type == even or $type == odd {

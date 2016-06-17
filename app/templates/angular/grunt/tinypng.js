@@ -1,6 +1,6 @@
 module.exports = {
   options: {
-    apiKey: "xMF2xazwBJWzAUPEhpk_dFunLksjZuUg",
+    apiKey: "<%= tinyPNGKey %>",
     checkSigs: true,
     sigFile: 'grunt/tinypng_file_sigs.json',
     summarize: true,

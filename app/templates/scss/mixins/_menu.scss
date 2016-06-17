@@ -21,6 +21,15 @@
 @mixin menu-body{
 	&,&:before, &:after{ @content; }
 }
+@mixin menu-body-first{
+  &:before{ @content; }
+}
+@mixin menu-body-middle{
+  &{ @content; }
+}
+@mixin menu-body-last{
+  &:after{ @content; }
+}
 
 @mixin menu-close-body{
 	&:before, &:after{ @content; }
