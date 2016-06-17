@@ -1,0 +1,36 @@
+@mixin menu($width: 2rem, $height: .25rem, $gutter: .25rem, $color: $white, $round: $border-radius, $transition-duration: $transition) {
+  $menu-height: $height !global;
+  $menu-gutter: $gutter !global;
+  user-select: none; position: absolute; margin:#{$height + $gutter} auto; text-indent: -999em; text-align: left; top: 50%; left: 50%; margin-left: -#{$width/2}; margin-top: -#{$height/2};
+  @include parent { position: absolute; }
+
+  &, &:before, &:after{ display: block; width: $width; height: $height; background-color: $color; @include fade($transition-duration); opacity: 1;
+    @if $round != 0 { border-radius: $round; }
+  }
+  &:before, &:after{ position: absolute; content: ""; }
+  &:before{ top: -($height + $gutter); }
+  &:after{ top: $height + $gutter; }
+}
+
+@mixin menu-close {
+  &:before, &:after{ top: 0px; margin-top: -#{($menu-height/2) + ($menu-gutter + $menu-height)}; @content; }
+  &{ background-color: transparent; }
+  &:before{ transform: translateY($menu-gutter + $menu-height) rotate(45deg); }
+  &:after{ transform: translateY($menu-gutter + $menu-height) rotate(-45deg); }
+}
+@mixin menu-body{
+	&,&:before, &:after{ @content; }
+}
+@mixin menu-body-first{
+  &:before{ @content; }
+}
+@mixin menu-body-middle{
+  &{ @content; }
+}
+@mixin menu-body-last{
+  &:after{ @content; }
+}
+
+@mixin menu-close-body{
+	&:before, &:after{ @content; }
+}

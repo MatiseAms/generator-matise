@@ -138,6 +138,58 @@ module.exports = generators.Base.extend({
 			this.destinationPath(scssDestination + 'scss/zurb/_settings.scss')
 		);
 		this.fs.copy(
+			this.templatePath('scss/mixins/_animation.scss'),
+			this.destinationPath(scssDestination + 'scss/mixins/_animation.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_background.scss'),
+			this.destinationPath(scssDestination + 'scss/mixins/_background.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_breakpoints.scss'),
+			this.destinationPath(scssDestination + 'scss/mixins/_breakpoints.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_elements.scss'),
+			this.destinationPath(scssDestination + 'scss/mixins/_elements.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_flex.scss'),
+			this.destinationPath(scssDestination + 'scss/mixins/_flex.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_input.scss'),
+			this.destinationPath(scssDestination + 'scss/mixins/_input.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_menu.scss'),
+			this.destinationPath(scssDestination + 'scss/mixins/_menu.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_misc.scss'),
+			this.destinationPath(scssDestination + 'scss/mixins/_misc.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_parent.scss'),
+			this.destinationPath(scssDestination + 'scss/mixins/_parent.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_placeholder.scss'),
+			this.destinationPath(scssDestination + 'scss/mixins/_placeholder.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_string.scss'),
+			this.destinationPath(scssDestination + 'scss/mixins/_string.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_typography.scss'),
+			this.destinationPath(scssDestination + 'scss/mixins/_typography.scss')
+		);
+		this.fs.copy(
+			this.templatePath('scss/mixins/_wildcard.scss'),
+			this.destinationPath(scssDestination + 'scss/mixins/_wildcard.scss')
+		);
+		this.fs.copy(
 			this.templatePath('scss/_base.scss'),
 			this.destinationPath(scssDestination + 'scss/_base.scss')
 		);
