@@ -1,13 +1,15 @@
 var generators = require('yeoman-generator'),
 	chalk = require('chalk'),
 	git = require('simple-git')(),
-	mkdirp = require('mkdirp');
+	mkdirp = require('mkdirp'),
+	updateNotifier = require('update-notifier'),
+	pkg = require('../package.json'),
+	notifier = updateNotifier({
+		'pkg': pkg,
+		updateCheckInterval: 0
+	});
 
-	const updateNotifier = require('update-notifier');
-	const pkg = require('../package.json');
-
-	const notifier = updateNotifier({'pkg':pkg,updateCheckInterval: 0});
-	notifier.notify();
+notifier.notify();
 
 var consoleMatiseLogo = ' __  __   _ _____ ___ ___ ___   \n|  \\/  | /_|_   _|_ _/ __| __|  \n| |\\/| |/ _ \\| |  | |\\__ | _| _ \n|_|  |_/_/ \\_|_| |___|___|___(_)';
 var wordpressRepo = 'git://github.com/WordPress/WordPress.git',
@@ -45,12 +47,12 @@ module.exports = generators.Base.extend({
 	initializing: function initialization() {
 		this.log(consoleMatiseLogo);
 		this.log(chalk.blue('Here we go, creating a new Matise project:'));
-		if(notifier.update!==undefined){
-			this.log('\n'+chalk.yellow('----------------------------------------'));
+		if (notifier.update !== undefined) {
+			this.log('\n' + chalk.yellow('----------------------------------------'));
 			this.log(chalk.red('UPDATE AVAILABLE:'));
-			this.log(chalk.red('Update your generator to ')+chalk.green(notifier.update.latest));
-			this.log('Run: '+chalk.cyan('npm i -g generator-matise')+' to update');
-			this.log(chalk.yellow('----------------------------------------')+'\n');
+			this.log(chalk.red('Update your generator to ') + chalk.green(notifier.update.latest));
+			this.log('Run: ' + chalk.cyan('npm i -g generator-matise') + ' to update');
+			this.log(chalk.yellow('----------------------------------------') + '\n');
 		}
 	},
 	prompting: function askThemEverything() {
@@ -159,7 +161,6 @@ module.exports = generators.Base.extend({
 			this.templatePath('Gruntfile.js'),
 			this.destinationPath('Gruntfile.js'), {}
 		);
-
 
 
 		// ============= Angular only files ==============

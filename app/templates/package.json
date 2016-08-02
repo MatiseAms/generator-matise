@@ -1,11 +1,11 @@
 {
-	"name": "<%= appName %>",
-	"version": "1.0.0",
-	"description": "<%= appDesc %>",
-	"author": "",
-	"license": "ISC",
-	"engines": {
-		"node": "~0.12.7"
-	},
-	"devDependencies": {}
+  "name": "<%= appName %>",
+  "version": "1.0.0",
+  "description": "<%= appDesc %>",
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": "~4.4.7"
+  },
+  "devDependencies": {}
 }

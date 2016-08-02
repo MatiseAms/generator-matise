@@ -1,7 +1,7 @@
 angular.module('<%= appName %>', [
 		'ui.router',
 		'angulartics',
-	  'angulartics.google.analytics'
+		'angulartics.google.analytics'
 	])
 	.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
 		'use strict';
