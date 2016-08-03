@@ -6,6 +6,9 @@
     "app",
     "router"
   ],
+  "engines": {
+    "node": "4.4.6"
+  },
   "keywords": [
     "yeoman-generator"
   ],
