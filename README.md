@@ -6,16 +6,25 @@ Yeoman generator for matise projects
 
 # Getting Started
 - npm install -g generator-matise
+- mkdir [new project]
+- cd [new dir]
 - yo matise
 
-# Wordpress and Angular
+# Angular
+- npm install
+- grunt bowerinit
+- grunt
+
+# Wordpress
 - CHANGE vagrant IP in Vagrantfile!!!!!
 - vagrant up
 - npm install
 - grunt bowerinit
 - grunt
 
-# Wordpress Vagrant Database
+#### Vagrant Database creds
+powered by: https://box.scotch.io/
+
 - User: root
 - Pass: root
 - DB: scotchbox
