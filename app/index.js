@@ -7,7 +7,8 @@ var generators = require('yeoman-generator'),
 	notifier = updateNotifier({
 		'pkg': pkg,
 		updateCheckInterval: 0
-	});
+	}),
+	matiseArguments = [];
 
 notifier.notify();
 
@@ -43,6 +44,7 @@ module.exports = generators.Base.extend({
 	constructor: function() {
 		// Calling the super constructor is important so our generator is correctly set up
 		generators.Base.apply(this, arguments);
+		matiseArguments = this.arguments;
 	},
 	initializing: function initialization() {
 		this.log(consoleMatiseLogo);
@@ -56,35 +58,43 @@ module.exports = generators.Base.extend({
 		}
 	},
 	prompting: function askThemEverything() {
-		var done = this.async();
-		this.prompt([{
-			type: 'list',
-			name: 'projecttype',
-			message: 'What kind of project are you looking for?',
-			choices: ['angular', 'wordpress'],
-			default: 0
-		}, {
-			type: 'input',
-			name: 'appname',
-			message: 'Your app/theme name (lowercase!)',
-			default: this.appname.toLowerCase()
-		}, {
-			type: 'input',
-			name: 'title',
-			message: 'Your site title',
-			default: 'Amazing website'
-		}, {
-			type: 'input',
-			name: 'tinypng',
-			message: 'Tiny png api key',
-			default: ''
-		}], function(promptAnswers) {
-			answers.projectType = promptAnswers.projecttype;
-			answers.appName = promptAnswers.appname.replace(' ', '');
-			answers.siteTitle = promptAnswers.title;
-			answers.tinyPNGKey = promptAnswers.tinypng;
-			done();
-		}.bind(this));
+		if (matiseArguments.length != 4) {
+			var done = this.async();
+			this.prompt([{
+				type: 'list',
+				name: 'projecttype',
+				message: 'What kind of project are you looking for?',
+				choices: ['angular', 'wordpress'],
+				default: 0
+			}, {
+				type: 'input',
+				name: 'appname',
+				message: 'Your app/theme name (lowercase!)',
+				default: this.appname.toLowerCase()
+			}, {
+				type: 'input',
+				name: 'title',
+				message: 'Your site title',
+				default: 'Amazing website'
+			}, {
+				type: 'input',
+				name: 'tinypng',
+				message: 'Tiny png api key',
+				default: ''
+			}], function(promptAnswers) {
+				answers.projectType = promptAnswers.projecttype;
+				answers.appName = promptAnswers.appname.replace(' ', '');
+				answers.siteTitle = promptAnswers.title;
+				answers.tinyPNGKey = promptAnswers.tinypng;
+				done();
+			}.bind(this));
+		} else{
+			answers.projectType = matiseArguments[0];
+			answers.appName = matiseArguments[1];
+			answers.siteTitle = matiseArguments[2];
+			answers.tinyPNGKey = matiseArguments[3];
+		}
+		console.log(answers);
 	},
 	configuring: function configure() {
 		this.log(chalk.magenta('configuring...'));
