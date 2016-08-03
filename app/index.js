@@ -80,7 +80,7 @@ module.exports = generators.Base.extend({
 			default: ''
 		}], function(promptAnswers) {
 			answers.projectType = promptAnswers.projecttype;
-			answers.appName = promptAnswers.appname;
+			answers.appName = promptAnswers.appname.replace(' ', '');
 			answers.siteTitle = promptAnswers.title;
 			answers.tinyPNGKey = promptAnswers.tinypng;
 			done();
@@ -403,7 +403,7 @@ module.exports = generators.Base.extend({
 			this.fs.copyTpl(
 				this.templatePath('wordpress/Vagrantfile'),
 				this.destinationPath('Vagrantfile'), {
-					appName: answers.appName.replace(' ', '')
+					appName: answers.appName
 				}
 			);
 			this.fs.copyTpl(
@@ -444,7 +444,7 @@ module.exports = generators.Base.extend({
 			this.fs.copyTpl(
 				this.templatePath('wordpress/grunt/browserSync.js'),
 				this.destinationPath('grunt/browserSync.js'), {
-					appName: answers.appName.replace(' ', '')
+					appName: answers.appName
 				}
 			);
 			this.fs.copy(
