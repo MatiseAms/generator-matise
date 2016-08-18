@@ -57,3 +57,51 @@
 		input:checked + label{ @content; }
 	}
 }
+$input-types:(
+  (button,button),
+  (checkbox,check),
+  (color,button),
+  (date,button),
+  (datetime, text),
+  (datetime-local,text),
+  (email,text ),
+  (file,text),
+  (hidden,hidden),
+  (image,text),
+  (month,text),
+  (number,text),
+  (password,text),
+  (radio,radio),
+  (range,slider),
+  (reset,button),
+  (search,text),
+  (submit,button),
+  (tel,text),
+  (text,text),
+  (time,text),
+  (url,text),
+  (week,text)
+);
+
+@mixin input-type($type){
+  input{
+    #{input-list($type)}{
+      @content;
+    }
+  }
+}
+
+@function input-list($type){
+  $i: 0;
+  $list: '';
+  @each $input in $input-types{
+    @if nth($input,2) == $type{
+      $i: $i + 1;
+      @if $i>1{
+        $list: $list + ',';
+      }
+      $list: $list + '&[type="#{nth($input,1)}"]';
+    }
+  }
+  @return $list;
+}
