@@ -6,3 +6,4 @@ public/content/themes/<%= appName %>
 public/content/uploads
 themesrc/vendor
 .vagrant
+public/local-config.php

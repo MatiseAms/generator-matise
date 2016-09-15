@@ -2,10 +2,11 @@ module.exports = {
   options: {
     apiKey: "<%= tinyPNGKey %>",
     checkSigs: true,
-    sigFile: 'grunt/tinypng_file_sigs.json',
-    summarize: true,
-    showProgress: false,
-    stopOnImageError: false
+	sigFile: 'grunt/tinypng_file_sigs.json',
+	sigFileSpace: 2,
+	summarize: true,
+	showProgress: false,
+	stopOnImageError: false
   },
   compressPNG: {
     expand: true,

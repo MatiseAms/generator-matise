@@ -51,5 +51,35 @@ module.exports = {
 			],
 			dest: '<%= config.themedist.root %>'
 		}]
+	},
+	config_dev: {
+		files: [{
+			expand: true,
+			cwd: '<%= config.wpconfig.src %>dev/',
+			src: [
+				'**/*',
+			],
+			dest: '<%= config.wpconfig.dist %>'
+		}]
+	},
+	config_staging: {
+		files: [{
+			expand: true,
+			cwd: '<%= config.wpconfig.src %>staging/',
+			src: [
+				'**/*',
+			],
+			dest: '<%= config.wpconfig.dist %>'
+		}]
+	},
+	config_live: {
+		files: [{
+			expand: true,
+			cwd: '<%= config.wpconfig.src %>dist/',
+			src: [
+				'**/*',
+			],
+			dest: '<%= config.wpconfig.dist %>'
+		}]
 	}
 };

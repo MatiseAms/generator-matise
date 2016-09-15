@@ -1,29 +1,39 @@
 {
-	"default": [
-		"notify",
-		"dev",
-		"browserSync",
-		"watch"
-	],
-	"dev": [
-		"clean:dist",
-		"tinypng",
-		"copy:theme",
-		"copy:images",
-		"copy:fonts",
-		"copy:vendor",
-		"sass",
-		"postcss"
-	],
-	"dist": [],
-	"staging": [],
-	"bowerinit": [
-		"clean:bower",
-		"clean:vendor",
-		"shell:bowerinstall",
-		"bower"
-	],
-	"getdb": [
-		"shell:pulldatabase"
-	]
+  "default": [
+    "notify",
+    "dev",
+    "browserSync",
+    "watch"
+  ],
+  "standard": [
+    "clean:dist",
+    "tinypng",
+    "copy:theme",
+    "copy:images",
+    "copy:fonts",
+    "copy:vendor",
+    "sass",
+    "postcss"
+  ],
+  "dev": [
+    "standard",
+    "copy:config_dev"
+  ],
+  "staging": [
+    "standard",
+    "copy:config_staging"
+  ],
+  "dist": [
+    "standard",
+    "copy:config_live"
+  ],
+  "bowerinit": [
+    "clean:bower",
+    "clean:vendor",
+    "shell:bowerinstall",
+    "bower"
+  ],
+  "getdb": [
+    "shell:pulldatabase"
+  ]
 }

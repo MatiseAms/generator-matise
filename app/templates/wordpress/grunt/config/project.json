@@ -6,5 +6,9 @@
 	"themedist":{
 		"root": "public/content/themes/<%= appName %>/",
 		"vendor": "public/content/themes/<%= appName %>/vendor/"
+	},
+	"wpconfig":{
+		"src": "wpconfig/",
+		"dist": "public/"
 	}
 }
