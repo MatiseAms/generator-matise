@@ -5,33 +5,32 @@
 		"browserSync",
 		"watch"
 	],
-	"dev": [
+	"standard":[
 		"jshint:src",
 		"clean:dist",
 		"concat:scripts",
 		"copy:html",
+		"copy:images",
+		"copy:fonts",
+		"sass:dist"
+	],
+	"dev": [
+		"standard",
 		"htmlbuild:dev",
 		"tinypng",
 		"copy:vendor",
-		"copy:images",
-		"copy:fonts",
 		"ngtemplates:dev",
-		"sass:dist",
 		"postcss"
 	],
 	"dist": [
-		"clean:dist",
-		"concat:scripts",
-		"copy:html",
+		"standard",
 		"htmlbuild:dist",
 		"concat:dist",
-		"copy:images",
-		"copy:fonts",
 		"ngtemplates:dist",
-		"sass:dist",
 		"postcss",
 		"cssnano",
-		"uglify"
+		"uglify",
+		"cacheBust"
 	],
 	"cssmagic": [
 		"csscomb:dynamic_mappings"
