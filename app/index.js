@@ -220,6 +220,10 @@ module.exports = generators.Base.extend({
 				this.templatePath('angular/grunt/tinypng.js'),
 				this.destinationPath('grunt/tinypng.js')
 			);
+			this.fs.copy(
+				this.templatePath('angular/grunt/cacheBust.js'),
+				this.destinationPath('grunt/cacheBust.js')
+			);
 			this.fs.copyTpl(
 				this.templatePath('angular/grunt/concat.js'),
 				this.destinationPath('grunt/concat.js'), {
@@ -620,6 +624,7 @@ module.exports = generators.Base.extend({
 				'grunt@^0.4.5',
 				'grunt-angular-templates',
 				'grunt-bower',
+				'grunt-cache-bust',
 				'grunt-browser-sync',
 				'grunt-cli',
 				'grunt-contrib-clean',
