@@ -461,9 +461,13 @@ module.exports = generators.Base.extend({
 					appName: answers.appName
 				}
 			);
-			this.fs.copy(
+			this.fs.copyTpl(
 				this.templatePath('wordpress/grunt/clean.js'),
-				this.destinationPath('grunt/clean.js')
+				this.destinationPath('grunt/clean.js'), {
+					appName: answers.appName
+				}, {
+					delimiter: '?'
+				}
 			);
 			this.fs.copy(
 				this.templatePath('wordpress/grunt/copy.js'),
