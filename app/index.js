@@ -1,5 +1,6 @@
 var generators = require('yeoman-generator'),
 	chalk = require('chalk'),
+	figlet = require('figlet'),
 	git = require('simple-git')(),
 	mkdirp = require('mkdirp'),
 	updateNotifier = require('update-notifier'),
@@ -8,11 +9,11 @@ var generators = require('yeoman-generator'),
 		'pkg': pkg,
 		updateCheckInterval: 0
 	}),
+	shelljs = require('shelljs/global'),
 	matiseArguments = [];
 
 notifier.notify();
 
-var consoleMatiseLogo = ' __  __   _ _____ ___ ___ ___   \n|  \\/  | /_|_   _|_ _/ __| __|  \n| |\\/| |/ _ \\| |  | |\\__ | _| _ \n|_|  |_/_/ \\_|_| |___|___|___(_)';
 var wordpressRepo = 'git://github.com/WordPress/WordPress.git',
 	wpDir = 'public/wordpress',
 	latestVersion = '4.4',
@@ -22,6 +23,7 @@ var answers = {
 	appName: '',
 	siteTitle: '',
 	projectType: '',
+	tinyPNGKey: ''
 };
 
 var request = require('request');
@@ -47,7 +49,7 @@ module.exports = generators.Base.extend({
 		matiseArguments = this.arguments;
 	},
 	initializing: function initialization() {
-		this.log(consoleMatiseLogo);
+		this.log(chalk.cyan( figlet.textSync('MATISE.', { font: 'Big Money-nw' }) ));
 		this.log(chalk.blue('Here we go, creating a new Matise project:'));
 		if (notifier.update !== undefined) {
 			this.log('\n' + chalk.yellow('----------------------------------------'));
@@ -94,7 +96,6 @@ module.exports = generators.Base.extend({
 			answers.siteTitle = matiseArguments[2];
 			answers.tinyPNGKey = matiseArguments[3];
 		}
-		console.log(answers);
 	},
 	configuring: function configure() {
 		this.log(chalk.magenta('configuring...'));
@@ -126,7 +127,6 @@ module.exports = generators.Base.extend({
 	},
 	writing: function writeItDown() {
 		this.log(chalk.yellow('writing files...'));
-
 		// ============= Config files ==============
 
 		// ============= App scss files ==============
@@ -216,9 +216,13 @@ module.exports = generators.Base.extend({
 				this.templatePath('angular/grunt/shell.js'),
 				this.destinationPath('grunt/shell.js')
 			);
-			this.fs.copy(
+			this.fs.copyTpl(
 				this.templatePath('angular/grunt/tinypng.js'),
-				this.destinationPath('grunt/tinypng.js')
+				this.destinationPath('grunt/tinypng.js'), {
+					tinyPNGKey: answers.tinyPNGKey
+				}, {
+					delimiter: '?'
+				}
 			);
 			this.fs.copy(
 				this.templatePath('angular/grunt/cacheBust.js'),
@@ -451,9 +455,13 @@ module.exports = generators.Base.extend({
 				this.templatePath('wordpress/grunt/bower.js'),
 				this.destinationPath('grunt/bower.js')
 			);
-			this.fs.copy(
+			this.fs.copyTpl(
 				this.templatePath('wordpress/grunt/tinypng.js'),
-				this.destinationPath('grunt/tinypng.js')
+				this.destinationPath('grunt/tinypng.js'), {
+					tinyPNGKey: answers.tinyPNGKey
+				}, {
+					delimiter: '?'
+				}
 			);
 			this.fs.copyTpl(
 				this.templatePath('wordpress/grunt/browserSync.js'),
@@ -615,6 +623,9 @@ module.exports = generators.Base.extend({
 		this.log('conflicts? what conflicts?');
 	},
 	install: function installThePackages() {
+		this.log(chalk.green('Ok, this can take some time, sorry for that, but sit back relax and enjoy some awsome Yo mama jokes'));
+		exec('open http://9gag.com/search?query=yo+mama');
+
 		this.log('installing dependencies...');
 
 		if (answers.projectType === 'angular') {
