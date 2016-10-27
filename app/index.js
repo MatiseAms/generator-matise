@@ -674,6 +674,7 @@ module.exports = generators.Base.extend({
 			this.bowerInstall([
 				'angular',
 				'angular-ui-router',
+				'angular-hipsum',
 				'foundation-sites',
 				'modernizr#2.8.3',
 				'angulartics-google-analytics'

@@ -15,6 +15,7 @@ module.exports = {
 			'<%= config.src.vendor %>foundation/js/foundation.js',
 			'<%= config.src.vendor %>angular.js',
 			'<%= config.src.vendor %>angular-ui-router.js',
+			'<%= config.src.vendor %>angular-hipsum.js',
 			'<%= config.src.vendor %>angulartics.js',
 			'<%= config.src.vendor %>angulartics-ga.js'
 		],
