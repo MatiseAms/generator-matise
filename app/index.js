@@ -137,6 +137,11 @@ module.exports = generators.Base.extend({
 		if (answers.projectType === 'wordpress') {
 			scssDestination = 'themesrc/';
 		}
+		// Icons folder
+		this.fs.copy(
+			this.templatePath('scss/icons/*'),
+			this.destinationPath(scssDestination + 'scss/icons')
+		);
 		// Mixins folder
 		this.fs.copy(
 			this.templatePath('scss/mixins/*'),
@@ -170,6 +175,12 @@ module.exports = generators.Base.extend({
 		this.fs.copyTpl(
 			this.templatePath('Gruntfile.js'),
 			this.destinationPath('Gruntfile.js'), {}
+		);
+
+		// ============= Webfont folders ==============
+		this.fs.copy(
+			this.templatePath('icons/**/*'),
+			this.destinationPath(scssDestination + 'icons')
 		);
 
 
@@ -287,6 +298,10 @@ module.exports = generators.Base.extend({
 			this.fs.copy(
 				this.templatePath('angular/grunt/watch.js'),
 				this.destinationPath('grunt/watch.js')
+			);
+			this.fs.copy(
+				this.templatePath('angular/grunt/webfont.js'),
+				this.destinationPath('grunt/webfont.js')
 			);
 			// ============= App base files ==============
 			this.fs.copyTpl(
@@ -643,6 +658,7 @@ module.exports = generators.Base.extend({
 				'grunt-shell',
 				'grunt-cssnano',
 				'grunt-tinypng',
+				'grunt-webfont',
 				'jit-grunt',
 				'jshint-stylish',
 				'load-grunt-config',
@@ -689,6 +705,7 @@ module.exports = generators.Base.extend({
 				'grunt-sass',
 				'grunt-shell',
 				'grunt-tinypng',
+				'grunt-webfont',
 				'jit-grunt',
 				'load-grunt-config',
 				'postcss-alias',

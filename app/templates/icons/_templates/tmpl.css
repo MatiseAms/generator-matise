@@ -1,0 +1,6 @@
+/* Icons */
+$icons: (<% if (iconsStyles) { %>
+<% for (var glyphIdx = 0; glyphIdx < glyphs.length; glyphIdx++) { %>    "<%= glyphs[glyphIdx] %>":"<% if (addLigatures) { %><%= glyphs[glyphIdx] %><% } else { %>\<%= codepoints[glyphIdx] %><% } %>"<% if((glyphIdx + 1) < glyphs.length) { %>,<% } %>
+<% } %>);
+/*@debug map-get($icon, "icons");*/
+<%  } %>
