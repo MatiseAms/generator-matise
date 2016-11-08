@@ -75,6 +75,12 @@ angular.module('<%= appName %>', [
 						controller: 'BottomController as bottomCtrl'
 					}
 				}
+			})
+			.state('kitchensink', {
+				url: '/kitchensink',
+				parent: 'root',
+				templateUrl: 'sections/kitchensink/kitchensink.html',
+				controller: 'KitchensinkController as kitchensinkCtrl'
 			});
 		// use the HTML5 History API
 		$locationProvider.html5Mode(true);
