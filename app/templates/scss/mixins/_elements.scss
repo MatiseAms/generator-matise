@@ -22,3 +22,17 @@
     }
   }
 }
+
+/// &AND Multi
+@mixin and($elements...){
+  $selectors: null;
+  @for $i from 1 through length($elements) {
+    $selectors: "#{$selectors '& +' nth($elements,$i)}";
+    @if $i < length($elements) {
+      $selectors: $selectors + ',';
+    }
+  }
+  #{$selectors}{
+    @content;
+  }
+}
