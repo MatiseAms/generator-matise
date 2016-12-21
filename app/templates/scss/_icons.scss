@@ -1,12 +1,4 @@
-$icons:(
-	"facebook": "a",
-	"twitter": "b",
-  "youtube": "d",
-  "youtube2": "i",
-  "linkedin": "f",
-  "search": "g",
-  "matise": "h"
-);
+@import "icons/icons";
 
 a.icon{
   &:before{ font-family: $social-font-family; text-transform: none; letter-spacing: 0; }
