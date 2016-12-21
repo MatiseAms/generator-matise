@@ -11,28 +11,6 @@ angular.module('<%= appName %>', [
 		$urlRouterProvider.otherwise('/');
 
 		$stateProvider
-			.state('error', {
-				'abstract': true,
-				views: {
-					header: {
-						templateUrl: 'sections/error/header.html',
-						controller: 'ErrorHeaderController as errorheaderCtrl'
-					},
-					content: {
-						templateUrl: '<div ui-view></div>'
-					},
-					footer: {
-						templateUrl: 'sections/error/footer.html',
-						controller: 'ErrorFooterController as errorfooterCtrl'
-					}
-				}
-			})
-			.state('oldbrowser', {
-				url: '/oldbrowser',
-				parent: 'error',
-				templateUrl: 'sections/error/oldbrowser.html',
-				controller: 'OldbrowserController as oldbrowserCtrl'
-			})
 			.state('root', {
 				'abstract': true,
 				views: {
@@ -54,30 +32,8 @@ angular.module('<%= appName %>', [
 				parent: 'root',
 				templateUrl: 'sections/home/home.html',
 				controller: 'HomeController as homeCtrl'
-			})
-			.state('about', {
-				url: '/about',
-				parent: 'root',
-				views: {
-					'': {
-						templateUrl: 'sections/about/about.html',
-						controller: 'AboutController as aboutCtrl'
-					},
-					'top@about': {
-						templateUrl: 'sections/about/top.html',
-						controller: 'TopController as topCtrl'
-					},
-					'middle@about': {
-						templateUrl: 'sections/about/middle.html',
-						controller: 'MiddleController as middleCtrl'
-					},
-					'bottom@about': {
-						templateUrl: 'sections/about/bottom.html',
-						controller: 'BottomController as bottomCtrl'
-					}
-				}
 			});
-			
+
 		// use the HTML5 History API
 		$locationProvider.html5Mode(true);
 	}])

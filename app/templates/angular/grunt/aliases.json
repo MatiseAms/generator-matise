@@ -15,6 +15,7 @@
 		"sass:dist"
 	],
 	"dev": [
+		"jsbeautifier",
 		"standard",
 		"htmlbuild:dev",
 		"tinypng",

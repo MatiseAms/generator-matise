@@ -212,6 +212,10 @@ module.exports = generators.Base.extend({
 				this.destinationPath('grunt/config/csscomb.json')
 			);
 			this.fs.copy(
+				this.templatePath('angular/grunt/config/beautifier.json'),
+				this.destinationPath('grunt/config/beautifier.json')
+			);
+			this.fs.copy(
 				this.templatePath('angular/grunt/aliases.json'),
 				this.destinationPath('grunt/aliases.json')
 			);
@@ -266,6 +270,10 @@ module.exports = generators.Base.extend({
 			this.fs.copy(
 				this.templatePath('angular/grunt/htmlbuild.js'),
 				this.destinationPath('grunt/htmlbuild.js')
+			);
+			this.fs.copy(
+				this.templatePath('angular/grunt/jsbeautifier.js'),
+				this.destinationPath('grunt/jsbeautifier.js')
 			);
 			this.fs.copy(
 				this.templatePath('angular/grunt/jshint.js'),
@@ -323,36 +331,6 @@ module.exports = generators.Base.extend({
 			);
 			// ============= App default files ==============
 			this.fs.copy(
-				this.templatePath('angular/sections/error/footer.html'),
-				this.destinationPath('src/app/sections/error/footer.html')
-			);
-			this.fs.copyTpl(
-				this.templatePath('angular/sections/error/footer-controller.js'),
-				this.destinationPath('src/app/sections/error/footer-controller.js'), {
-					appName: answers.appName
-				}
-			);
-			this.fs.copy(
-				this.templatePath('angular/sections/error/header.html'),
-				this.destinationPath('src/app/sections/error/header.html')
-			);
-			this.fs.copyTpl(
-				this.templatePath('angular/sections/error/header-controller.js'),
-				this.destinationPath('src/app/sections/error/header-controller.js'), {
-					appName: answers.appName
-				}
-			);
-			this.fs.copy(
-				this.templatePath('angular/sections/error/oldbrowser.html'),
-				this.destinationPath('src/app/sections/error/oldbrowser.html')
-			);
-			this.fs.copyTpl(
-				this.templatePath('angular/sections/error/oldbrowser-controller.js'),
-				this.destinationPath('src/app/sections/error/oldbrowser-controller.js'), {
-					appName: answers.appName
-				}
-			);
-			this.fs.copy(
 				this.templatePath('angular/sections/root/footer.html'),
 				this.destinationPath('src/app/sections/root/footer.html')
 			);
@@ -379,46 +357,6 @@ module.exports = generators.Base.extend({
 			this.fs.copyTpl(
 				this.templatePath('angular/sections/home/home-controller.js'),
 				this.destinationPath('src/app/sections/home/home-controller.js'), {
-					appName: answers.appName
-				}
-			);
-			this.fs.copy(
-				this.templatePath('angular/sections/about/about.html'),
-				this.destinationPath('src/app/sections/about/about.html')
-			);
-			this.fs.copyTpl(
-				this.templatePath('angular/sections/about/about-controller.js'),
-				this.destinationPath('src/app/sections/about/about-controller.js'), {
-					appName: answers.appName
-				}
-			);
-			this.fs.copy(
-				this.templatePath('angular/sections/about/top.html'),
-				this.destinationPath('src/app/sections/about/top.html')
-			);
-			this.fs.copyTpl(
-				this.templatePath('angular/sections/about/top-controller.js'),
-				this.destinationPath('src/app/sections/about/top-controller.js'), {
-					appName: answers.appName
-				}
-			);
-			this.fs.copy(
-				this.templatePath('angular/sections/about/middle.html'),
-				this.destinationPath('src/app/sections/about/middle.html')
-			);
-			this.fs.copyTpl(
-				this.templatePath('angular/sections/about/middle-controller.js'),
-				this.destinationPath('src/app/sections/about/middle-controller.js'), {
-					appName: answers.appName
-				}
-			);
-			this.fs.copy(
-				this.templatePath('angular/sections/about/bottom.html'),
-				this.destinationPath('src/app/sections/about/bottom.html')
-			);
-			this.fs.copyTpl(
-				this.templatePath('angular/sections/about/bottom-controller.js'),
-				this.destinationPath('src/app/sections/about/bottom-controller.js'), {
 					appName: answers.appName
 				}
 			);
@@ -670,6 +608,7 @@ module.exports = generators.Base.extend({
 				'grunt-cssnano',
 				'grunt-tinypng',
 				'grunt-webfont',
+				'grunt-jsbeautifier',
 				'jit-grunt',
 				'jshint-stylish',
 				'load-grunt-config',
