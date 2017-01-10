@@ -1,4 +1,4 @@
-var generators = require('yeoman-generator'),
+var Generator = require('yeoman-generator'),
 	chalk = require('chalk'),
 	figlet = require('figlet'),
 	git = require('simple-git')(),
@@ -10,23 +10,26 @@ var generators = require('yeoman-generator'),
 		updateCheckInterval: 0
 	}),
 	shelljs = require('shelljs/global'),
+	request = require('request'),
 	matiseArguments = [];
 
 notifier.notify();
 
 var wordpressRepo = 'git://github.com/WordPress/WordPress.git',
 	wpDir = 'public/wordpress',
-	latestVersion = '4.4',
+	latestVersion = '4.7',
 	wpSaltKeys = '';
 
 var answers = {
 	appName: '',
 	siteTitle: '',
 	projectType: '',
-	tinyPNGKey: ''
+	tinyPNGKey: '',
+	parse: false,
+	hipsum: false,
+	subviews: false
 };
 
-var request = require('request');
 request('https://api.wordpress.org/secret-key/1.1/salt/', function(error, response, body) {
 	wpSaltKeys = body;
 });
@@ -41,14 +44,15 @@ git.listRemote(['--tags', wordpressRepo], function(err, tagsList) {
 	}
 });
 
-module.exports = generators.Base.extend({
+module.exports = class extends Generator {
 	// The name `constructor` is important here
-	constructor: function() {
+	constructor(args, opts) {
 		// Calling the super constructor is important so our generator is correctly set up
-		generators.Base.apply(this, arguments);
-		matiseArguments = this.arguments;
-	},
-	initializing: function initialization() {
+		super(args, opts);
+		matiseArguments = this.args;
+	}
+
+	initialization() {
 		this.log(chalk.cyan(figlet.textSync('MATISE.', {
 			font: 'Big Money-nw'
 		})));
@@ -60,16 +64,12 @@ module.exports = generators.Base.extend({
 			this.log('Run: ' + chalk.cyan('npm i -g generator-matise') + ' to update');
 			this.log(chalk.yellow('----------------------------------------') + '\n');
 		}
-	},
-	prompting: function askThemEverything() {
-		if (matiseArguments.length != 4) {
-			return this.prompt([{
-				type: 'list',
-				name: 'projecttype',
-				message: 'What kind of project are you looking for?',
-				choices: ['angular', 'wordpress'],
-				default: 0
-			}, {
+	}
+
+	prompting() {
+		if (matiseArguments.length != 7) {
+			var self = this;
+			return self.prompt([{
 				type: 'input',
 				name: 'appname',
 				message: 'Your app/theme name (lowercase!)',
@@ -84,29 +84,61 @@ module.exports = generators.Base.extend({
 				name: 'tinypng',
 				message: 'Tiny png api key',
 				default: ''
+			}, {
+				type: 'list',
+				name: 'projecttype',
+				message: 'What kind of project are you looking for?',
+				choices: ['angular', 'wordpress'],
+				default: 0
 			}]).then((promptAnswers) => {
 				answers.projectType = promptAnswers.projecttype;
 				answers.appName = promptAnswers.appname.replace(' ', '');
 				answers.siteTitle = promptAnswers.title;
 				answers.tinyPNGKey = promptAnswers.tinypng;
+				if (promptAnswers.projecttype === 'angular') {
+					return self.prompt([{
+						type: 'checkbox',
+						name: 'projectfeatures',
+						message: 'What features would you like to use?',
+						choices: ['parse', 'hipsum', 'subviews'],
+						default: 0
+					}]).then((optionsAnswers) => {
+						if (optionsAnswers.projectfeatures.indexOf('parse') >= 0) {
+							answers.parse = true;
+						}
+						if (optionsAnswers.projectfeatures.indexOf('hipsum') >= 0) {
+							answers.hipsum = true;
+						}
+						if (optionsAnswers.projectfeatures.indexOf('subviews') >= 0) {
+							answers.subviews = true;
+						}
+					});
+				} else {
+					return;
+				}
 			});
 		} else {
 			answers.projectType = matiseArguments[0];
 			answers.appName = matiseArguments[1];
 			answers.siteTitle = matiseArguments[2];
 			answers.tinyPNGKey = matiseArguments[3];
+			answers.parse = matiseArguments[4] === 'true';
+			answers.hipsum = matiseArguments[5] === 'true';
+			answers.subviews = matiseArguments[6] === 'true';
 		}
-	},
-	configuring: function configure() {
+	}
+
+	configuring() {
 		this.log(chalk.magenta('configuring...'));
-	},
-	default: function defaultThings() {
+	}
+
+	default () {
 		this.log('Init Git');
 		git.init().add('.').commit('First commit!');
 		this.log('Git init complete');
-	},
-	wordpress: function installWordpress() {
+	}
 
+	wordpress() {
 		if (answers.projectType === 'wordpress') {
 			var done = this.async();
 
@@ -124,8 +156,9 @@ module.exports = generators.Base.extend({
 				}.bind(this));
 			}.bind(this));
 		}
-	},
-	writing: function writeItDown() {
+	}
+
+	writing() {
 		this.log(chalk.yellow('writing files...'));
 		// ============= Config files ==============
 
@@ -147,11 +180,31 @@ module.exports = generators.Base.extend({
 			this.templatePath('scss/mixins/*'),
 			this.destinationPath(scssDestination + 'scss/mixins')
 		);
+
 		// Zurb folder
-		this.fs.copy(
-			this.templatePath('scss/zurb/*'),
-			this.destinationPath(scssDestination + 'scss/zurb')
+		var utilPath = '@import \'scss/util/util\';';
+		var foundationPath = '@import \'scss/foundation\';';
+		if (answers.projectType === 'wordpress') {
+			utilPath = '@import \'foundation/scss/util/util\';';
+			foundationPath = '@import \'foundation/scss/foundation\';';
+		}
+		this.fs.copyTpl(
+			this.templatePath('scss/zurb/_foundation.scss'),
+			this.destinationPath(scssDestination + 'scss/zurb/_foundation.scss'), {
+				foundationImport: foundationPath
+			}
 		);
+		this.fs.copy(
+			this.templatePath('scss/zurb/_global.scss'),
+			this.destinationPath(scssDestination + 'scss/zurb/_global.scss')
+		);
+		this.fs.copyTpl(
+			this.templatePath('scss/zurb/_settings.scss'),
+			this.destinationPath(scssDestination + 'scss/zurb/_settings.scss'), {
+				utilImport: utilPath
+			}
+		);
+
 		//global sccss
 		this.fs.copy(
 			this.templatePath('scss/*'),
@@ -166,23 +219,25 @@ module.exports = generators.Base.extend({
 				appName: answers.appName
 			}
 		);
-		this.fs.copyTpl(
-			this.templatePath('bower.json'),
-			this.destinationPath('bower.json'), {
-				appName: answers.appName
-			}
-		);
+
 		this.fs.copyTpl(
 			this.templatePath('Gruntfile.js'),
 			this.destinationPath('Gruntfile.js'), {}
 		);
 
+		if (answers.projectType === 'wordpress') {
+			this.fs.copyTpl(
+				this.templatePath('bower.json'),
+				this.destinationPath('bower.json'), {
+					appName: answers.appName
+				}
+			);
+		}
 		// ============= Webfont folders ==============
 		this.fs.copy(
 			this.templatePath('icons/**/*'),
 			this.destinationPath(scssDestination + 'icons')
 		);
-
 
 		// ============= Angular only files ==============
 		if (answers.projectType === 'angular') {
@@ -208,10 +263,6 @@ module.exports = generators.Base.extend({
 				this.destinationPath('grunt/config/project.json')
 			);
 			this.fs.copy(
-				this.templatePath('angular/grunt/config/csscomb.json'),
-				this.destinationPath('grunt/config/csscomb.json')
-			);
-			this.fs.copy(
 				this.templatePath('angular/grunt/config/beautifier.json'),
 				this.destinationPath('grunt/config/beautifier.json')
 			);
@@ -220,16 +271,8 @@ module.exports = generators.Base.extend({
 				this.destinationPath('grunt/aliases.json')
 			);
 			this.fs.copy(
-				this.templatePath('angular/grunt/bower.js'),
-				this.destinationPath('grunt/bower.js')
-			);
-			this.fs.copy(
 				this.templatePath('angular/grunt/clean.js'),
 				this.destinationPath('grunt/clean.js')
-			);
-			this.fs.copy(
-				this.templatePath('angular/grunt/shell.js'),
-				this.destinationPath('grunt/shell.js')
 			);
 			this.fs.copyTpl(
 				this.templatePath('angular/grunt/tinypng.js'),
@@ -239,17 +282,17 @@ module.exports = generators.Base.extend({
 					delimiter: '?'
 				}
 			);
-			this.fs.copy(
-				this.templatePath('angular/grunt/cacheBust.js'),
-				this.destinationPath('grunt/cacheBust.js')
-			);
 			this.fs.copyTpl(
-				this.templatePath('angular/grunt/concat.js'),
-				this.destinationPath('grunt/concat.js'), {
+				this.templatePath('angular/grunt/browserify.js'),
+				this.destinationPath('grunt/browserify.js'), {
 					appName: answers.appName
 				}, {
 					delimiter: '?'
 				}
+			);
+			this.fs.copy(
+				this.templatePath('angular/grunt/cacheBust.js'),
+				this.destinationPath('grunt/cacheBust.js')
 			);
 			this.fs.copy(
 				this.templatePath('angular/grunt/browserSync.js'),
@@ -258,10 +301,6 @@ module.exports = generators.Base.extend({
 			this.fs.copy(
 				this.templatePath('angular/grunt/copy.js'),
 				this.destinationPath('grunt/copy.js')
-			);
-			this.fs.copy(
-				this.templatePath('angular/grunt/csscomb.js'),
-				this.destinationPath('grunt/csscomb.js')
 			);
 			this.fs.copy(
 				this.templatePath('angular/grunt/cssnano.js'),
@@ -307,28 +346,73 @@ module.exports = generators.Base.extend({
 					delimiter: '?'
 				}
 			);
-			this.fs.copy(
+			this.fs.copyTpl(
 				this.templatePath('angular/grunt/watch.js'),
-				this.destinationPath('grunt/watch.js')
+				this.destinationPath('grunt/watch.js'), {
+					appName: answers.appName
+				}, {
+					delimiter: '?'
+				}
 			);
 			this.fs.copy(
 				this.templatePath('angular/grunt/webfont.js'),
 				this.destinationPath('grunt/webfont.js')
 			);
 			// ============= App base files ==============
+			var developScript = '',
+				productionScript = '';
+
+			if (answers.parse) {
+				developScript = '// "grunt dev"\n		var localParse = true;';
+				productionScript = '// "grunt staging" and "grunt dist"\n		var localParse = false;';
+			}
+
 			this.fs.copyTpl(
 				this.templatePath('angular/index.html'),
 				this.destinationPath('src/app/index.html'), {
 					title: answers.siteTitle,
-					appName: answers.appName
+					appName: answers.appName,
+					devScript: developScript,
+					prodScript: productionScript
 				}
 			);
-			this.fs.copyTpl(
-				this.templatePath('angular/app.js'),
-				this.destinationPath('src/app/' + answers.appName + '.js'), {
-					appName: answers.appName
-				}
+
+			var angularModules = 'angulartics';
+			var requireLines = '';
+			if (answers.hipsum) {
+				requireLines += 'require(\'angular-hipsum\');\n';
+				angularModules += '\',\n	\'ngHipsum';
+			}
+			if (answers.parse) {
+				angularModules += '\',\n	\'ngParse';
+				this.fs.copyTpl(
+					this.templatePath('angular/app-parse.js'),
+					this.destinationPath('src/app/' + answers.appName + '.js'), {
+						appName: answers.appName,
+						ngModules: angularModules,
+						requires: requireLines
+					}
+				);
+			} else {
+				this.fs.copyTpl(
+					this.templatePath('angular/app.js'),
+					this.destinationPath('src/app/' + answers.appName + '.js'), {
+						appName: answers.appName,
+						ngModules: angularModules,
+						requires: requireLines
+					}
+				);
+			}
+
+			this.fs.copy(
+				this.templatePath('angular/components.js'),
+				this.destinationPath('src/app/components.js')
 			);
+			this.fs.copy(
+				this.templatePath('angular/controllers.js'),
+				this.destinationPath('src/app/controllers.js')
+			);
+
 			// ============= App default files ==============
 			this.fs.copy(
 				this.templatePath('angular/sections/root/footer.html'),
@@ -568,33 +652,28 @@ module.exports = generators.Base.extend({
 				this.templatePath('wordpress/htaccess'),
 				this.destinationPath('public/.htaccess')
 			);
-
 		}
+	}
 
-	},
-	conflicts: function mergeTheConflicts() {
+	conflicts() {
 		this.log('conflicts? what conflicts?');
-	},
-	install: function installThePackages() {
-		this.log(chalk.green('Ok, this can take some time, sorry for that, but sit back relax and enjoy some awsome Yo mama jokes'));
-		exec('open http://9gag.com/search?query=yo+mama');
+	}
 
+	install() {
 		this.log('installing dependencies...');
 
 		if (answers.projectType === 'angular') {
 			this.npmInstall([
 				'autoprefixer',
-				'bower',
 				'connect-modrewrite',
 				'css-byebye',
-				'grunt@^0.4.5',
+				'grunt',
 				'grunt-angular-templates',
-				'grunt-bower',
 				'grunt-cache-bust',
 				'grunt-browser-sync',
+				'grunt-browserify',
 				'grunt-cli',
 				'grunt-contrib-clean',
-				'grunt-contrib-concat',
 				'grunt-contrib-copy',
 				'grunt-contrib-jshint',
 				'grunt-contrib-uglify',
@@ -603,8 +682,6 @@ module.exports = generators.Base.extend({
 				'grunt-html-build',
 				'grunt-notify',
 				'grunt-postcss',
-				'grunt-csscomb',
-				'grunt-shell',
 				'grunt-cssnano',
 				'grunt-tinypng',
 				'grunt-webfont',
@@ -626,16 +703,31 @@ module.exports = generators.Base.extend({
 			], {
 				'saveDev': true
 			});
-			this.bowerInstall([
+			this.npmInstall([
+				'modernizr',
 				'angular',
 				'angular-ui-router',
-				'angular-hipsum',
 				'foundation-sites',
-				'modernizr#2.8.3',
+				'angulartics',
 				'angulartics-google-analytics'
 			], {
 				'save': true
 			});
+			if (answers.parse) {
+				this.npmInstall([
+					'parse',
+					'angular-parse'
+				], {
+					'save': true
+				});
+			}
+			if (answers.hipsum) {
+				this.npmInstall([
+					'angular-hipsum'
+				], {
+					'save': true
+				});
+			}
 		}
 
 		if (answers.projectType === 'wordpress') {
@@ -678,9 +770,9 @@ module.exports = generators.Base.extend({
 				'save': true
 			});
 		}
+	}
 
-	},
-	end: function ItAintOverTillItsOver() {
+	end() {
 		this.log(chalk.green('The End, All done!'));
 	}
-});
+};

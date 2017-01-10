@@ -38,16 +38,16 @@ module.exports = {
 			dest: '<%= config.dist.root %>fonts/'
 		}]
 	},
-	vendor: {
+	jsmodule: {
 		files: [{
 			expand: true,
-			cwd: '<%= config.src.vendor %>',
+			cwd: '<%= config.dist.browserify %>',
 			src: [
 				'*.js',
 				'!*.min.js',
 				'*/*.js'
 			],
-			dest: '<%= config.dist.vendor %>'
+			dest: '<%= config.dist.root %>'
 		}]
 	}
 };

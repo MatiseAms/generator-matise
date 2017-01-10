@@ -4,3 +4,4 @@ dist
 src/vendor
 .sass-cache
 bower_components
+browserify

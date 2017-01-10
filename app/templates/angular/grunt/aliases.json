@@ -7,8 +7,9 @@
 	],
 	"standard":[
 		"jshint:src",
-		"clean:dist",
-		"concat:scripts",
+		"clean",
+		"browserify",
+		"copy:jsmodule",
 		"copy:html",
 		"copy:images",
 		"copy:fonts",
@@ -19,27 +20,16 @@
 		"standard",
 		"htmlbuild:dev",
 		"tinypng",
-		"copy:vendor",
 		"ngtemplates:dev",
 		"postcss"
 	],
 	"dist": [
 		"standard",
 		"htmlbuild:dist",
-		"concat:dist",
 		"ngtemplates:dist",
 		"postcss",
 		"cssnano",
 		"uglify",
 		"cacheBust"
-	],
-	"cssmagic": [
-		"csscomb:dynamic_mappings"
-	],
-	"bowerinit": [
-		"clean:bower",
-		"clean:vendor",
-		"shell:bowerinstall",
-		"bower"
 	]
 }

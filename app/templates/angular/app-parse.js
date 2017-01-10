@@ -1,8 +1,10 @@
+require('parse');
 // require('modernizr');
 
 var angular = require('angular');
 
 require('angular-ui-router');
+require('angular-parse');
 require('angulartics');
 <%- requires %>
 
@@ -19,8 +21,33 @@ app.config([
 	'$stateProvider',
 	'$urlRouterProvider',
 	'$locationProvider',
-	function($stateProvider, $urlRouterProvider, $locationProvider) {
+	'ParseProvider',
+	function($stateProvider, $urlRouterProvider, $locationProvider, ParseProvider) {
 		'use strict';
+
+		if (localParse) {
+			ParseProvider.initialize(
+				'myAppId',
+				'masterKey'
+			);
+			ParseProvider.serverURL = 'http://localhost:1337/1/';
+		} else {
+			ParseProvider.initialize(
+				'myAppId',
+				'masterKey'
+			);
+			ParseProvider.serverURL = 'https://localhost:1337/1/';
+		}
+
+		ParseProvider.defineAttributes(ParseProvider.User, [
+			'username',
+			'password',
+			'email',
+			'firstName',
+			'lastName',
+			'updatedAt',
+			'createdAt'
+		]);
 
 		// For any unmatched url, redirect to /state1
 		$urlRouterProvider.otherwise('/');

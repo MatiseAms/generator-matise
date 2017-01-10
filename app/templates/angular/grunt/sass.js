@@ -1,7 +1,7 @@
 module.exports = {
 	dist: {
 		options: {
-			includePaths: ['<%= config.src.vendor %>'],
+			includePaths: ['node_modules/foundation-sites'],
 			sourcemap: false
 		},
 		files: {

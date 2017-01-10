@@ -1,4 +1,4 @@
-@import 'foundation/scss/foundation';
+<%- foundationImport %>
 
 @include foundation-global-styles;
 @include foundation-flex-grid;

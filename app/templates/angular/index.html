@@ -47,12 +47,14 @@
 
 	<!-- build:remove dist,staging -->
 	<script>
+		<%= devScript %>
 		ga('create', 'UA-XXXXXXXX-X', 'none');
 	</script>
 	<!-- /build -->
 
 	<!-- build:remove dev -->
 	<script>
+		<%= prodScript %>
 		ga('create', 'UA-XXXXXXXX-X', 'auto');
 	</script>
 	<!-- /build -->
