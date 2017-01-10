@@ -49,7 +49,9 @@ module.exports = generators.Base.extend({
 		matiseArguments = this.arguments;
 	},
 	initializing: function initialization() {
-		this.log(chalk.cyan( figlet.textSync('MATISE.', { font: 'Big Money-nw' }) ));
+		this.log(chalk.cyan(figlet.textSync('MATISE.', {
+			font: 'Big Money-nw'
+		})));
 		this.log(chalk.blue('Here we go, creating a new Matise project:'));
 		if (notifier.update !== undefined) {
 			this.log('\n' + chalk.yellow('----------------------------------------'));
@@ -61,8 +63,7 @@ module.exports = generators.Base.extend({
 	},
 	prompting: function askThemEverything() {
 		if (matiseArguments.length != 4) {
-			var done = this.async();
-			this.prompt([{
+			return this.prompt([{
 				type: 'list',
 				name: 'projecttype',
 				message: 'What kind of project are you looking for?',
@@ -83,14 +84,13 @@ module.exports = generators.Base.extend({
 				name: 'tinypng',
 				message: 'Tiny png api key',
 				default: ''
-			}], function(promptAnswers) {
+			}]).then((promptAnswers) => {
 				answers.projectType = promptAnswers.projecttype;
 				answers.appName = promptAnswers.appname.replace(' ', '');
 				answers.siteTitle = promptAnswers.title;
 				answers.tinyPNGKey = promptAnswers.tinypng;
-				done();
-			}.bind(this));
-		} else{
+			});
+		} else {
 			answers.projectType = matiseArguments[0];
 			answers.appName = matiseArguments[1];
 			answers.siteTitle = matiseArguments[2];
