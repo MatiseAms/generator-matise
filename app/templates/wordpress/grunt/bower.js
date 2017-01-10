@@ -12,7 +12,7 @@ module.exports = {
 					stripGlobBase: true,
 					keepExpandedHierarchy: true,
 					files: [
-						"scss/**"
+						"**/*.scss"
 					]
 				},
 				'jquery': {
