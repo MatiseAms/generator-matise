@@ -1,12 +1,18 @@
-$colors:(
-	"dark": #111,
-	"light": #FFF
+// Base Colors
+$colors: (
+	"Black": #111111,
+	"White": #ffffff,
+	"Green": #069e84,
+	"Blue": #1eaece,
+	"Red": #dd0000,
+	"Orange": #e86d02,
+	"Yellow": #ff961e,
+  "Pink": #ea4c89,
+  "Purple": #8b008b
 );
-
-$dark: color(dark);
-$light: color(light);
-
-
+// Variables
+$dark: color(Black); $light: color(White); $black: color(Black); $white: color(White);
+// Social Colors
 $social-colors: (
   "dribbble": #ea4c89,
   "facebook": #3b5998,
@@ -18,7 +24,7 @@ $social-colors: (
   "linkedin": #007bb6,
   "instagram": #517fa4,
   "pinterest": #cb2027,
-  "skype": #12A5F4,
+  "skype": #12a5f4,
   "snapchat": #fffc00,
   "soundcloud": #ff7700,
   "spotify": #2ebd59,
