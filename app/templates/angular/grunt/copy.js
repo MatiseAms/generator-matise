@@ -4,7 +4,8 @@ module.exports = {
 			expand: true,
 			cwd: '<%= config.src.app %>',
 			src: [
-				'*.html'
+				'*.html',
+				'.htaccess'
 			],
 			dest: '<%= config.dist.root %>'
 		}]
