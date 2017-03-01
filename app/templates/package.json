@@ -5,7 +5,11 @@
   "author": "",
   "license": "ISC",
   "engines": {
-    "node": "~4.4.7"
+    "node": "^7.6.0"
+  },
+  "scripts": {
+    "start": "node_modules/.bin/grunt",
+    "dist": "node_modules/.bin/grunt"
   },
   "devDependencies": {}
 }
