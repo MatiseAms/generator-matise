@@ -1,0 +1,20 @@
+@function slugify($value,$accepted: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'){
+ $slug: null;
+ $value: to-string($value);
+ $list: str-to-list($value);
+ $sum: length($list);
+ $return: nth($list,$sum);
+ @return $return;
+}
+
+// Usage:
+// In list use  $c:c($c); to capture values
+// recall by using example:  #{map-get($c,'bg-holder')}
+	
+$c: ();
+@function c($map){
+ $value: to-string(&);
+ $new: (slugify($value) : $value); //
+ $map: map-merge($map,$new);
+ @return $map;
+}

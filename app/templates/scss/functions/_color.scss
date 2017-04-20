@@ -1,0 +1,71 @@
+// Color Function
+
+@function shade($color, $percentage){
+	@return mix(black, $color, $percentage);
+}
+@function tint($color, $percentage){
+	@return mix(white, $color, $percentage);
+}
+
+@function color($value, $rgba: false, $colorset: $colors, $warning: true, $boolean: false){
+	$color: map-get($colorset, $value);
+	@if $warning == true{
+		@if $color == null{
+			@if color($value, $rgba, $main-colors, false, true){
+				@return color($value, $rgba, $main-colors);
+			}
+			@warn "color: \"#{$value}\" doesn't exist";
+		}
+	}
+	@if $boolean == true{
+		@if $color == null{
+			@return false;
+		} @else{
+			@return true;
+		}
+	} @else{
+		@if $rgba != false{
+			@return rgba($color,$rgba);
+		} @else{
+			@return $color;
+		}
+	}
+}
+
+@function colorByKey($key,$colorset: $colors, $return: "value"){
+	$color-list: nth($colorset,$key); // List
+	$color-name: nth($color-list,1); // Name
+	$color-value: nth($color-list,2); // Value
+	// Return
+	@if $return == "value"{
+		@return $color-value;
+	} @elseif $return == "name"{
+		@return $color-name;
+	} @elseif $return == "list"{
+		@return $color-list;
+	}
+}
+
+@function brightness($color,$percentage: true){
+	$sum: red($color) + green($color) + blue($color);  // sum
+	$average: (((red($color) / 255) * 100) + ((green($color) / 255) * 100) + ((blue($color) / 255) * 100)) / 3; // average
+	//@debug "red: #{red($color)} / green: #{green($color)} / blue: #{blue($color)}";
+
+
+	//@debug $average;
+	@if $percentage{
+		@return percentage($sum / (255*3));
+	} @else{
+		@debug ($sum / (255*3) * 100);
+		@return ($sum / (255*3) * 100);
+	}
+}
+
+
+@function contra($color){
+	@if brightness($color) > 50{
+		@return color(Black);
+	} @else{
+		@return color(White);
+	}
+}
