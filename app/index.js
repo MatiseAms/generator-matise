@@ -190,11 +190,7 @@ module.exports = class extends Generator {
 		if (answers.projectType === 'wordpress') {
 			scssDestination = 'themesrc/';
 		}
-		// Icons folder
-		this.fs.copy(
-			this.templatePath('scss/icons/*'),
-			this.destinationPath(scssDestination + 'scss/icons')
-		);
+
 		// Mixins folder
 		this.fs.copy(
 			this.templatePath('scss/mixins/*'),
@@ -799,7 +795,7 @@ module.exports = class extends Generator {
 			'saveDev': true
 		});
 
-		if(answers.projectType === 'wordpress'){
+		if (answers.projectType === 'wordpress') {
 			this.bowerInstall(bowerDeps, {
 				'save': true
 			});

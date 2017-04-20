@@ -15,6 +15,7 @@
 		var Browser = {
 			isIE: false
 		};
+
 	</script>
 	<!-- By default we will assume that the browser is not IE -->
 	<!--[if IE 5]><script>Browser = {isIE:true,version:5};</script><![endif]-->
@@ -28,7 +29,7 @@
 <body ng-app="<%= appName %>" class="ng-cloak">
 
 	<header id="header" ui-view="header"></header>
-	<main id="main" ui-view="content"></main>
+	<div id="main" ui-view="content"></div>
 	<footer id="footer" ui-view="footer"></footer>
 
 	<script>
@@ -43,12 +44,14 @@
 			a.src = g;
 			m.parentNode.insertBefore(a, m)
 		})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
 	</script>
 
 	<!-- build:remove dist,staging -->
 	<script>
 		<%= devScript %>
 		ga('create', 'UA-XXXXXXXX-X', 'none');
+
 	</script>
 	<!-- /build -->
 
@@ -56,6 +59,7 @@
 	<script>
 		<%= prodScript %>
 		ga('create', 'UA-XXXXXXXX-X', 'auto');
+
 	</script>
 	<!-- /build -->
 
