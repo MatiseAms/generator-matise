@@ -697,6 +697,7 @@ module.exports = class extends Generator {
 		this.log('installing dependencies...');
 		let npmDevDeps = [];
 		let npmDeps = [];
+		let bowerDeps = [];
 
 		if (answers.projectType === 'angular') {
 			npmDevDeps.push('autoprefixer');
@@ -783,8 +784,6 @@ module.exports = class extends Generator {
 			npmDevDeps.push('postcss-verthorz');
 			npmDevDeps.push('postcss-vmin');
 			npmDevDeps.push('time-grunt');
-
-			let bowerDeps = [];
 
 			bowerDeps.push('modernizr#2.8.3');
 
