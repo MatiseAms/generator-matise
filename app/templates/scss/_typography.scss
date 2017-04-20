@@ -1,35 +1,35 @@
-$main-font-weights: (
-	"Thin": 300,
-	"Light": 400,
-	"Bold": 700,
-	"Black": 900
-);
+$main-font-weights: ( //
+	"Thin": 300, //
+	"Light": 400, //
+	"Bold": 700, //
+	"Black": 900 //
+); //
 
-$font-thin: map-get($main-font-weights,Thin);
-$font-light: map-get($main-font-weights,Light);
-$font-bold: map-get($main-font-weights,Bold);
-$font-black: map-get($main-font-weights,Black);
+$font-thin: map-get($main-font-weights,Thin); //
+$font-light: map-get($main-font-weights,Light); //
+$font-bold: map-get($main-font-weights,Bold); //
+$font-black: map-get($main-font-weights,Black); //
 
 // Base font
 /*
 	Use font-include for single fonts
 	and font-list for a list using the $*-font-weights list
 */
-$main-font: "Helvetica Neue";
-$main-font-name: "helveticaneue_";
-$main-font-family: #{$main-font},sans-serif;
+$main-font: "Helvetica Neue"; //
+$main-font-name: "helveticaneue_"; //
+$main-font-family: #{$main-font},sans-serif; //
 // include main font
 //@include font-list($main-font,$main-font-name,$main-font-weights,normal);
 
-$second-font: "Comic Sans";
-$second-font-name: "comicsans_";
-$second-font-family: #{$second-font},sans-serif;
+$second-font: "Comic Sans"; //
+$second-font-name: "comicsans_"; //
+$second-font-family: #{$second-font},sans-serif; //
 // include main font
 // @include font-list($second-font,$second-font-name,$main-font-weights,normal); */
 //
-$social-font:"Social";
-$social-font-name: "social";
-$social-font-family: #{$social-font},sans-serif;
+$social-font:"Social"; //
+$social-font-name: "social"; //
+$social-font-family: #{$social-font},sans-serif; //
 // include main font
 // @include font-include($social-font,$social-font-name,normal,normal); */
 
@@ -47,8 +47,8 @@ h5{ font-size: rem(12); line-height: rem(12); }
 h6{ font-size: rem(10); line-height: rem(10); }
 
 // make fontweight classes
-@each $weight in $main-font-weights{
-	.font-#{nth($weight,1)}{ font-weight: #{nth($weight,2)}; }
+@each $weight-name,$weight-value in $main-font-weights{
+	.font-#{$weight-name}{ font-weight: #{$weight-value}; }
 }
 
 // make font styles
