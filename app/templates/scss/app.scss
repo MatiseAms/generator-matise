@@ -1,15 +1,18 @@
+<% if (foundationInclude) { %>
 // foundation
 @import
   "zurb/global",
   "zurb/settings",
-  "zurb/foundation";
+  "zurb/foundation",
+  "zurb/grid";
+<% } %>
 
 // main styles
 @import
   "functions",
-  "grid",
   "mixins",
-  "colors",
+	"colors",<% if (!foundationInclude) { %>	
+	"grid", <% } %>
   "base",
   "typography",
   "slick";
@@ -24,5 +27,3 @@
 body{
 	background-color: fuchsia;
 }
-
-

@@ -100,7 +100,25 @@ module.exports = class extends Generator {
 						type: 'checkbox',
 						name: 'projectfeatures',
 						message: 'What features would you like to use?',
-						choices: ['parse', 'hipsum', 'subviews'],
+						choices: [
+							{ 
+								name: 'Parse',
+								value: 'parse',
+								checked: false
+							},{ 
+								name: 'Hipsum',
+								value: 'hipsum',
+								checked: false
+							},{ 
+								name: 'Subviews',
+								value: 'subviews',
+								checked: false
+							},{ 
+								name: 'Foundation Zurb',
+								value: 'foundation',
+								checked: true
+							},
+						],
 						default: 0
 					}]).then((optionsAnswers) => {
 						if (optionsAnswers.projectfeatures.indexOf('parse') >= 0) {
@@ -111,6 +129,9 @@ module.exports = class extends Generator {
 						}
 						if (optionsAnswers.projectfeatures.indexOf('subviews') >= 0) {
 							answers.subviews = true;
+						}
+						if (optionsAnswers.projectfeatures.indexOf('foundation') >= 0) {
+							answers.foundation = true;
 						}
 					});
 				} else {
@@ -125,6 +146,7 @@ module.exports = class extends Generator {
 			answers.parse = matiseArguments[4] === 'true';
 			answers.hipsum = matiseArguments[5] === 'true';
 			answers.subviews = matiseArguments[6] === 'true';
+			answers.foundation = matiseArguments[7] === 'true';
 		}
 	}
 
@@ -180,35 +202,49 @@ module.exports = class extends Generator {
 			this.templatePath('scss/mixins/*'),
 			this.destinationPath(scssDestination + 'scss/mixins')
 		);
-
-		// Zurb folder
-		var utilPath = '@import \'scss/util/util\';';
-		var foundationPath = '@import \'scss/foundation\';';
-		if (answers.projectType === 'wordpress') {
-			utilPath = '@import \'foundation/scss/util/util\';';
-			foundationPath = '@import \'foundation/scss/foundation\';';
-		}
-		this.fs.copyTpl(
-			this.templatePath('scss/zurb/_foundation.scss'),
-			this.destinationPath(scssDestination + 'scss/zurb/_foundation.scss'), {
-				foundationImport: foundationPath
-			}
-		);
+		
+		// Functions folder
 		this.fs.copy(
-			this.templatePath('scss/zurb/_global.scss'),
-			this.destinationPath(scssDestination + 'scss/zurb/_global.scss')
+			this.templatePath('scss/functions/*'),
+			this.destinationPath(scssDestination + 'scss/functions')
 		);
-		this.fs.copyTpl(
-			this.templatePath('scss/zurb/_settings.scss'),
-			this.destinationPath(scssDestination + 'scss/zurb/_settings.scss'), {
-				utilImport: utilPath
+		
+		if (answers.foundation) {
+			// Zurb folder
+			var utilPath = '@import \'scss/util/util\';';
+			var foundationPath = '@import \'scss/foundation\';';
+			if (answers.projectType === 'wordpress') {
+				utilPath = '@import \'foundation/scss/util/util\';';
+				foundationPath = '@import \'foundation/scss/foundation\';';
 			}
-		);
+			this.fs.copyTpl(
+				this.templatePath('scss/zurb/_foundation.scss'),
+				this.destinationPath(scssDestination + 'scss/zurb/_foundation.scss'), {
+					foundationImport: foundationPath
+				}
+			);
+			this.fs.copy(
+				this.templatePath('scss/zurb/_global.scss'),
+				this.destinationPath(scssDestination + 'scss/zurb/_global.scss')
+			);
+			this.fs.copy(
+				this.templatePath('scss/zurb/_grid.scss'),
+				this.destinationPath(scssDestination + 'scss/zurb/_grid.scss')
+			);
+			this.fs.copyTpl(
+				this.templatePath('scss/zurb/_settings.scss'),
+				this.destinationPath(scssDestination + 'scss/zurb/_settings.scss'), {
+					utilImport: utilPath
+				}
+			);
+		}
 
 		//global sccss
-		this.fs.copy(
+		this.fs.copyTpl(
 			this.templatePath('scss/*'),
-			this.destinationPath(scssDestination + 'scss')
+			this.destinationPath(scssDestination + 'scss'), {
+				foundationInclude: answers.foundation
+			}
 		);
 
 		// ============= Common project files ==============
@@ -703,11 +739,17 @@ module.exports = class extends Generator {
 			], {
 				'saveDev': true
 			});
+			if (answers.foundation) {
+				this.npmInstall([
+					'foundation-sites'
+				], {
+					'save': true
+				});
+			}
 			this.npmInstall([
 				'modernizr',
 				'angular',
 				'angular-ui-router',
-				'foundation-sites',
 				'angulartics',
 				'angulartics-google-analytics'
 			], {
@@ -764,11 +806,17 @@ module.exports = class extends Generator {
 				'saveDev': true
 			});
 			this.bowerInstall([
-				'foundation-sites',
 				'modernizr#2.8.3'
 			], {
 				'save': true
 			});
+			if(answers.foundation){			
+				this.bowerInstall([
+					'foundation-sites'
+				], {
+					'save': true
+				});
+			}
 		}
 	}
 

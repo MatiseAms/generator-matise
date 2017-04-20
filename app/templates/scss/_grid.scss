@@ -1,58 +1,71 @@
-// 3. The Grid
-// -----------
-
-$grid-row-width: $global-width;
-$grid-column-count: 0;
-$grid-column-gutter: 0px;
-$grid-column-align-edge: true;
-$block-grid-max: 8;
-
-$small-range: (0, map-get($breakpoints,'medium'));
-$medium-range: (map-get($breakpoints,'medium') + 1, map-get($breakpoints,'large'));
-$large-range: (map-get($breakpoints,'large') + 1, map-get($breakpoints,'xlarge'));
-$xlarge-range: (map-get($breakpoints,'xlarge') + 1, map-get($breakpoints,'xxlarge'));
-$xxlarge-range: (map-get($breakpoints,'xxlarge') + 1, map-get($breakpoints,'xlarge'));
-
-$screen: "only screen";
-$row-width: $global-width;
-$large-row-width: 1440px;
-
-$landscape: "#{$screen} and (orientation: landscape)";
-$portrait: "#{$screen} and (orientation: portrait)";
-
-$small-up: $screen;
-$mini-only: "#{$screen} and (max-width: 366px)";
-
-$small-only: "#{$screen} and (max-width: #{nth($small-range,2)})";
-
-$medium-up: "#{$screen} and (min-width:#{nth($medium-range,1)})";
-$medium-only: "#{$screen} and (min-width:#{nth($medium-range,1)}) and (max-width:#{nth($medium-range,2)})";
-$medium-down: "#{$screen} and (max-width:#{nth($medium-range,2)})";
-
-$large-up: "#{$screen} and (min-width:#{nth($large-range,1)})";
-$large-only: "#{$screen} and (min-width:#{nth($large-range,1)}) and (max-width:#{nth($large-range,2)})";
-$large-down: "#{$screen} and (max-width:#{nth($large-range,2)})";
-
-$xlarge-up: "#{$screen} and (min-width:#{nth($xlarge-range,1)})";
-$xlarge-only: "#{$screen} and (min-width:#{nth($xlarge-range,1)}) and (max-width:#{nth($xlarge-range,2)})";
-$xlarge-down: "#{$screen} and (max-width:#{nth($xlarge-range,2)})";
-
-$xxlarge-up: "#{$screen} and (min-width:#{nth($xxlarge-range,1)})";
-$xxlarge-only: "#{$screen} and (min-width:#{nth($xxlarge-range,1)}) and (max-width:#{nth($xxlarge-range,2)})";
-
-$tablet-up: "#{$screen} and (min-width:769px)";
-$tablet-down: "#{$screen} and (max-width:768px)";
-
-$row-up: "#{$screen} and (min-width:#{$row-width})";
-$row-down: "#{$screen} and (max-width:#{$row-width})";
-
-$large-row-up: "#{$screen} and (min-width:#{$row-width})";
-$large-row-down: "#{$screen} and (max-width:#{$row-width})";
-
-$small-desktop: "#{$screen} and (max-height: 800px)";
+$a: (
+  padding: padding,
+  padding-top: padding-top,
+  padding-left: padding-left,
+  padding-right: padding-right,
+  padding-bottom: padding-right,
+  margin: margin,
+  margin-top: margin-top,
+  margin-left: margin-left,
+  margin-right: margin-right,
+  margin-bottom: margin-right,
+  top: top,
+  left: left,
+  right: right,
+  bottom: bottom,
+  width: width,
+  max-width: width,
+  min-width: width,
+  height: height,
+  min-height: height
+);
 
 
-@media #{$small-only}{
-  .hide-for-small-only{ display: none; }
+@for $i from 1 through 20{
+	//	$v: $i/10;
+	$v: $i;
+	@if $v < 10{
+		$v: 0#{$v};
+	}
+	$width: (100/24)*($i/10);
+	@each $class, $value in $a{
+    $together: #{$class}-#{$v};
+		.#{$together}{
+			#{$value}: #{$width}vw;
+		}
+	}
 }
-@media #{$medium-up}{ .hide-for-medium-up{ display: none; }}
+
+@function grid($v,$min: 0){
+  $value: (100/24)*$v;
+  @if $value < $min {
+    $value: $min;
+  }
+	@return unquote("#{$value}vw");
+}
+
+
+$grid-025: grid(0.25);
+$grid-050: grid(0.5);
+$grid-075: grid(0.75);
+$grid-1: grid(1);
+$grid-125: grid(1.25);
+$grid-150: grid(1.5);
+$grid-175: grid(1.75);
+$grid-2: grid(2);
+$grid-3: grid(3);
+$grid-4: grid(4);
+$grid-5: grid(5);
+
+
+@function mq($min: 0,$max: 0){
+  @if $max > 0{
+    $mq: "screen and (min-width: #{$min}px) and (max-width: #{$max}px)";
+    @return $mq;
+  } @elseif $min > 0{
+    $mq: "screen and (min-width: #{$min}px)";
+    @return $mq;
+  }
+}
+$small-only: mq(0,640);
+$above-mobile: mq(641,9999);
