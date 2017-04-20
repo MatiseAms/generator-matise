@@ -758,7 +758,7 @@ module.exports = class extends Generator {
 			npmDevDeps.push('autoprefixer');
 			npmDevDeps.push('bower');
 			npmDevDeps.push('css-byebye');
-			npmDevDeps.push('grunt@^0.4.5');
+			npmDevDeps.push('grunt');
 			npmDevDeps.push('grunt-bower');
 			npmDevDeps.push('grunt-browser-sync');
 			npmDevDeps.push('grunt-cli');
@@ -791,17 +791,20 @@ module.exports = class extends Generator {
 			if (answers.foundation) {
 				bowerDeps.push('foundation-sites');
 			}
-
-			this.bowerInstall(bowerDeps, {
-				'save': true
-			});
 		}
+
 		this.npmInstall(npmDeps, {
 			'save': true
 		});
 		this.npmInstall(npmDevDeps, {
 			'saveDev': true
 		});
+
+		if(answers.projectType === 'wordpress'){
+			this.bowerInstall(bowerDeps, {
+				'save': true
+			});
+		}
 	}
 
 	end() {
