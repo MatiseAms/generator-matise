@@ -100,25 +100,23 @@ module.exports = class extends Generator {
 						type: 'checkbox',
 						name: 'projectfeatures',
 						message: 'What features would you like to use?',
-						choices: [
-							{ 
-								name: 'Parse',
-								value: 'parse',
-								checked: false
-							},{ 
-								name: 'Hipsum',
-								value: 'hipsum',
-								checked: false
-							},{ 
-								name: 'Subviews',
-								value: 'subviews',
-								checked: false
-							},{ 
-								name: 'Foundation Zurb',
-								value: 'foundation',
-								checked: true
-							},
-						],
+						choices: [{
+							name: 'Parse',
+							value: 'parse',
+							checked: false
+						}, {
+							name: 'Hipsum',
+							value: 'hipsum',
+							checked: false
+						}, {
+							name: 'Subviews',
+							value: 'subviews',
+							checked: false
+						}, {
+							name: 'Foundation Zurb',
+							value: 'foundation',
+							checked: true
+						}, ],
 						default: 0
 					}]).then((optionsAnswers) => {
 						if (optionsAnswers.projectfeatures.indexOf('parse') >= 0) {
@@ -202,13 +200,13 @@ module.exports = class extends Generator {
 			this.templatePath('scss/mixins/*'),
 			this.destinationPath(scssDestination + 'scss/mixins')
 		);
-		
+
 		// Functions folder
 		this.fs.copy(
 			this.templatePath('scss/functions/*'),
 			this.destinationPath(scssDestination + 'scss/functions')
 		);
-		
+
 		if (answers.foundation) {
 			// Zurb folder
 			var utilPath = '@import \'scss/util/util\';';
@@ -440,6 +438,10 @@ module.exports = class extends Generator {
 				);
 			}
 
+			this.fs.copy(
+				this.templatePath('angular/htaccess'),
+				this.destinationPath('src/app/.htaccess')
+			);
 			this.fs.copy(
 				this.templatePath('angular/components.js'),
 				this.destinationPath('src/app/components.js')
@@ -681,10 +683,6 @@ module.exports = class extends Generator {
 				this.destinationPath('public/content/themes/index.php')
 			);
 			this.fs.copy(
-				this.templatePath('wordpress/index.php'),
-				this.destinationPath('public/index.php')
-			);
-			this.fs.copy(
 				this.templatePath('wordpress/htaccess'),
 				this.destinationPath('public/.htaccess')
 			);
@@ -697,127 +695,113 @@ module.exports = class extends Generator {
 
 	install() {
 		this.log('installing dependencies...');
+		let npmDevDeps = [];
+		let npmDeps = [];
 
 		if (answers.projectType === 'angular') {
-			this.npmInstall([
-				'autoprefixer',
-				'connect-modrewrite',
-				'css-byebye',
-				'grunt',
-				'grunt-angular-templates',
-				'grunt-cache-bust',
-				'grunt-browser-sync',
-				'grunt-browserify',
-				'grunt-cli',
-				'grunt-contrib-clean',
-				'grunt-contrib-copy',
-				'grunt-contrib-jshint',
-				'grunt-contrib-uglify',
-				'grunt-contrib-watch',
-				'grunt-sass',
-				'grunt-html-build',
-				'grunt-notify',
-				'grunt-postcss',
-				'grunt-cssnano',
-				'grunt-tinypng',
-				'grunt-webfont',
-				'grunt-jsbeautifier',
-				'jit-grunt',
-				'jshint-stylish',
-				'load-grunt-config',
-				'postcss-alias',
-				'postcss-assets',
-				'postcss-center',
-				'postcss-size',
-				'postcss-sprites',
-				'postcss-svg',
-				'postcss-verthorz',
-				'postcss-vmin',
-				'serve-static',
-				'time-grunt',
-				'postcss-custom-selectors'
-			], {
-				'saveDev': true
-			});
+			npmDevDeps.push('autoprefixer');
+			npmDevDeps.push('connect-modrewrite');
+			npmDevDeps.push('css-byebye');
+			npmDevDeps.push('grunt');
+			npmDevDeps.push('grunt-angular-templates');
+			npmDevDeps.push('grunt-cache-bust');
+			npmDevDeps.push('grunt-browser-sync');
+			npmDevDeps.push('grunt-browserify');
+			npmDevDeps.push('grunt-cli');
+			npmDevDeps.push('grunt-contrib-clean');
+			npmDevDeps.push('grunt-contrib-copy');
+			npmDevDeps.push('grunt-contrib-jshint');
+			npmDevDeps.push('grunt-contrib-uglify');
+			npmDevDeps.push('grunt-contrib-watch');
+			npmDevDeps.push('grunt-sass');
+			npmDevDeps.push('grunt-html-build');
+			npmDevDeps.push('grunt-notify');
+			npmDevDeps.push('grunt-postcss');
+			npmDevDeps.push('grunt-cssnano');
+			npmDevDeps.push('grunt-tinypng');
+			npmDevDeps.push('grunt-webfont');
+			npmDevDeps.push('grunt-jsbeautifier');
+			npmDevDeps.push('jit-grunt');
+			npmDevDeps.push('jshint-stylish');
+			npmDevDeps.push('load-grunt-config');
+			npmDevDeps.push('postcss-alias');
+			npmDevDeps.push('postcss-assets');
+			npmDevDeps.push('postcss-center');
+			npmDevDeps.push('postcss-size');
+			npmDevDeps.push('postcss-sprites');
+			npmDevDeps.push('postcss-svg');
+			npmDevDeps.push('postcss-verthorz');
+			npmDevDeps.push('postcss-vmin');
+			npmDevDeps.push('serve-static');
+			npmDevDeps.push('time-grunt');
+			npmDevDeps.push('postcss-custom-selectors');
+
+			npmDeps.push('modernizr');
+			npmDeps.push('angular');
+			npmDeps.push('angular-ui-router');
+			npmDeps.push('angulartics');
+			npmDeps.push('angulartics-google-analytics');
+
 			if (answers.foundation) {
-				this.npmInstall([
-					'foundation-sites'
-				], {
-					'save': true
-				});
+				npmDeps.push('foundation-sites');
 			}
-			this.npmInstall([
-				'modernizr',
-				'angular',
-				'angular-ui-router',
-				'angulartics',
-				'angulartics-google-analytics'
-			], {
-				'save': true
-			});
 			if (answers.parse) {
-				this.npmInstall([
-					'parse',
-					'angular-parse'
-				], {
-					'save': true
-				});
+				npmDeps.push('parse');
+				npmDeps.push('angular-parse');
 			}
 			if (answers.hipsum) {
-				this.npmInstall([
-					'angular-hipsum'
-				], {
-					'save': true
-				});
+				npmDeps.push('angular-hipsum');
 			}
 		}
 
 		if (answers.projectType === 'wordpress') {
-			this.npmInstall([
-				'autoprefixer',
-				'bower',
-				'css-byebye',
-				'grunt@^0.4.5',
-				'grunt-bower',
-				'grunt-browser-sync',
-				'grunt-cli',
-				'grunt-contrib-clean',
-				'grunt-contrib-copy',
-				'grunt-contrib-watch',
-				'grunt-notify',
-				'grunt-php',
-				'grunt-postcss',
-				'grunt-sass',
-				'grunt-shell',
-				'grunt-tinypng',
-				'grunt-webfont',
-				'jit-grunt',
-				'load-grunt-config',
-				'postcss-alias',
-				'postcss-assets',
-				'postcss-center',
-				'postcss-size',
-				'postcss-sprites',
-				'postcss-svg',
-				'postcss-verthorz',
-				'postcss-vmin',
-				'time-grunt'
-			], {
-				'saveDev': true
-			});
-			this.bowerInstall([
-				'modernizr#2.8.3'
-			], {
+			npmDevDeps.push('autoprefixer');
+			npmDevDeps.push('bower');
+			npmDevDeps.push('css-byebye');
+			npmDevDeps.push('grunt@^0.4.5');
+			npmDevDeps.push('grunt-bower');
+			npmDevDeps.push('grunt-browser-sync');
+			npmDevDeps.push('grunt-cli');
+			npmDevDeps.push('grunt-contrib-clean');
+			npmDevDeps.push('grunt-contrib-copy');
+			npmDevDeps.push('grunt-contrib-watch');
+			npmDevDeps.push('grunt-notify');
+			npmDevDeps.push('grunt-php');
+			npmDevDeps.push('grunt-postcss');
+			npmDevDeps.push('grunt-sass');
+			npmDevDeps.push('grunt-shell');
+			npmDevDeps.push('grunt-tinypng');
+			npmDevDeps.push('grunt-webfont');
+			npmDevDeps.push('jit-grunt');
+			npmDevDeps.push('load-grunt-config');
+			npmDevDeps.push('postcss-alias');
+			npmDevDeps.push('postcss-assets');
+			npmDevDeps.push('postcss-center');
+			npmDevDeps.push('postcss-size');
+			npmDevDeps.push('postcss-sprites');
+			npmDevDeps.push('postcss-svg');
+			npmDevDeps.push('postcss-verthorz');
+			npmDevDeps.push('postcss-vmin');
+			npmDevDeps.push('time-grunt');
+
+			let bowerDeps = [];
+
+			bowerDeps.push('modernizr#2.8.3');
+
+			if (answers.foundation) {
+				bowerDeps.push('foundation-sites');
+			}
+
+			this.bowerInstall(bowerDeps, {
 				'save': true
 			});
-			if(answers.foundation){			
-				this.bowerInstall([
-					'foundation-sites'
-				], {
-					'save': true
-				});
-			}
 		}
+		this.npmInstall(npmDeps, {
+			'save': true
+		});
+		this.npmInstall(npmDevDeps, {
+			'saveDev': true
+		});
 	}
 
 	end() {
