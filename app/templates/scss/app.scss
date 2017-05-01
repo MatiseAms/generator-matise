@@ -21,7 +21,7 @@
   "elements/elements",
   "components/components";
 
-<% if (!foundationInclude) { %>// Foundation margin and padding reset
+<% if (foundationInclude) { %>// Foundation margin and padding reset
 .row{ 
 	&,.row{ margin: 0; padding: 0; 
 		.column,.columns{margin: 0; padding: 0; }

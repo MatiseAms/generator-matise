@@ -27,7 +27,8 @@ var answers = {
 	tinyPNGKey: '',
 	parse: false,
 	hipsum: false,
-	subviews: false
+	subviews: false,
+	foundation: true
 };
 
 request('https://api.wordpress.org/secret-key/1.1/salt/', function(error, response, body) {
@@ -114,7 +115,7 @@ module.exports = class extends Generator {
 								value: 'subviews',
 								checked: false
 							},{ 
-								name: 'Foundation Zurb',
+								name: 'Zurb Foundation',
 								value: 'foundation',
 								checked: true
 							},
@@ -134,8 +135,26 @@ module.exports = class extends Generator {
 							answers.foundation = true;
 						}
 					});
-				} else {
-					return;
+				} else {	
+					if (promptAnswers.projecttype === 'wordpress') {
+						return self.prompt([{
+							type: 'checkbox',
+							name: 'projectfeatures',
+							message: 'What features would you like to use?',
+							choices: [
+								{ 
+									name: 'Zurb Foundation',
+									value: 'foundation',
+									checked: true
+								},
+							],
+							default: 0
+						}]).then((optionsAnswers) => {
+							if (optionsAnswers.projectfeatures.indexOf('foundation') >= 0) {
+								answers.foundation = true;
+							}
+						});
+					}
 				}
 			});
 		} else {
