@@ -12,8 +12,12 @@ Yeoman generator for matise projects
 
 # Angular
 - npm install
-- grunt bowerinit
 - grunt
+
+of
+
+- yarn
+- yarn dev
 
 # Wordpress
 - CHANGE vagrant IP in Vagrantfile!!!!!
