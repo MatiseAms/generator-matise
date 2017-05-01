@@ -9,15 +9,21 @@
 }
 
 
-@mixin createElements($amount,$type: false){
+@mixin createElements($amount,$type: false, $margin: false){
   @for $i from 1 through $amount{
     @if $type == false{
       #{elementCount($i)}{
         @content;
       }
     } @else if $type == 'width'{
-      #{elementCount($i)}{
-       width: percentage(1/$i);
+      @if $margin{
+        #{elementCount($i)}{
+          @include calc('width','#{percentage(1/$i)} - #{$margin}');
+        }
+      } @else {
+        #{elementCount($i)}{
+         width: percentage(1/$i);
+        }
       }
     }
   }

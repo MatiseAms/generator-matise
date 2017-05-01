@@ -1,0 +1,5 @@
+// Icon Function
+@function icon($value, $iconset: $icons){
+	$icon: map-get($iconset, $value);
+	@return $icon;
+}

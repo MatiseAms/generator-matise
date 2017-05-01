@@ -192,23 +192,15 @@ module.exports = class extends Generator {
 		if (answers.projectType === 'wordpress') {
 			scssDestination = 'themesrc/';
 		}
-		// Icons folder
-		this.fs.copy(
-			this.templatePath('scss/icons/*'),
-			this.destinationPath(scssDestination + 'scss/icons')
-		);
-		// Mixins folder
-		this.fs.copy(
-			this.templatePath('scss/mixins/*'),
-			this.destinationPath(scssDestination + 'scss/mixins')
-		);
-		
-		// Functions folder
-		this.fs.copy(
-			this.templatePath('scss/functions/*'),
-			this.destinationPath(scssDestination + 'scss/functions')
-		);
-		
+		var copyFolders = ['color','components','elements','functions','icons','mixins'];
+		var th = this; 
+		copyFolders.forEach(function(folder){
+			th.fs.copy(
+				th.templatePath('scss/'+folder+'/*'),
+				th.destinationPath(scssDestination + 'scss/'+folder)
+			);	
+		});
+				
 		if (answers.foundation) {
 			// Zurb folder
 			var utilPath = '@import \'scss/util/util\';';

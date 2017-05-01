@@ -27,7 +27,7 @@ $a: (
 	@if $v < 10{
 		$v: 0#{$v};
 	}
-	$width: (100/24)*($i/10);
+	$width: (100/$grid-columns)*($i/10);
 	@each $class, $value in $a{
     $together: #{$class}-#{$v};
 		.#{$together}{
@@ -37,7 +37,7 @@ $a: (
 }
 
 @function grid($v,$min: 0){
-  $value: (100/24)*$v;
+  $value: (100/$grid-columns)*$v;
   @if $value < $min {
     $value: $min;
   }
@@ -67,5 +67,120 @@ $grid-5: grid(5);
     @return $mq;
   }
 }
-$small-only: mq(0,640);
-$above-mobile: mq(641,9999);
+
+
+.row{ max-width: $grid-row-width; width: 100%; margin: auto; display: flex; justify-content: flex-start;
+  flex-flow: row wrap;
+  &.center{ justify-content: center; }
+}
+
+%col{ box-sizing: border-box !important;
+  .content{ padding: 1rem; font-family: inherit; }
+}
+//@include wildcard('col-'){ @extend %col; }
+.col, .column, .columns{ @extend %col; }
+
+
+
+
+@mixin createGridClasses($child: false){
+  $childClass: '';
+  @if $child == true{
+    $childClass: ' .column';
+  }
+  @for $a from 0 through $grid-columns{
+    &.column-#{$a}#{$childClass}{
+      width: percentage($a/$grid-columns);
+    }
+    &.offset-#{$a}#{$childClass}{
+      margin-left: percentage($a/$grid-columns);
+    }
+    &.push-#{$a}#{$childClass}{
+      margin-right: percentage($a/$grid-columns);
+    }
+    &.pull-#{$a}#{$childClass}{
+      margin-left: -#{percentage($a/$grid-columns)};
+    }
+  }
+
+
+  $min-width: 0;
+  @for $i from 1 through length($grid-breakpoints){
+
+    $bp: nth($grid-breakpoints,$i);
+    $mq-only: "#{$grid-screen} and (min-width: #{$min-width}px) and (max-width: #{nth($bp,2)}px)";
+    $mq: "#{$grid-screen} and (min-width: #{$min-width}px)";
+    $min-width: #{nth($bp,2)+1};
+    @if $i == 1{
+      @each $part,$percentage in $grid-parts{
+        &.#{$part}#{$childClass}{
+          width: percentage($percentage);
+        }
+      }
+    }
+    @media #{$mq-only}{
+      &.#{nth($bp,1)}-only-0#{$childClass}{
+        width: 0%;
+        display: none;
+      }
+      @each $part,$percentage in $grid-parts{
+        &.#{nth($bp,1)}-only-#{$part}#{$childClass}{
+          width: percentage($percentage);
+        }
+      }
+      @for $a from 1 through $grid-columns{
+        &.#{nth($bp,1)}-only-#{$a}#{$childClass}{
+          width: percentage($a/$grid-columns);
+        }
+        &.offset-#{nth($bp,1)}-only-#{$a}#{$childClass}{
+          margin-left: percentage($a/$grid-columns);
+        }
+        &.push-#{nth($bp,1)}-only-#{$a}#{$childClass}{
+          margin-right: percentage($a/$grid-columns);
+        }
+        &.pull-#{nth($bp,1)}-only-#{$a}#{$childClass}{
+          margin-left: -#{percentage($a/$grid-columns)};
+        }
+      }
+    }
+    @media #{$mq}{
+      &.#{nth($bp,1)}-0#{$childClass}{
+        width: 0%;
+        display: none;
+      }
+      @if $i == 1{
+        @each $part,$percentage in $grid-parts{
+          &.#{nth($bp,1)}-#{$part}#{$childClass}{
+            width: percentage($percentage);
+          }
+        }
+      }
+      @for $a from 1 through $grid-columns{
+        &.#{nth($bp,1)}-#{$a}#{$childClass}{
+          width: percentage($a/$grid-columns);
+        }
+        &.offset-#{nth($bp,1)}-#{$a}#{$childClass}{
+          margin-left: percentage($a/$grid-columns);
+        }
+        &.push-#{nth($bp,1)}-#{$a}#{$childClass}{
+          margin-right: percentage($a/$grid-columns);
+        }
+        &.pull-#{nth($bp,1)}-#{$a}#{$childClass}{
+          margin-left: -#{percentage($a/$grid-columns)};
+        }
+      }
+    }
+  }
+}
+
+.column{
+  @include createGridClasses(false);
+}
+.row{
+  @include createGridClasses(true);
+}
+
+$small-only: mq(0,map-get($grid-breakpoints,'small'));
+@debug mq(0,map-get($grid-breakpoints,'small'));
+$landscape: "#{$grid-screen} and (orientation: landscape)";
+$portrait: "#{$grid-screen} and (orientation: portrait)";

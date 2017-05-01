@@ -1,0 +1,5 @@
+@mixin icon($icon,$before: 'before', $parent: &){
+  #{$parent}:#{$before}{
+    text-transform: none; content: #{icon($icon)};
+  }
+}
