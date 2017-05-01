@@ -28,7 +28,7 @@ var answers = {
 	parse: false,
 	hipsum: false,
 	subviews: false,
-	foundation: true
+	foundation: false
 };
 
 request('https://api.wordpress.org/secret-key/1.1/salt/', function(error, response, body) {
