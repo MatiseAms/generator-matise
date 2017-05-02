@@ -1,10 +1,7 @@
 <% if (foundationInclude) { %>
 // foundation
 @import
-  "zurb/global",
-  "zurb/settings",
-  "zurb/foundation",
-  "zurb/grid";
+  "zurb/zurb";
 <% } %>
 
 // main styles
@@ -13,7 +10,7 @@
   "mixins/mixins",
   "color/color",
 	"base",<% if (!foundationInclude) { %>	
-	"grid", <% } %>
+	"grid/grid", <% } %>
   "typography",
   "icons",
   "slick";

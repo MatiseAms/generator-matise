@@ -213,6 +213,9 @@ module.exports = class extends Generator {
 		}
 
 		var copyFolders = ['color','components','elements','functions','icons','mixins'];
+		if(!answers.foundation){
+			copyFolders.push('grid');
+		}
 		var th = this; 
 		copyFolders.forEach(function(folder){
 			th.fs.copy(

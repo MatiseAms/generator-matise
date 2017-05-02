@@ -1,0 +1,19 @@
+@import
+	"functions",
+	"classes",
+	"element-classes",
+	"media-queries",
+	"variables";
+
+.row{ max-width: $grid-row-width; width: 100%; margin: auto; display: flex; justify-content: flex-start;
+  flex-flow: row wrap; @include createGridClasses(true);
+  &.center{ justify-content: center; }
+}
+
+%col{ box-sizing: border-box !important;
+  .content{ padding: 1rem; font-family: inherit; }
+}
+//@include wildcard('col-'){ @extend %col; }
+.col, .column, .columns{ @extend %col; 
+  @include createGridClasses(false);
+}
