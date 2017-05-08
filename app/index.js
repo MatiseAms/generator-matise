@@ -239,6 +239,10 @@ module.exports = class extends Generator {
 				}
 			);
 			this.fs.copy(
+				this.templatePath('scss/zurb/_zurb.scss'),
+				this.destinationPath(scssDestination + 'scss/zurb/zurb.scss')
+			);
+			this.fs.copy(
 				this.templatePath('scss/zurb/_global.scss'),
 				this.destinationPath(scssDestination + 'scss/zurb/_global.scss')
 			);
