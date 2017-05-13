@@ -102,19 +102,19 @@ module.exports = class extends Generator {
 						name: 'projectfeatures',
 						message: 'What features would you like to use?',
 						choices: [
-							{ 
+							{
 								name: 'Parse',
 								value: 'parse',
 								checked: false
-							},{ 
+							},{
 								name: 'Hipsum',
 								value: 'hipsum',
 								checked: false
-							},{ 
+							},{
 								name: 'Subviews',
 								value: 'subviews',
 								checked: false
-							},{ 
+							},{
 								name: 'Zurb Foundation',
 								value: 'foundation',
 								checked: true
@@ -135,14 +135,14 @@ module.exports = class extends Generator {
 							answers.foundation = true;
 						}
 					});
-				} else {	
+				} else {
 					if (promptAnswers.projecttype === 'wordpress') {
 						return self.prompt([{
 							type: 'checkbox',
 							name: 'projectfeatures',
 							message: 'What features would you like to use?',
 							choices: [
-								{ 
+								{
 									name: 'Zurb Foundation',
 									value: 'foundation',
 									checked: true
@@ -216,14 +216,14 @@ module.exports = class extends Generator {
 		if(!answers.foundation){
 			copyFolders.push('grid');
 		}
-		var th = this; 
+		var th = this;
 		copyFolders.forEach(function(folder){
 			th.fs.copy(
 				th.templatePath('scss/'+folder+'/*'),
 				th.destinationPath(scssDestination + 'scss/'+folder)
-			);	
+			);
 		});
-				
+
 		if (answers.foundation) {
 			// Zurb folder
 			var utilPath = '@import \'scss/util/util\';';
@@ -752,11 +752,9 @@ module.exports = class extends Generator {
 			npmDevDeps.push('postcss-size');
 			npmDevDeps.push('postcss-sprites');
 			npmDevDeps.push('postcss-svg');
-			npmDevDeps.push('postcss-verthorz');
 			npmDevDeps.push('postcss-vmin');
 			npmDevDeps.push('serve-static');
 			npmDevDeps.push('time-grunt');
-			npmDevDeps.push('postcss-custom-selectors');
 
 			npmDeps.push('modernizr');
 			npmDeps.push('angular');
@@ -802,7 +800,6 @@ module.exports = class extends Generator {
 			npmDevDeps.push('postcss-size');
 			npmDevDeps.push('postcss-sprites');
 			npmDevDeps.push('postcss-svg');
-			npmDevDeps.push('postcss-verthorz');
 			npmDevDeps.push('postcss-vmin');
 			npmDevDeps.push('time-grunt');
 
