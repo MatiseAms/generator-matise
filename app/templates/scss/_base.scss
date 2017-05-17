@@ -1,11 +1,49 @@
-$base-img-dir: "../img"; $base-font-size: 16; $base-line-height: 1.5; $base-letter-spacing: 50; $base-fontpath: "../fonts";
 
+/*  Base values */
+$base-img-dir: "../img"; //
+$base-font-size: 16; //
+$base-line-height: 1.5; //
+$base-letter-spacing: 50; //
+$base-fontpath: "../fonts"; //
+$icon-font-family: ""; //
+$main-font-family: "";
 // this value may vary for each font
 // unitless value relative to 1em
-$cap-height: 0.68; $icon-font-family: ""; $main-font-family: "";
+$cap-height: 0.68;
 
-// main
-$transition-time: 0.3; $transition: #{$transition-time}s; $border-radius: rem(3); $round-border-radius: 0.5rem; $border-round: 50%; $space: 20px; $cubic-bezier: cubic-bezier(0.75,0.75,0.25,0.50); $bezier: $cubic-bezier;
+/*  Main values */
+$border-radius: rem(3); //
+$round-border-radius: 0.5rem; //
+$border-round: 50%; //
+$space: 20px; //
+
+
+/*  Animation */
+$transition-time: 0.2; //
+$transition: #{$transition-time}s; //
+$cubic-bezier: cubic-bezier(0.75,0.75,0.25,0.50); //
+$bezier: $cubic-bezier;
+
+/*  Grid Specific values */
+$grid-row-width: 2048px; //
+$grid-design-width: 1920px; //
+$grid-columns: 24; //
+$grid-screen: "only screen"; //
+$grid-breakpoints: (
+  "small": 800,
+  "medium": 960,
+  "large": 1600,
+  "xlarge": 9999
+); //
+$grid-parts: (
+  "full": 1/1,
+  "half": 1/2,
+  "third": 1/3,
+  "quarter": 1/4,
+  "fifth": 1/5,
+  "sixth": 1/6
+);
+
 
 %round{
 	border-radius: 50%;
@@ -47,17 +85,12 @@ hr{
 	width: 100%; height: 1px; clear: both; background: color(Black,0.25); color: color(Black,0.25); margin: 1rem 0; border: none;
 }
 
-// foundation fix for last child
-[class*="column"]+[class*="column"]:last-child{
-	float: left !important;
-}
-
 a{
 	text-decoration: none; color: inherit;
 }
 
 *{
-	-webkit-appearance: none; outline: none; outline: none; border-box: border-box; -webkit-overflow-scrolling: touch; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility;
+	-webkit-appearance: none; outline: none; outline: none; box-sizing: border-box; -webkit-overflow-scrolling: touch; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; -webkit-backface-visibility: hidden;
 	&:focus{
 		outline: none;
 	}
@@ -76,7 +109,7 @@ ul, li{
 	margin: 0; padding: 0; list-style-type: none;
 }
 body, html{
-	width: 100%; height: 100%; max-width: 100%; margin: 0; padding: 0; color: color(Black); font-family: #{$main-font-family}; font-size: 16px;
+	width: 100%; max-width: 100%; margin: 0; padding: 0; color: color(Black); font-family: #{$main-font-family}; font-size: 16px;
 	.touch &{
 		overflow-x: hidden;
 	}

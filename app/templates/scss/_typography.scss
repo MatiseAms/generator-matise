@@ -27,11 +27,7 @@ $second-font-family: #{$second-font},sans-serif; //
 // include main font
 // @include font-list($second-font,$second-font-name,$main-font-weights,normal); */
 //
-$social-font:"Social"; //
-$social-font-name: "social"; //
-$social-font-family: #{$social-font},sans-serif; //
-// include main font
-// @include font-include($social-font,$social-font-name,normal,normal); */
+
 
 *{ }
 

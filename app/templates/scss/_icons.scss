@@ -1,24 +1,42 @@
 @import "icons/icons";
-
+%icon{
+	text-transform: none; text-indent: 0; font-weight: normal;
+}
 a.icon{
-  &:before{ font-family: $social-font-family; text-transform: none; letter-spacing: 0; }
-  @each $icon in $icons{
-    &.#{nth($icon,1)}:before{ content: "#{nth($icon,2)}"; }
-    @if color(#{nth($icon,1)},$social-colors,false,true) == true{
-      &.#{nth($icon,1)}:hover:before{ color: color(#{nth($icon,1)},$social-colors,true); }
-    }
-  }
+	@each $iconFamily-name, $iconFamily-value in $icons{
+		@each $icon-name, $icon-value in $iconFamily-value{
+			&.#{$icon-name}:before{
+				content: "#{$icon-value}"; $family: "#{$iconFamily-name}-font-family";
+				@extend "%#{$family}";
+			}
+			@if color($icon-name,1,$social-colors,false,true) == true{
+				&.#{$icon-name}:hover:before{
+					color: color($icon-name,1,$social-colors,true);
+				}
+			}
+		}
+	}
 }
 li.icon{
-  a:before{ font-family: $social-font-family; text-transform: none; letter-spacing: 0; }
-  @each $icon in $icons{
-    &.#{nth($icon,1)} a:before{ content: "#{nth($icon,2)}"; }
-    @if color(#{nth($icon,1)},$social-colors,false,true) == true{
-      &.#{nth($icon,1)} a:hover:before{ background: color(#{nth($icon,1)},$social-colors,true); }
-    }
-  }
+	@each $iconFamily-name, $iconFamily-value in $icons{
+		@each $icon-name, $icon-value in $iconFamily-value{
+			&.#{$icon-name} a:before{
+				content: "#{$icon-value}"; $family: "#{$iconFamily-name}-font-family";
+				@extend "%#{$family}";
+			}
+			@if color($icon-name,1,$social-colors,false,true) == true{
+				&.#{$icon-name} a:hover:before{
+					color: color($icon-name,1,$social-colors,true);
+				}
+			}
+		}
+	}
 }
-%icon{ text-transform: none; font-family: $social-font-family; text-indent: 0; font-weight: normal; }
-@each $icon in $icons{
-  %icon-#{nth($icon,1)}{ content: "#{nth($icon,2)}"; }
+@each $iconFamily-name, $iconFamily-value in $icons{
+	@each $icon-name, $icon-value in $iconFamily-value{
+		%icon-#{$icon-name}{
+			content: "#{$icon-value}"; $family: "#{$iconFamily-name}-font-family";
+			@extend "%#{$family}";
+		}
+	}
 }

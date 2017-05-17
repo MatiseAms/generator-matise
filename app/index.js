@@ -27,7 +27,8 @@ var answers = {
 	tinyPNGKey: '',
 	parse: false,
 	hipsum: false,
-	subviews: false
+	subviews: false,
+	foundation: false
 };
 
 request('https://api.wordpress.org/secret-key/1.1/salt/', function(error, response, body) {
@@ -100,23 +101,25 @@ module.exports = class extends Generator {
 						type: 'checkbox',
 						name: 'projectfeatures',
 						message: 'What features would you like to use?',
-						choices: [{
-							name: 'Parse',
-							value: 'parse',
-							checked: false
-						}, {
-							name: 'Hipsum',
-							value: 'hipsum',
-							checked: false
-						}, {
-							name: 'Subviews',
-							value: 'subviews',
-							checked: false
-						}, {
-							name: 'Foundation Zurb',
-							value: 'foundation',
-							checked: true
-						}, ],
+						choices: [
+							{
+								name: 'Parse',
+								value: 'parse',
+								checked: false
+							},{
+								name: 'Hipsum',
+								value: 'hipsum',
+								checked: false
+							},{
+								name: 'Subviews',
+								value: 'subviews',
+								checked: false
+							},{
+								name: 'Zurb Foundation',
+								value: 'foundation',
+								checked: true
+							},
+						],
 						default: 0
 					}]).then((optionsAnswers) => {
 						if (optionsAnswers.projectfeatures.indexOf('parse') >= 0) {
@@ -133,7 +136,25 @@ module.exports = class extends Generator {
 						}
 					});
 				} else {
-					return;
+					if (promptAnswers.projecttype === 'wordpress') {
+						return self.prompt([{
+							type: 'checkbox',
+							name: 'projectfeatures',
+							message: 'What features would you like to use?',
+							choices: [
+								{
+									name: 'Zurb Foundation',
+									value: 'foundation',
+									checked: true
+								},
+							],
+							default: 0
+						}]).then((optionsAnswers) => {
+							if (optionsAnswers.projectfeatures.indexOf('foundation') >= 0) {
+								answers.foundation = true;
+							}
+						});
+					}
 				}
 			});
 		} else {
@@ -191,17 +212,17 @@ module.exports = class extends Generator {
 			scssDestination = 'themesrc/';
 		}
 
-		// Mixins folder
-		this.fs.copy(
-			this.templatePath('scss/mixins/*'),
-			this.destinationPath(scssDestination + 'scss/mixins')
-		);
-
-		// Functions folder
-		this.fs.copy(
-			this.templatePath('scss/functions/*'),
-			this.destinationPath(scssDestination + 'scss/functions')
-		);
+		var copyFolders = ['color','components','elements','functions','icons','mixins'];
+		if(!answers.foundation){
+			copyFolders.push('grid');
+		}
+		var th = this;
+		copyFolders.forEach(function(folder){
+			th.fs.copy(
+				th.templatePath('scss/'+folder+'/*'),
+				th.destinationPath(scssDestination + 'scss/'+folder)
+			);
+		});
 
 		if (answers.foundation) {
 			// Zurb folder
@@ -216,6 +237,10 @@ module.exports = class extends Generator {
 				this.destinationPath(scssDestination + 'scss/zurb/_foundation.scss'), {
 					foundationImport: foundationPath
 				}
+			);
+			this.fs.copy(
+				this.templatePath('scss/zurb/_zurb.scss'),
+				this.destinationPath(scssDestination + 'scss/zurb/zurb.scss')
 			);
 			this.fs.copy(
 				this.templatePath('scss/zurb/_global.scss'),
@@ -727,11 +752,9 @@ module.exports = class extends Generator {
 			npmDevDeps.push('postcss-size');
 			npmDevDeps.push('postcss-sprites');
 			npmDevDeps.push('postcss-svg');
-			npmDevDeps.push('postcss-verthorz');
 			npmDevDeps.push('postcss-vmin');
 			npmDevDeps.push('serve-static');
 			npmDevDeps.push('time-grunt');
-			npmDevDeps.push('postcss-custom-selectors');
 
 			npmDeps.push('modernizr');
 			npmDeps.push('angular');
@@ -777,7 +800,6 @@ module.exports = class extends Generator {
 			npmDevDeps.push('postcss-size');
 			npmDevDeps.push('postcss-sprites');
 			npmDevDeps.push('postcss-svg');
-			npmDevDeps.push('postcss-verthorz');
 			npmDevDeps.push('postcss-vmin');
 			npmDevDeps.push('time-grunt');
 

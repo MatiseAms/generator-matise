@@ -3,7 +3,7 @@ module.exports = {
 		spawn: false
 	},
 	scss: {
-		files: '<%= config.themesrc.root %>scss/*',
+		files: '<%= config.themesrc.root %>scss/**/*',
 		tasks: ['sass', 'postcss']
 	},
 	images: {
@@ -17,7 +17,7 @@ module.exports = {
 	theme: {
 		files: [
 			'<%= config.themesrc.root %>**/*',
-			'!<%= config.themesrc.root %>scss/*',
+			'!<%= config.themesrc.root %>scss/**/*',
 			'!<%= config.themesrc.root %>fonts/*',
 			'!<%= config.themesrc.root %>img/*'
 		],
