@@ -9,13 +9,14 @@
 
 // main styles
 @import
-  "functions",
-  "mixins",
-	"colors",<% if (!foundationInclude) { %>	
-	"grid", <% } %>
-  "base",
+  "functions/functions",
+  "mixins/mixins",
+	"color/color",
+  "base",<% if (!foundationInclude) { %>	
+	"grid/grid", <% } %>
   "typography",
   "slick";
+ 
 
 // Foundation margin and padding reset
 .row{ 
