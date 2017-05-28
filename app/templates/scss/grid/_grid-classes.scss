@@ -1,4 +1,3 @@
-
 @mixin createGridClasses($child: false){
 	$childClass: "";
 	@if $child == true{
@@ -24,7 +23,6 @@
 	$min-width: 0;
 	@each $bp-name,$bp-value in $grid-breakpoints{
 		$mq-only: "#{$grid-screen} and (min-width: #{$min-width}px) and (max-width: #{$bp-value}px)"; $mq: "#{$grid-screen} and (min-width: #{$min-width}px)"; $min-width: $bp-value + 1;
-		@debug $min-width;
 		@each $part,$percentage in $grid-parts{
 			&.#{$part}#{$childClass}{
 				width: percentage($percentage);
@@ -82,4 +80,24 @@
 			}
 		}
 	}
+}
+
+
+.row{
+	max-width: $grid-row-width; width: 100%; margin: auto; display: flex; justify-content: flex-start; flex-flow: row wrap; @include createGridClasses(true);
+	&.center{
+		justify-content: center;
+	}
+}
+
+%col{
+	box-sizing: border-box !important;
+	.content{
+		padding: grid(0.25); font-family: inherit;
+	}
+}
+//@include wildcard('col-'){ @extend %col; }
+.col, .column, .columns{
+	@extend %col;
+	@include createGridClasses(false);
 }

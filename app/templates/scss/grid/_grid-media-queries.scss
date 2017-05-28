@@ -1,0 +1,4 @@
+$small-only: mq(0,map-get($grid-breakpoints,"small"));  //
+$mobile: mq(0,map-get($grid-breakpoints,"small")); //
+$landscape: "#{$grid-screen} and (orientation: landscape)"; //
+$portrait: "#{$grid-screen} and (orientation: portrait)";

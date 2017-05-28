@@ -1,0 +1,39 @@
+@function grid($v,$min: 0){
+	$value: (100/$grid-columns)*$v;
+	@if $value < $min{
+		$value: $min;
+	}
+	//convert px to vw based on design file
+	@if unit($v) == "px"{
+		$value: (strip-unit($v)*100)/strip-unit($grid-design-width);
+	}
+	//convert rem to vw based on design file
+	@if unit($v) == "rem"{
+		$value: ((strip-unit($v)*$base-font-size)*100)/strip-unit($grid-design-width);
+	}
+	@return unquote("#{$value}vw");
+}
+
+
+@function mq($min: 0,$max: 0){
+	@if $max > 0{
+		$mq: "screen and (min-width: #{$min}px) and (max-width: #{$max}px)";
+		@return $mq;
+	} @elseif $min > 0{
+		$mq: "screen and (min-width: #{$min}px)";
+		@return $mq;
+	}
+}
+
+
+@function grid-mq-min($columns,$width){
+	$minimum-screenwidth: $grid-design-width / ((($grid-design-width / $grid-columns) * $columns) / $width); //
+	$result: "(max-width: #{$minimum-screenwidth}px)";
+	@return $result;
+}
+
+@function grid-mq-max($columns,$width){
+	$minimum-screenwidth: $grid-design-width / ((($grid-design-width / $grid-columns) * $columns) / $width); //
+	$result: "(min-width: #{$minimum-screenwidth}px)";
+	@return $result;
+}
