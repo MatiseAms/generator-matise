@@ -28,7 +28,8 @@ var answers = {
 	parse: false,
 	hipsum: false,
 	subviews: false,
-	foundation: false
+	foundation: false,
+	slick: false
 };
 
 request('https://api.wordpress.org/secret-key/1.1/salt/', function(error, response, body) {
@@ -68,7 +69,7 @@ module.exports = class extends Generator {
 	}
 
 	prompting() {
-		if (matiseArguments.length != 7) {
+		if (matiseArguments.length != 8) {
 			var self = this;
 			return self.prompt([{
 				type: 'input',
@@ -118,6 +119,10 @@ module.exports = class extends Generator {
 								name: 'Zurb Foundation',
 								value: 'foundation',
 								checked: true
+							},{
+								name: 'Slick',
+								value: 'slick',
+								checked: false
 							},
 						],
 						default: 0
@@ -134,6 +139,9 @@ module.exports = class extends Generator {
 						if (optionsAnswers.projectfeatures.indexOf('foundation') >= 0) {
 							answers.foundation = true;
 						}
+						if (optionsAnswers.projectfeatures.indexOf('slick') >= 0) {
+							answers.foundation = true;
+						}
 					});
 				} else {
 					if (promptAnswers.projecttype === 'wordpress') {
@@ -147,11 +155,19 @@ module.exports = class extends Generator {
 									value: 'foundation',
 									checked: true
 								},
+								{
+									name: 'Slick',
+									value: 'slick',
+									checked: false
+								},
 							],
 							default: 0
 						}]).then((optionsAnswers) => {
 							if (optionsAnswers.projectfeatures.indexOf('foundation') >= 0) {
 								answers.foundation = true;
+							}
+							if (optionsAnswers.projectfeatures.indexOf('slick') >= 0) {
+								answers.slick = true;
 							}
 						});
 					}
@@ -166,6 +182,7 @@ module.exports = class extends Generator {
 			answers.hipsum = matiseArguments[5] === 'true';
 			answers.subviews = matiseArguments[6] === 'true';
 			answers.foundation = matiseArguments[7] === 'true';
+			answers.slick = matiseArguments[8] === 'true';
 		}
 	}
 
@@ -212,7 +229,7 @@ module.exports = class extends Generator {
 			scssDestination = 'themesrc/';
 		}
 
-		var copyFolders = ['color','components','elements','functions','icons','mixins'];
+		var copyFolders = ['color','components','elements','functions','icons','mixins','typography'];
 		if(!answers.foundation){
 			copyFolders.push('grid');
 		}
@@ -240,7 +257,7 @@ module.exports = class extends Generator {
 			);
 			this.fs.copy(
 				this.templatePath('scss/zurb/_zurb.scss'),
-				this.destinationPath(scssDestination + 'scss/zurb/zurb.scss')
+				this.destinationPath(scssDestination + 'scss/zurb/_zurb.scss')
 			);
 			this.fs.copy(
 				this.templatePath('scss/zurb/_global.scss'),
@@ -758,12 +775,16 @@ module.exports = class extends Generator {
 
 			npmDeps.push('modernizr');
 			npmDeps.push('angular');
-			npmDeps.push('angular-ui-router');
+			npmDeps.push('@uirouter/angularjs');
 			npmDeps.push('angulartics');
 			npmDeps.push('angulartics-google-analytics');
 
 			if (answers.foundation) {
 				npmDeps.push('foundation-sites');
+			}
+			if (answers.slick){
+				npmDeps.push('slick-carousel');
+				npmDeps.push('angular-slick-carousel');
 			}
 			if (answers.parse) {
 				npmDeps.push('parse');
@@ -807,6 +828,9 @@ module.exports = class extends Generator {
 
 			if (answers.foundation) {
 				bowerDeps.push('foundation-sites');
+			}
+			if (answers.slick){
+				npmDeps.push('slick-carousel');
 			}
 		}
 

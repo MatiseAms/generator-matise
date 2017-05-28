@@ -2,7 +2,7 @@
 
 var angular = require('angular');
 
-require('angular-ui-router');
+require('@uirouter/angularjs');
 require('angulartics');
 <%- requires %>
 
