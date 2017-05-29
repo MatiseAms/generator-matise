@@ -3,7 +3,7 @@ require('parse');
 
 var angular = require('angular');
 
-require('angular-ui-router');
+require('@uirouter/angularjs');
 require('angular-parse');
 require('angulartics');
 <%- requires %>
