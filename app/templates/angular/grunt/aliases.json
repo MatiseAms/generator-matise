@@ -32,5 +32,11 @@
 		"cssnano",
 		"uglify",
 		"cacheBust"
+	],
+	"fonts": [
+		"fontgen"
+	],
+	"icons": [
+		"webfont"
 	]
 }

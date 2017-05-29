@@ -772,6 +772,7 @@ module.exports = class extends Generator {
 			npmDevDeps.push('postcss-vmin');
 			npmDevDeps.push('serve-static');
 			npmDevDeps.push('time-grunt');
+			npmDevDeps.push('grunt-fontgen');
 
 			npmDeps.push('modernizr');
 			npmDeps.push('angular');
@@ -823,6 +824,7 @@ module.exports = class extends Generator {
 			npmDevDeps.push('postcss-svg');
 			npmDevDeps.push('postcss-vmin');
 			npmDevDeps.push('time-grunt');
+			npmDevDeps.push('grunt-fontgen');
 
 			bowerDeps.push('modernizr#2.8.3');
 

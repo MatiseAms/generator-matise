@@ -26,6 +26,12 @@ of
 - grunt bowerinit
 - grunt
 
+#### Font generation
+In order to be able to generate icon fonts and webfonts from ttf/otf. 
+- `brew install batik fontforge ttfautohint ttf2eot`
+- Generate icons: `grunt icons`
+- Convert fonts: `grunt fonts`
+
 #### Vagrant Database creds
 powered by: https://box.scotch.io/
 
