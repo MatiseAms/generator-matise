@@ -294,6 +294,12 @@ debug@^2.0.0, debug@^2.1.0:
   dependencies:
     ms "0.7.3"
 
+debug@^2.6.7:
+  version "2.6.8"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.8.tgz#e731531ca2ede27d188222427da17821d68ff4fc"
+  dependencies:
+    ms "2.0.0"
+
 deep-extend@^0.4.0, deep-extend@~0.4.0:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/deep-extend/-/deep-extend-0.4.2.tgz#48b699c27e334bf89f10892be432f6e4c7d34a7f"
@@ -819,6 +825,10 @@ ms@0.7.3:
   version "0.7.3"
   resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.3.tgz#708155a5e44e33f5fd0fc53e81d0d40a91be1fff"
 
+ms@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
+
 multimatch@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/multimatch/-/multimatch-2.1.0.tgz#9c7906a22fb4c02919e2f5f75161b4cdbd4b2a2b"
@@ -1135,9 +1145,11 @@ shelljs@0.7.7, shelljs@^0.7.0:
     interpret "^1.0.0"
     rechoir "^0.6.2"
 
-simple-git@^1.72.0:
-  version "1.72.0"
-  resolved "https://registry.yarnpkg.com/simple-git/-/simple-git-1.72.0.tgz#e462ce8b46d4523f679e340000681582e9e965d2"
+simple-git@1.73.0:
+  version "1.73.0"
+  resolved "https://registry.yarnpkg.com/simple-git/-/simple-git-1.73.0.tgz#87683a729b1bee016a3182f95a2ab72317bb0230"
+  dependencies:
+    debug "^2.6.7"
 
 slide@^1.1.5:
   version "1.1.6"
