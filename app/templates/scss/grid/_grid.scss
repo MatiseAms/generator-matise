@@ -1,7 +1,17 @@
+<% if (foundationInclude) { %>// Foundation margin and padding reset
 @import
+	"grid-functions",
+	"grid-mixins",
+//	"grid-classes",
+	"grid-element-classes",
+//	"grid-media-queries",
+	"grid-variables";
+<% } else { %>
+	@import
 	"grid-functions",
 	"grid-mixins",
 	"grid-classes",
 	"grid-element-classes",
 	"grid-media-queries",
-	"grid-variables";
+	"grid-variables";	
+<% } %>

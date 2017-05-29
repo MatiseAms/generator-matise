@@ -230,9 +230,6 @@ module.exports = class extends Generator {
 		}
 
 		var copyFolders = ['color','components','elements','functions','icons','mixins','typography'];
-		if(!answers.foundation){
-			copyFolders.push('grid');
-		}
 		var th = this;
 		copyFolders.forEach(function(folder){
 			th.fs.copy(
@@ -240,6 +237,13 @@ module.exports = class extends Generator {
 				th.destinationPath(scssDestination + 'scss/'+folder)
 			);
 		});
+
+		this.fs.copyTpl(
+			this.templatePath('scss/grid/*.scss'),
+			this.destinationPath(scssDestination + 'scss/grid/'), {
+				foundationInclude: answers.foundation
+			}
+		);
 
 		if (answers.foundation) {
 			// Zurb folder

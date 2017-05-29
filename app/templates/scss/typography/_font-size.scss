@@ -33,7 +33,7 @@ $minus: 0.1066;
 }
 %h5{
 	@extend %header-default; font-size: rem(14); line-height: rem((14 * 1.25)); padding-left: grid(0.5); font-weight: $font-regular; letter-spacing: letter-spacing(rem(14),-25);
-	@media #{$mobile}{
+	@media #{$small-only}{
 		padding-left: grid(1);
 	}
 }
