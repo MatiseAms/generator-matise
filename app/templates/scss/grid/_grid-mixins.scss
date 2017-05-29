@@ -21,7 +21,7 @@
 
 
 
-// Just making is simpler to understand
+// Just making it simpler to understand
 
 @mixin min-width($columns,$min-width,$alt: false){
   @include min-('width',$columns,$min-width,$alt){

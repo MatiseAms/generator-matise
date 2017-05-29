@@ -37,7 +37,7 @@ function importFile(fonts){
   // grunt.log.write(fonts);
   var options = {
     template: './src/app/icons/_templates/importFile.css',
-    dest: './src/app/scss/icons/icons.scss',
+    dest: './src/app/scss/icons/_all.scss',
     src: 'icons/',
     templateOptions: {
       fonts: fonts,
