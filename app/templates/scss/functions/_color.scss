@@ -8,27 +8,33 @@
 }
 
 @function color($value, $rgba: false, $colorset: $colors, $warning: true, $boolean: false){
-	$color: map-get($colorset, $value);
 	@if $warning == true{
-		@if $color == null{
-			@if color($value, $rgba, $main-colors, false, true){
-				@return color($value, $rgba, $main-colors);
-			}
-			@warn "color: \"#{$value}\" doesn't exist";
+		@if color-exist($value) == false{
+			@warn  "color: #{$value} doesn't exist";
 		}
 	}
 	@if $boolean == true{
-		@if $color == null{
-			@return false;
-		} @else{
-			@return true;
-		}
+		@return color-exist($value);
 	} @else{
 		@if $rgba != false{
-			@return rgba($color,$rgba);
+			@return rgba(map-get($colorset, $value),$rgba);
 		} @else{
-			@return $color;
+			@return map-get($colorset, $value);
 		}
+	}
+}
+@function color-exist($value, $colorset: $colors){
+	$color: map-get($colorset, $value);
+	@if $color == null{
+		@if variable-exists(main-colors){
+			@if color($value, $rgba, $main-colors, false, true){
+				@return true;
+			}
+			@return false;
+		}
+		@return false;
+	} @else{
+		@return true;
 	}
 }
 
@@ -62,7 +68,13 @@
 }
 
 
-@function contra($color){
+@function contra($value){
+	$color: black;
+	@if color-exist($value){
+		$color: color($value);
+	} @else{
+		$color: $value;
+	}
 	@if brightness($color) > 50{
 		@return color(Black);
 	} @else{
