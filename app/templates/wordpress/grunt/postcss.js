@@ -8,11 +8,11 @@ module.exports = {
 			// require('postcss-sprites')({stylesheetPath: './dist/css', spritePath: './dist/img/sprite.png', retina: true}),
 			// require('postcss-svg')({ paths: ['dist/img/svg/'] }), ERROR!!! (WHEN NO SVG'S ARE IN THE FOLDER)
 			require('postcss-size')({}),
-			require('postcss-alias')({}),
-			require('postcss-center')({}),
-			require('postcss-vmin')({}),
+			//require('postcss-alias')({}),
+			//require('postcss-center')({}),
+			//require('postcss-vmin')({}),
 			require('css-byebye')({ rulesToRemove: [''], map: false })
 		]
 	},
-	dist: { src: '<%= config.dist.root %>css/app.css' }
+	dist: { src: '<%= config.themedist.root %>css/app.css' }
 };
