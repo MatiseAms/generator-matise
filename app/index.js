@@ -434,6 +434,10 @@ module.exports = class extends Generator {
 				this.templatePath('angular/grunt/webfont.js'),
 				this.destinationPath('grunt/webfont.js')
 			);
+			this.fs.copy(
+				this.templatePath('angular/grunt/fontgen.js'),
+				this.destinationPath('grunt/fontgen.js')
+			);
 			// ============= App base files ==============
 			var developScript = '',
 				productionScript = '';
