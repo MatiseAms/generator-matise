@@ -12,8 +12,8 @@
 	"base",
 	"grid/grid",
   "typography/typography",
-  "icons",
-  "slick";
+  "icons/icons";
+  
 @import
   "elements/elements",
   "components/components";
@@ -25,21 +25,54 @@
 	}
 }<% } %>
 
+
+// PLEASEEEEEE REMOVE THIS AND EVERYTHING BELOW THIS!
 body{
 	animation: fadeColor 5s infinite;
-  @at-root{
-    @include keyframes(fadeColor){
-      0%{ background-color: lime; }
-      10%{ background-color: yellow; }
-      20%{ background-color: orange; }
-      30%{ background-color: red; }
-      40%{ background-color: magenta; }
-      50%{ background-color: purple; }
-      60%{ background-color: blue; }
-      70%{ background-color: skyblue; }
-      80%{ background-color: lightblue; }
-      90%{ background-color: turquoise; }
-      100%{ background-color: lime; }
-    }
-  }
+	@at-root{
+		@include keyframes(fadeColor){
+			0%{
+				background-color: lime;
+			}
+			10%{
+				background-color: yellow;
+			}
+			20%{
+				background-color: orange;
+			}
+			30%{
+				background-color: red;
+			}
+			40%{
+				background-color: magenta;
+			}
+			50%{
+				background-color: purple;
+			}
+			60%{
+				background-color: blue;
+			}
+			70%{
+				background-color: skyblue;
+			}
+			80%{
+				background-color: lightblue;
+			}
+			90%{
+				background-color: turquoise;
+			}
+			100%{
+				background-color: lime;
+			}
+		}
+	}
+	#header{
+		position: absolute; top: 0; left: 0; width: 100%; padding: grid(0.5 1); background-color: color(Black,0.25);
+	}
+	#footer{
+		position: absolute; bottom: 0; left: 0; width: 100%; padding: grid(0.5 1); background-color: color(White,0.25);
+	}
+	#home{
+		background-color: white; padding: grid(1); position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 50vw; min-width: 375px; border-radius: $border-radius;
+	}
 }
