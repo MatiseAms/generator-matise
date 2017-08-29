@@ -33,15 +33,26 @@
 	}
 }
 
-
 @function grid-mq-min($columns,$width){
-	$minimum-screenwidth: $grid-design-width / ((($grid-design-width / $grid-columns) * $columns) / $width); //
+	@if unit($columns) == "rem"{
+		@debug "please just use Grid units!"; //
+		$one-column: $grid-design-width / $grid-columns; //
+		$width: strip-unit((strip-unit($columns) * 16) / $one-column);
+	}
+	$minimum-screenwidth: (($width * $grid-columns) / $grid-design-width) * $grid-design-width; //
 	$result: "(max-width: #{$minimum-screenwidth}px)";
+	//@debug $result;
 	@return $result;
 }
 
 @function grid-mq-max($columns,$width){
-	$minimum-screenwidth: $grid-design-width / ((($grid-design-width / $grid-columns) * $columns) / $width); //
+	@if unit($columns) == "rem"{
+		@debug "please just use Grid units!"; //
+		$one-column: $grid-design-width / $grid-columns; //
+		$width: strip-unit((strip-unit($columns) * 16) / $one-column);
+	}
+	$minimum-screenwidth: (($width * $grid-columns) / $grid-design-width) * $grid-design-width; //
 	$result: "(min-width: #{$minimum-screenwidth}px)";
+	//@debug $result;
 	@return $result;
 }
