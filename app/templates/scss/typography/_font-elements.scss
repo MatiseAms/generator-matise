@@ -41,3 +41,7 @@ sup{
 p{
 	@extend %p;
 }
+
+blockquote{
+  @extend %blockquote; 
+}

@@ -68,16 +68,16 @@
 }
 
 
-@function contra($value){
+@function contra($value, $contrast: 50, $dark: color(Black), $light: color(White)){
 	$color: black;
 	@if color-exist($value){
 		$color: color($value);
 	} @else{
 		$color: $value;
 	}
-	@if brightness($color) > 50{
-		@return color(Black);
+	@if brightness($color) > $contrast{
+		@return $dark;
 	} @else{
-		@return color(White);
+		@return $light;
 	}
 }

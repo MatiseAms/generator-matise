@@ -1,1 +1,26 @@
-$icons: ();
+// Import glyphs
+@import
+  "docs/_icons", 
+  "social/_icons";
+//
+// Include fonts
+
+$docs-font: "docs"; //
+$docs-font-name: "docs"; //
+$docs-font-family: #{$docs-font},sans-serif; //
+// include docs font
+@include font-include($docs-font,$docs-font-name,normal,normal);
+%docs-font-family{ font-family: $docs-font-family; }
+
+$social-font: "social"; //
+$social-font-name: "social"; //
+$social-font-family: #{$social-font},sans-serif; //
+// include social font
+@include font-include($social-font,$social-font-name,normal,normal);
+%social-font-family{ font-family: $social-font-family; }
+//
+// Collect all fonts
+$icons-merged: map-collect($docs-iconset,$social-iconset);
+$icons: (
+  docs: $docs-iconset,social: $social-iconset
+);

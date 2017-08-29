@@ -118,7 +118,7 @@ module.exports = class extends Generator {
 							},{
 								name: 'Zurb Foundation',
 								value: 'foundation',
-								checked: true
+								checked: false
 							},{
 								name: 'Slick',
 								value: 'slick',

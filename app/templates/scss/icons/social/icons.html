@@ -1,0 +1,42 @@
+<h1>
+	icons
+
+</h1>
+
+<div class="icons" id="icons">
+
+	<div class="icons__item" data-name="codepen"><i class="social social-codepen"></i> social- codepen
+	</div>
+
+	<div class="icons__item" data-name="facebook-f"><i class="social social-facebook-f"></i> social- facebook-f
+	</div>
+
+	<div class="icons__item" data-name="facebook"><i class="social social-facebook"></i> social- facebook
+	</div>
+
+	<div class="icons__item" data-name="instagram"><i class="social social-instagram"></i> social- instagram
+	</div>
+
+	<div class="icons__item" data-name="twitter"><i class="social social-twitter"></i> social- twitter
+	</div>
+
+</div>
+
+
+
+<h1>Usage</h1>
+<pre><code>&lt;i class=&quot;social social-<span id="name">name</span>&quot;&gt;&lt;/i&gt;</code></pre>
+
+
+
+<script>
+	(function() {
+		document.getElementById('icons').onclick = function(e) {
+			e = e || window.event;
+			var name = e.target.getAttribute('data-name') || e.target.parentNode.getAttribute('data-name');
+			document.getElementById('name').innerHTML = name;
+
+		}
+	})();
+
+</script>

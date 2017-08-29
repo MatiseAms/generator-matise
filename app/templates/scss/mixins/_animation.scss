@@ -1,27 +1,17 @@
-// transition simplified
-@mixin fade($value: $transition){
-	transition: $value;
-}
-
-// Animation Mixin
-@mixin animate($animation, $duration: 1s, $repeat: infinite, $easing: ease-in-out) {
-   animation: $animation $duration $repeat $easing;
-}
-
 // Keyframes Mixin
 // https://gist.github.com/ericam/1607696
 
-@mixin keyframes($name) {
-	@-webkit-keyframes #{$name} {
+@mixin keyframes($name){
+	@-webkit-keyframes #{$name}{
 		@content;
 	}
-	@-moz-keyframes #{$name} {
+	@-moz-keyframes #{$name}{
 		@content;
 	}
-	@-ms-keyframes #{$name} {
+	@-ms-keyframes #{$name}{
 		@content;
 	}
-	@keyframes #{$name} {
+	@keyframes #{$name}{
 		@content;
 	}
 }

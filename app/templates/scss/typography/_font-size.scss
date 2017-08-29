@@ -8,34 +8,31 @@
 
 $minus: 0.1066;
 %h1{
-	@extend %header-default; font-size: grid(0.75); line-height: grid((0.75 * 1.25)); font-weight: $font-bold; $spacing: (0.75 * $minus); letter-spacing: -#{$spacing}vw;
+	@extend %header-default; font-size: grid(0.75); line-height: grid((0.75 * 1.25)); font-weight: $font-bold;
 	@include min-fontsize(0.75,24){
-		font-size: rem(24); line-height: rem(24 * 1.25); letter-spacing: letter-spacing(rem(24),-25);
+		font-size: rem(24); line-height: rem(24 * 1.25);
 	}
 }
 %h2{
-	@extend %header-default; font-size: grid(0.75); line-height: grid((0.75 * 1.25)); font-weight: $font-bold; $spacing: (0.75 * $minus); letter-spacing: -#{$spacing}vw;
+	@extend %header-default; font-size: grid(0.75); line-height: grid((0.75 * 1.25)); font-weight: $font-bold;
 	@include min-fontsize(0.75,24){
-		line-height: rem(24 * 1.25); letter-spacing: letter-spacing(rem(24),-25);
+		line-height: rem(24 * 1.25);
 	}
 }
 %h3{
-	@extend %header-default; font-size: grid(0.4); line-height: grid((0.4 * 1.25)); font-weight: $font-bold; $spacing: (0.4 * $minus); letter-spacing: -#{$spacing}vw;
+	@extend %header-default; font-size: grid(0.4); line-height: grid((0.4 * 1.25)); font-weight: $font-bold;
 	@include min-fontsize(0.4,20){
-		line-height: rem(20 * 1.25); letter-spacing: letter-spacing(rem(20),-25);
+		line-height: rem(20 * 1.25);
 	}
 }
 %h4{
-	@extend %header-default; font-size: grid(0.3); line-height: grid((0.3 * 1.25)); font-weight: $font-bold; $spacing: (0.3 * $minus); letter-spacing: -#{$spacing}vw;
+	@extend %header-default; font-size: grid(0.3); line-height: grid((0.3 * 1.25)); font-weight: $font-bold;
 	@include min-fontsize(0.3,16){
-		line-height: rem(16 * 1.25); letter-spacing: letter-spacing(rem(16),-25);
+		line-height: rem(16 * 1.25);
 	}
 }
 %h5{
-	@extend %header-default; font-size: rem(14); line-height: rem((14 * 1.25)); padding-left: grid(0.5); font-weight: $font-regular; letter-spacing: letter-spacing(rem(14),-25);
-	@media #{$small-only}{
-		padding-left: grid(1);
-	}
+	@extend %header-default; font-size: rem(14); line-height: rem((14 * 1.25));
 }
 %h6{
 	@extend %header-default; font-size: rem(12); line-height: rem(12 * 1.25);
@@ -85,4 +82,8 @@ $minus: 0.1066;
 	&.text-xlarge{
 		font-size: rem(24);
 	}
+}
+
+%blockquote{
+	margin: 0; padding: 0.5rem  1rem;
 }

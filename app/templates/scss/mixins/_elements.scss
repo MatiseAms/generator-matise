@@ -9,20 +9,30 @@
 }
 
 
-@mixin createElements($amount,$type: false, $margin: false){
+@mixin createElements($amount,$type: false){
   @for $i from 1 through $amount{
     @if $type == false{
       #{elementCount($i)}{
         @content;
       }
     } @else if $type == 'width'{
-      @if $margin{
-        #{elementCount($i)}{
-          @include calc('width','#{percentage(1/$i)} - #{$margin}');
+      #{elementCount($i)}{
+       width: percentage(1/$i);
+      }
+    } @else if $type == 'width-left'{
+      #{elementCount($i)}{
+       width: percentage(1/$i);
+        @for $e from 0 through $amount{
+          $percentage: $e/$i;
+          &:nth-child(#{$e + 1}){ left: percentage($percentage); }
         }
-      } @else {
-        #{elementCount($i)}{
-         width: percentage(1/$i);
+      }
+    } @else if $type == 'width-left+1'{
+      #{elementCount($i)}{
+       width: percentage(1/($i+1));
+        @for $e from 0 through ($amount + 1){
+          $percentage: $e/($i+1);
+          &:nth-child(#{$e + 1}){ left: percentage($percentage); }
         }
       }
     }

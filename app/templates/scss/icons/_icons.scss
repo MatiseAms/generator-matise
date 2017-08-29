@@ -2,7 +2,7 @@
 %icon{
 	text-transform: none; text-indent: 0; font-weight: normal;
 }
-a.icon{
+span.icon, a.icon{
 	@each $iconFamily-name, $iconFamily-value in $icons{
 		@each $icon-name, $icon-value in $iconFamily-value{
 			&.#{$icon-name}:before{
