@@ -1,0 +1,39 @@
+%default-button{
+	display: inline-block; border-radius: $border-radius; padding: 0 0.75rem; font-size: rem(14); font-weight: $font-bold;
+}
+
+
+// Give all elements with class button- the default button style.
+@include wildcard("button-"){
+	// Extend default button
+	@extend %default-button;
+}
+
+// Give all button elements the default button style
+button{
+	@extend %default-button;
+}
+
+
+// The basic button
+.button{
+	// Extend default button
+	@extend %default-button;
+
+	// Create the color options
+	@each $color-name,$color-value in $colors{
+		$color-name-lowercase: to-lower-case($color-name);
+		&-#{$color-name-lowercase}, &-#{$color-name}{
+			background-color: $color-value;
+			// set contra color for the text
+			color: contra($color-value);
+
+			// Create the hovers per color:
+			&:hover{
+				background-color: lighten($color-value,5%);
+				// set contra color for the text
+				color: contra(lighten($color-value,5%));
+			}
+		}
+	}
+}
