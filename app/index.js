@@ -314,6 +314,12 @@ module.exports = class extends Generator {
 			this.templatePath('icons/**/*'),
 			this.destinationPath(scssDestination + 'icons')
 		);
+		
+		// ============= Basic Image folder ==============
+		this.fs.copy(
+			this.templatePath('img/**/*'),
+			this.destinationPath(scssDestination + 'img')
+		);
 
 		// ============= Angular only files ==============
 		if (answers.projectType === 'angular') {
