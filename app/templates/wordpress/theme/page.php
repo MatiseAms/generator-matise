@@ -8,32 +8,12 @@
  * @version      1.0
  * @since        1.0
  */
+?>
  
- ?>
-<header id="header">
-	<h4>Header</h4>
-	<nav id="nav" class="nav">
-	  <ul class="nav__list">
-	    <li class="nav__list--item">
-	      <span class="nav__list--item-text">
-	        <a href="" class="nav__list--item-link">Home</a>
-	      </span>
-	    </li>
-	    <li class="nav__list--item">
-	      <span class="nav__list--item-text">
-	        <a href="" class="nav__list--item-link">Work</a>
-	      </span>
-	    </li>
-	    <li class="nav__list--item">
-	      <span class="nav__list--item-text">
-	        <a href="" class="nav__list--item-link">Contact</a>
-	      </span>
-	    </li>
-	  </ul>
-	</nav>
-</header>
+ 
 
-<main>
+<?php get_header(); ?>
+
 	<section id="home">
 		<h1>Hoi</h1>
 		<p hipsum paragraphs="2"></p>
@@ -42,8 +22,7 @@
 	  <hr />
 	  <p>Need help? <a class="button-purple" href="http://docs.matise.design">Matise Docs</a></p>
 	</section>
-</main>
 
-<footer>
-	<h4>Footer</h4>
-</footer>
+<?php get_footer(); ?>
+
+

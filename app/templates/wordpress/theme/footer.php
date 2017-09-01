@@ -8,3 +8,13 @@
  * @version      1.0
  * @since        1.0
  */
+?>
+
+	</main>
+	
+	<footer>
+		<h4>Footer</h4>
+	</footer>
+
+</body>
+</html>
