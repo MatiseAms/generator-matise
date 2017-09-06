@@ -33,7 +33,7 @@ module.exports = {
 	},
 	js: {
 		files: [
-			'<%= config.themesrc.root %>**/*.js'
+			'<%= config.themedist.browserify %>app.js'
 		],
 		tasks: ['copy:js']
 	}

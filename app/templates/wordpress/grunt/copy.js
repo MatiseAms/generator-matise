@@ -65,11 +65,11 @@ module.exports = {
 	js: {
 		files: [{
 			expand: true,
-			cwd: '<%= config.themesrc.root %>',
+			cwd: '<%= config.themedist.browserify %>',
 			src: [
-				'**/*.js'
+				'app.js'
 			],
-			dest: '<%= config.themedist.root %>'
+			dest: '<%= config.themedist.root %>js/'
 		}]
 	},
 	config_dev: {

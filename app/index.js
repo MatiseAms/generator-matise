@@ -538,6 +538,11 @@ module.exports = class extends Generator {
 				this.destinationPath('rsync_exclude.txt')
 			);
 
+			this.fs.copy(
+				this.templatePath('wordpress/pulldatabase.sh'),
+				this.destinationPath('pulldatabase.sh')
+			);
+
 			// ============= Grunt files ==============
 			this.fs.copy(
 				this.templatePath('wordpress/grunt/config/jit-mapping.json'),
@@ -550,6 +555,10 @@ module.exports = class extends Generator {
 				}
 			);
 			this.fs.copy(
+				this.templatePath('wordpress/grunt/config/beautifier.json'),
+				this.destinationPath('grunt/config/beautifier.json')
+			);
+			this.fs.copy(
 				this.templatePath('wordpress/grunt/aliases.json'),
 				this.destinationPath('grunt/aliases.json')
 			);
@@ -560,6 +569,10 @@ module.exports = class extends Generator {
 				}, {
 					delimiter: '?'
 				}
+			);
+			this.fs.copy(
+				this.templatePath('wordpress/grunt/browserify.js'),
+				this.destinationPath('grunt/browserify.js')
 			);
 			this.fs.copyTpl(
 				this.templatePath('wordpress/grunt/browserSync.js'),
@@ -779,6 +792,7 @@ module.exports = class extends Generator {
 			npmDevDeps.push('grunt-contrib-copy');
 			npmDevDeps.push('grunt-contrib-watch');
 			npmDevDeps.push('grunt-jsbeautifier');
+			npmDevDeps.push('grunt-browserify');
 			npmDevDeps.push('grunt-notify');
 			npmDevDeps.push('grunt-php');
 			npmDevDeps.push('grunt-postcss');

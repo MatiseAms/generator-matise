@@ -9,15 +9,13 @@
  * @since        1.0
  */
 
- /**
+/**
  * Enqueue scripts and styles.
  */
- function theme_scripts() {
- 	// Theme stylesheet.
- 	wp_enqueue_style( 'theme-style', get_stylesheet_uri() );
+function theme_scripts() {
+	// Theme stylesheet.
+	wp_enqueue_style( 'theme-style', get_stylesheet_uri() );
 
- 	wp_enqueue_script( 'theme-vendorjs', get_theme_file_uri( '/js/vendor.js' ), array( 'jquery' ), '1.0', true );
-
- 	wp_enqueue_script( 'theme-appjs', get_theme_file_uri( '/js/app.js' ), array( 'jquery', 'theme-vendorjs' ), '1.0', true );
- }
- add_action( 'wp_enqueue_scripts', 'theme_scripts' );
+	wp_enqueue_script( 'theme-appjs', get_theme_file_uri( '/js/app.js' ), array(), '1.0', true );
+}
+add_action( 'wp_enqueue_scripts', 'theme_scripts' );

@@ -1,10 +1,13 @@
 node_modules
 .DS_Store
-.sass-cache
-bower_components
+browserify
+.vagrant
+
+public/wordpress
+public/local-config.php
+public/vendor
+
 public/content/themes/<%= appName %>
 public/content/uploads
-public/wordpress
-themesrc/vendor
-.vagrant
-public/local-config.php
+public/content/cache
+public/content/plugins
