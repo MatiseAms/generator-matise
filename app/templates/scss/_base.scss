@@ -30,10 +30,11 @@ $grid-design-width: 1920px; //
 $grid-columns: 24; //
 $grid-screen: "only screen"; //
 $grid-breakpoints: (
-  "small": 800,
+  "small": 750,
   "medium": 960,
-  "large": 1600,
-  "xlarge": 9999
+  "large": 1280,
+  "xlarge": 1920,
+  "xxlarge": 9999
 ); //
 $grid-parts: (
   "full": 1/1,
@@ -48,7 +49,24 @@ $grid-parts: (
   "four-fifth": 4/5,
   "sixth": 1/6,
   "five-sixth": 5/6
-);
+); $create-classes-column: true; //
+$create-classes-column-pull: true; //
+$create-classes-column-push: false; //
+$create-classes-column-offset: false; //
+$create-classes-column-alias: true; //
+$create-classes-column-only: true; //
+$create-classes-background-colors: true; //
+
+// For structure classes
+$grid-structure: true; // (adds 1,7mb)
+$grid-structure-direction: ("margin-top","margin-left","margin-bottom","margin-right","top", "left","right", "bottom", ""); //
+$grid-structure-action: ("pull","push"); // Push and Pull
+$grid-structure-method: ("grid"); // Make classes based on Grid and Column
+$grid-structure-breakpoints: ("medium": 960); //
+$grid-structure-pull: true; //
+$grid-structure-push: true; //
+$grid-structure-only: false; //
+$grid-structure-responsive: true; //
 
 
 %round{

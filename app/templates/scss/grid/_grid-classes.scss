@@ -1,12 +1,19 @@
+$cssgrid: false;
+
 @mixin createGridClasses($child: false){
 	$childClass: "";
 	@if $child == true{
 		$childClass: " .column";
 	}
 	@for $a from 0 through $grid-columns{
-		$percentage: percentage($a/$grid-columns); $column: #{$a}#{$childClass};
+		$percentage: percentage($a/$grid-columns); //
+		$column: #{$a}#{$childClass};
 		&.column-#{$column}{
 			width: #{$percentage};
+
+			@supports (display: grid){
+				width: #{$column}fr;
+			}
 		}
 		&.offset-#{$column}{
 			margin-left: #{$percentage};
@@ -24,8 +31,14 @@
 	@each $bp-name,$bp-value in $grid-breakpoints{
 		$mq-only: "#{$grid-screen} and (min-width: #{$min-width}px) and (max-width: #{$bp-value}px)"; $mq: "#{$grid-screen} and (min-width: #{$min-width}px)"; $min-width: $bp-value + 1;
 		@each $part,$percentage in $grid-parts{
-			&.#{$part}#{$childClass}{
+  			&%#{$part}#{$childClass},
+  			&.#{$part}#{$childClass}{
 				width: percentage($percentage);
+				@if $cssgrid{
+					@supports (display: grid){
+						$parts: $percentage * $grid-columns; width: #{$parts}fr;
+					}
+				}
 			}
 		}
 		@media #{$mq-only}{
@@ -33,6 +46,8 @@
 				width: 0; display: none;
 			}
 			@each $part,$percentage in $grid-parts{
+
+				%.#{$bp-name}-only-#{$part}#{$childClass},
 				&.#{$bp-name}-only-#{$part}#{$childClass}{
 					width: percentage($percentage);
 				}
@@ -54,12 +69,20 @@
 			}
 		}
 		@media #{$mq}{
-			&.#{$bp-name}-0#{$childClass}{
+			%.#{$bp-name}-0#{$childClass}
+  		&.#{$bp-name}-0#{$childClass}{
 				width: 0; display: none;
 			}
 			@each $part,$percentage in $grid-parts{
+        %#{$bp-name}-#{$part}#{$childClass},
 				&.#{$bp-name}-#{$part}#{$childClass}{
 					width: percentage($percentage);
+
+					@if $cssgrid{
+						@supports (display: grid){
+							$parts: $percentage * $grid-columns; width: #{$parts}fr;
+						}
+					}
 				}
 			}
 			@for $a from 1 through $grid-columns{
@@ -67,6 +90,12 @@
 
 				&.#{$bp-name}-#{$a}#{$childClass}{
 					width: $percentage;
+					@if $cssgrid{
+						@supports (display: grid){
+							$parts: ($a/$grid-columns) * $grid-columns; //
+							width: auto; grid-column: #{$parts} span; border: 1px solid red;
+						}
+					}
 				}
 				&.offset-#{$bp-name}-#{$a}#{$childClass}{
 					margin-left: $percentage;
@@ -84,9 +113,32 @@
 
 
 .row{
-	max-width: $grid-row-width; width: 100%; margin: auto; display: flex; justify-content: flex-start; flex-flow: row wrap; @include createGridClasses(true);
+	max-width: $grid-row-width; width: 100%; margin: auto; @include createGridClasses(true); display: flex; justify-content: flex-start; flex-flow: row wrap;
+
+	@if $cssgrid{
+		@supports (display: grid){
+			display: grid; //
+			grid-template-columns: repeat($grid-columns, 1fr); //
+			grid-gap: 0rem; //
+		}
+	}
 	&.center{
-		justify-content: center;
+		justify-items: center; justify-content: center;
+
+		@if $cssgrid{
+			>.column{
+				align-self: center; justify-self: center;
+			}
+		}
+	}
+	&.right{
+		justify-items: right; justify-content: flex-end;
+
+		@if $cssgrid{
+			>.column{
+				align-self: right; justify-self: right;
+			}
+		}
 	}
 }
 
