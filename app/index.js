@@ -102,29 +102,27 @@ module.exports = class extends Generator {
 						type: 'checkbox',
 						name: 'projectfeatures',
 						message: 'What features would you like to use?',
-						choices: [
-							{
-								name: 'Parse',
-								value: 'parse',
-								checked: false
-							},{
-								name: 'Hipsum',
-								value: 'hipsum',
-								checked: false
-							},{
-								name: 'Subviews',
-								value: 'subviews',
-								checked: false
-							},{
-								name: 'Zurb Foundation',
-								value: 'foundation',
-								checked: false
-							},{
-								name: 'Slick',
-								value: 'slick',
-								checked: false
-							},
-						],
+						choices: [{
+							name: 'Parse',
+							value: 'parse',
+							checked: false
+						}, {
+							name: 'Hipsum',
+							value: 'hipsum',
+							checked: false
+						}, {
+							name: 'Subviews',
+							value: 'subviews',
+							checked: false
+						}, {
+							name: 'Zurb Foundation',
+							value: 'foundation',
+							checked: false
+						}, {
+							name: 'Slick',
+							value: 'slick',
+							checked: false
+						}, ],
 						default: 0
 					}]).then((optionsAnswers) => {
 						if (optionsAnswers.projectfeatures.indexOf('parse') >= 0) {
@@ -149,11 +147,10 @@ module.exports = class extends Generator {
 							type: 'checkbox',
 							name: 'projectfeatures',
 							message: 'What features would you like to use?',
-							choices: [
-								{
+							choices: [{
 									name: 'Zurb Foundation',
 									value: 'foundation',
-									checked: true
+									checked: false
 								},
 								{
 									name: 'Slick',
@@ -196,26 +193,6 @@ module.exports = class extends Generator {
 		this.log('Git init complete');
 	}
 
-	wordpress() {
-		if (answers.projectType === 'wordpress') {
-			var done = this.async();
-
-			mkdirp.sync('public/');
-			this.log('Installing WordPress ' + latestVersion + ' as a submodule (be patient)');
-			git.submoduleAdd(wordpressRepo, wpDir, function(err) {
-				this.log('Submodule added');
-
-				var wpGit = require('simple-git')('public/wordpress');
-
-				console.log('Checking out WP version ' + latestVersion);
-				wpGit.checkout(latestVersion, function(err) {
-					console.log('WordPress installed');
-					done();
-				}.bind(this));
-			}.bind(this));
-		}
-	}
-
 	writing() {
 		this.log(chalk.yellow('writing files...'));
 		// ============= Config files ==============
@@ -229,12 +206,12 @@ module.exports = class extends Generator {
 			scssDestination = 'themesrc/';
 		}
 
-		var copyFolders = ['color','components','elements','functions','icons','mixins','typography'];
+		var copyFolders = ['color', 'components', 'elements', 'functions', 'icons', 'mixins', 'typography'];
 		var th = this;
-		copyFolders.forEach(function(folder){
+		copyFolders.forEach(function(folder) {
 			th.fs.copy(
-				th.templatePath('scss/'+folder+'/*'),
-				th.destinationPath(scssDestination + 'scss/'+folder)
+				th.templatePath('scss/' + folder + '/*'),
+				th.destinationPath(scssDestination + 'scss/' + folder)
 			);
 		});
 
@@ -302,11 +279,9 @@ module.exports = class extends Generator {
 		);
 
 		if (answers.projectType === 'wordpress') {
-			this.fs.copyTpl(
-				this.templatePath('bower.json'),
-				this.destinationPath('bower.json'), {
-					appName: answers.appName
-				}
+			this.fs.copy(
+				this.templatePath('wordpress/composer.json'),
+				this.destinationPath('composer.json')
 			);
 		}
 		// ============= Webfont folders ==============
@@ -314,7 +289,7 @@ module.exports = class extends Generator {
 			this.templatePath('icons/**/*'),
 			this.destinationPath(scssDestination + 'icons')
 		);
-		
+
 		// ============= Basic Image folder ==============
 		this.fs.copy(
 			this.templatePath('img/**/*'),
@@ -578,10 +553,6 @@ module.exports = class extends Generator {
 				this.templatePath('wordpress/grunt/aliases.json'),
 				this.destinationPath('grunt/aliases.json')
 			);
-			this.fs.copy(
-				this.templatePath('wordpress/grunt/bower.js'),
-				this.destinationPath('grunt/bower.js')
-			);
 			this.fs.copyTpl(
 				this.templatePath('wordpress/grunt/tinypng.js'),
 				this.destinationPath('grunt/tinypng.js'), {
@@ -685,18 +656,6 @@ module.exports = class extends Generator {
 				}
 			);
 
-			// ============= Theme font files ==============
-			this.fs.copyTpl(
-				this.templatePath('wordpress/theme/fonts/placeholder.svg'),
-				this.destinationPath('themesrc/fonts/placeholder.svg'), {}
-			);
-
-			// ============= Theme img files ==============
-			this.fs.copyTpl(
-				this.templatePath('wordpress/theme/img/placeholder.jpg'),
-				this.destinationPath('themesrc/img/placeholder.jpg'), {}
-			);
-
 			// ============= Theme js files ==============
 			this.fs.copyTpl(
 				this.templatePath('wordpress/theme/js/app.js'),
@@ -749,7 +708,6 @@ module.exports = class extends Generator {
 		this.log('installing dependencies...');
 		let npmDevDeps = [];
 		let npmDeps = [];
-		let bowerDeps = [];
 
 		if (answers.projectType === 'angular') {
 			npmDevDeps.push('autoprefixer');
@@ -797,7 +755,8 @@ module.exports = class extends Generator {
 			if (answers.foundation) {
 				npmDeps.push('foundation-sites');
 			}
-			if (answers.slick){
+
+			if (answers.slick) {
 				npmDeps.push('slick-carousel');
 				npmDeps.push('angular-slick-carousel');
 			}
@@ -812,15 +771,14 @@ module.exports = class extends Generator {
 
 		if (answers.projectType === 'wordpress') {
 			npmDevDeps.push('autoprefixer');
-			npmDevDeps.push('bower');
 			npmDevDeps.push('css-byebye');
 			npmDevDeps.push('grunt');
-			npmDevDeps.push('grunt-bower');
 			npmDevDeps.push('grunt-browser-sync');
 			npmDevDeps.push('grunt-cli');
 			npmDevDeps.push('grunt-contrib-clean');
 			npmDevDeps.push('grunt-contrib-copy');
 			npmDevDeps.push('grunt-contrib-watch');
+			npmDevDeps.push('grunt-jsbeautifier');
 			npmDevDeps.push('grunt-notify');
 			npmDevDeps.push('grunt-php');
 			npmDevDeps.push('grunt-postcss');
@@ -840,12 +798,7 @@ module.exports = class extends Generator {
 			npmDevDeps.push('time-grunt');
 			npmDevDeps.push('grunt-fontgen');
 
-			bowerDeps.push('modernizr#2.8.3');
-
-			if (answers.foundation) {
-				bowerDeps.push('foundation-sites');
-			}
-			if (answers.slick){
+			if (answers.slick) {
 				npmDeps.push('slick-carousel');
 			}
 		}
@@ -856,12 +809,8 @@ module.exports = class extends Generator {
 		this.npmInstall(npmDevDeps, {
 			'saveDev': true
 		});
+		this.spawnCommand('composer', ['install']);
 
-		if (answers.projectType === 'wordpress') {
-			this.bowerInstall(bowerDeps, {
-				'save': true
-			});
-		}
 	}
 
 	end() {

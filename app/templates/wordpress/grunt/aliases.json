@@ -27,12 +27,6 @@
     "standard",
     "copy:config_live"
   ],
-  "bowerinit": [
-    "clean:bower",
-    "clean:vendor",
-    "shell:bowerinstall",
-    "bower"
-  ],
   "getdb": [
     "shell:pulldatabase"
   ]

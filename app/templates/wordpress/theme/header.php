@@ -11,11 +11,11 @@
 ?><!DOCTYPE html>
 <html>
 <head>
-  <meta charset="<?php bloginfo('charset'); ?>">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
-  <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
-  
-  <link rel="apple-touch-icon" sizes="57x57" href="<?php echo get_stylesheet_directory_uri(); ?>/img/favicon/apple-icon-57x57.png">
+	<meta charset="<?php bloginfo('charset'); ?>">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
+
+	<link rel="apple-touch-icon" sizes="57x57" href="<?php echo get_stylesheet_directory_uri(); ?>/img/favicon/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="<?php echo get_stylesheet_directory_uri(); ?>/img/favicon/apple-icon-60x60.png">
 	<link rel="apple-touch-icon" sizes="72x72" href="<?php echo get_stylesheet_directory_uri(); ?>/img/favicon/apple-icon-72x72.png">
 	<link rel="apple-touch-icon" sizes="76x76" href="<?php echo get_stylesheet_directory_uri(); ?>/img/favicon/apple-icon-76x76.png">
@@ -33,35 +33,31 @@
 	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff">
 
-  <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/app.css">
-  
-  
-  <?php echo get_stylesheet_directory_uri(); ?>/img/favicon
-  <?php wp_head();?>
+	<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/app.css">
+
+	<?php wp_head();?>
 </head>
 <body <?php body_class(); ?>>
-
 	<header id="header">
 		<h4>Header</h4>
 		<nav id="nav" class="nav">
-		  <ul class="nav__list">
-		    <li class="nav__list--item">
-		      <span class="nav__list--item-text">
-		        <a href="" class="nav__list--item-link">Home</a>
-		      </span>
-		    </li>
-		    <li class="nav__list--item">
-		      <span class="nav__list--item-text">
-		        <a href="" class="nav__list--item-link">Work</a>
-		      </span>
-		    </li>
-		    <li class="nav__list--item">
-		      <span class="nav__list--item-text">
-		        <a href="" class="nav__list--item-link">Contact</a>
-		      </span>
-		    </li>
-		  </ul>
+			<ul class="nav__list">
+				<li class="nav__list--item">
+					<span class="nav__list--item-text">
+						<a href="" class="nav__list--item-link">Home</a>
+					</span>
+				</li>
+				<li class="nav__list--item">
+					<span class="nav__list--item-text">
+						<a href="" class="nav__list--item-link">Work</a>
+					</span>
+				</li>
+				<li class="nav__list--item">
+					<span class="nav__list--item-text">
+						<a href="" class="nav__list--item-link">Contact</a>
+					</span>
+				</li>
+			</ul>
 		</nav>
 	</header>
-
-  <main>
+	<main id="main">

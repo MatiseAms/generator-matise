@@ -4,6 +4,7 @@ node_modules
 bower_components
 public/content/themes/<%= appName %>
 public/content/uploads
+public/wordpress
 themesrc/vendor
 .vagrant
 public/local-config.php
