@@ -38,26 +38,29 @@
 	<?php wp_head();?>
 </head>
 <body <?php body_class(); ?>>
+
+<% if (!cleanInstall) { %>
 	<header id="header">
 		<h4>Header</h4>
 		<nav id="nav" class="nav">
-			<ul class="nav__list">
-				<li class="nav__list--item">
-					<span class="nav__list--item-text">
-						<a href="" class="nav__list--item-link">Home</a>
-					</span>
-				</li>
-				<li class="nav__list--item">
-					<span class="nav__list--item-text">
-						<a href="" class="nav__list--item-link">Work</a>
-					</span>
-				</li>
-				<li class="nav__list--item">
-					<span class="nav__list--item-text">
-						<a href="" class="nav__list--item-link">Contact</a>
-					</span>
-				</li>
-			</ul>
+		  <ul class="nav__list">
+		    <li class="nav__list--item">
+		      <span class="nav__list--item-text">
+		        <a href="" class="nav__list--item-link">Home</a>
+		      </span>
+		    </li>
+		    <li class="nav__list--item">
+		      <span class="nav__list--item-text">
+		        <a href="" class="nav__list--item-link">Work</a>
+		      </span>
+		    </li>
+		    <li class="nav__list--item">
+		      <span class="nav__list--item-text">
+		        <a href="" class="nav__list--item-link">Contact</a>
+		      </span>
+		    </li>
+		  </ul>
 		</nav>
 	</header>
 	<main id="main">
+	<% } %>

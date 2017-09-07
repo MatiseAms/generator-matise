@@ -13,10 +13,11 @@
 	"grid/grid",
   "typography/typography",
   "icons/icons";
-  
+
 @import
   "elements/elements",
   "components/components";
+
 
 <% if (foundationInclude) { %>// Foundation margin and padding reset
 .row{
@@ -25,49 +26,28 @@
 	}
 }<% } %>
 
-
+<% if (!cleanInstall) { %>
+// PLEASEEEEEE REMOVE THIS AND EVERYTHING BELOW THIS!
 
 // PLEASEEEEEE REMOVE THIS AND EVERYTHING BELOW THIS!
 body{
-	animation: fadeColor 5s infinite;
-	@at-root{
-		@include keyframes(fadeColor){
-			0%{
-				background-color: lime;
-			}
-			10%{
-				background-color: yellow;
-			}
-			20%{
-				background-color: orange;
-			}
-			30%{
-				background-color: red;
-			}
-			40%{
-				background-color: magenta;
-			}
-			50%{
-				background-color: purple;
-			}
-			60%{
-				background-color: blue;
-			}
-			70%{
-				background-color: skyblue;
-			}
-			80%{
-				background-color: lightblue;
-			}
-			90%{
-				background-color: turquoise;
-			}
-			100%{
-				background-color: lime;
-			}
-		}
+	#header{
+		width: 100%; padding: grid(1); background-image: linear-gradient(to left top, color(Black,0), color(Black,0.05));
+	}
+	#main{
+		display: flex; align-items: center; justify-content: center;
 	}
 	#home{
-		background-color: white; padding: grid(1); position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 50vw; min-width: 375px; border-radius: $border-radius;
+		background-color: white; padding: grid(1); width: auto; min-width: 375px; box-shadow: 0 0 grid(10) 0 color(Black,0.1); align-self: middle; margin-top: -#{$grid-2};
+	}
+	section{
+		padding: grid(1) 0;
+	}
+	#footer{
+		&, *{
+			text-align: center;
+		}padding: grid(1); background-image: linear-gradient(to right bottom, color(Black,0), color(Black,0.05));
 	}
 }
+
+<% } %>

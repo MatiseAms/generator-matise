@@ -58,7 +58,7 @@ $create-classes-column-only: true; //
 $create-classes-background-colors: true; //
 
 // For structure classes
-$grid-structure: true; // (adds 1,7mb)
+$grid-structure: false; // (adds 1,7mb)
 $grid-structure-direction: ("margin-top","margin-left","margin-bottom","margin-right","top", "left","right", "bottom", ""); //
 $grid-structure-action: ("pull","push"); // Push and Pull
 $grid-structure-method: ("grid"); // Make classes based on Grid and Column
@@ -101,8 +101,10 @@ $grid-structure-responsive: true; //
 	text-align: right;
 }
 nav{
-	li{
-		display: inline-block;
+	ul{
+		li{
+			display: inline-block;
+		}
 	}
 }
 hr{
@@ -136,8 +138,5 @@ body, html{
 	width: 100%; max-width: 100%; margin: 0; padding: 0; color: color(Black); font-family: #{$main-font-family}; font-size: 16px;
 	.touch &{
 		overflow-x: hidden;
-	}
-	header, section, footer{
-		font-size: rem(14);
 	}
 }

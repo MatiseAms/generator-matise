@@ -22,9 +22,9 @@ $font-bold: $font-semibold; //
 	Use font-include for single fonts
 	and font-list for a list using the $*-font-weights list
 */
-$heading-font: "Arial"; //
-$heading-font-name: "Arial-"; //
-$heading-font-family: #{$heading-font},sans-serif; //
+$heading-font: "Georgia"; //
+$heading-font-name: "TimesNewRoman--"; //
+$heading-font-family: #{$heading-font},serif; //
 //
 /* embed sing font weight */
 //@include font-include($heading-font,$heading-font-name,normal,normal);
@@ -35,8 +35,8 @@ $heading-font-family: #{$heading-font},sans-serif; //
 	font-family: $heading-font-family;
 }
 //
-$body-font: "Times New Roman"; //
-$body-font-name: "TimesNewRoman-"; //
+$body-font: "Courier New"; //
+$body-font-name: "arial-"; //
 $body-font-family: #{$body-font},sans-serif; //
 /* embed sing font weight */
 //@include font-include($body-font,$body-font-name,normal,normal);

@@ -1,3 +1,4 @@
+<% if (!cleanInstall) { %>
 .nav{
 	&__list{
 		&--item{
@@ -10,3 +11,4 @@
 		}
 	}
 }
+<% } %>

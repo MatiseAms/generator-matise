@@ -42,18 +42,20 @@ app.config([
 					}
 				}
 			})
-			.state('home', {
-				url: '/',
-				parent: 'root',
-				templateUrl: 'sections/home/home.html',
-				controller: 'HomeController as homeCtrl'
-			})
-			.state('kitchensink', {
-				url: '/kitchensink',
-				parent: 'root',
-				templateUrl: 'sections/kitchensink/kitchensink.html',
-				controller: 'KitchensinkController as kitchensinkCtrl'
-			});
+		<% if(showKitchensink) { %>
+		.state('kitchensink', {
+			url: '/kitchensink',
+			parent: 'root',
+			templateUrl: 'sections/kitchensink/kitchensink.html',
+			controller: 'KitchensinkController as kitchensinkCtrl'
+		})
+		<% } %>
+		.state('home', {
+			url: '/',
+			parent: 'root',
+			templateUrl: 'sections/home/home.html',
+			controller: 'HomeController as homeCtrl'
+		});
 
 		// use the HTML5 History API
 		$locationProvider.html5Mode(true);

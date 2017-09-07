@@ -1,6 +1,15 @@
-<h4>Header</h4>
+<% if (!cleanInstall) { %>
+<h4><% siteTitle %></h4>
 <nav id="nav" class="nav">
   <ul class="nav__list">
+    <% if (showKitchensink) { %>
+    <li class="nav__list--item">
+      <span class="nav__list--item-text">
+        <a ui-sref="kitchensink" class="nav__list--item-link">Kitchensink</a>
+      </span>
+    </li>
+    <% } %>
+
     <li class="nav__list--item">
       <span class="nav__list--item-text">
         <a href="" class="nav__list--item-link">Home</a>
@@ -18,3 +27,4 @@
     </li>
   </ul>
 </nav>
+<% } %>

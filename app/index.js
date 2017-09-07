@@ -29,7 +29,8 @@ var answers = {
 	hipsum: false,
 	subviews: false,
 	foundation: false,
-	slick: false
+	slick: false,
+	clean: false
 };
 
 request('https://api.wordpress.org/secret-key/1.1/salt/', function(error, response, body) {
@@ -103,6 +104,10 @@ module.exports = class extends Generator {
 						name: 'projectfeatures',
 						message: 'What features would you like to use?',
 						choices: [{
+							name: 'Clean install',
+							value: 'clean',
+							checked: false
+						}, {
 							name: 'Parse',
 							value: 'parse',
 							checked: false
@@ -122,9 +127,16 @@ module.exports = class extends Generator {
 							name: 'Slick',
 							value: 'slick',
 							checked: false
+						}, {
+							name: 'Kitchensink',
+							value: 'kitchensink',
+							checked: false
 						}, ],
 						default: 0
 					}]).then((optionsAnswers) => {
+						if (optionsAnswers.projectfeatures.indexOf('clean') >= 0) {
+							answers.clean = true;
+						}
 						if (optionsAnswers.projectfeatures.indexOf('parse') >= 0) {
 							answers.parse = true;
 						}
@@ -138,7 +150,10 @@ module.exports = class extends Generator {
 							answers.foundation = true;
 						}
 						if (optionsAnswers.projectfeatures.indexOf('slick') >= 0) {
-							answers.foundation = true;
+							answers.slick = true;
+						}
+						if (optionsAnswers.projectfeatures.indexOf('kitchensink') >= 0) {
+							answers.kitchensink = true;
 						}
 					});
 				} else {
@@ -148,6 +163,10 @@ module.exports = class extends Generator {
 							name: 'projectfeatures',
 							message: 'What features would you like to use?',
 							choices: [{
+									name: 'Clean install',
+									value: 'clean',
+									checked: false
+								}, {
 									name: 'Zurb Foundation',
 									value: 'foundation',
 									checked: false
@@ -157,14 +176,25 @@ module.exports = class extends Generator {
 									value: 'slick',
 									checked: false
 								},
+								{
+									name: 'Kitchensink',
+									value: 'kitchensink',
+									checked: false
+								},
 							],
 							default: 0
 						}]).then((optionsAnswers) => {
+							if (optionsAnswers.projectfeatures.indexOf('clean') >= 0) {
+								answers.clean = true;
+							}
 							if (optionsAnswers.projectfeatures.indexOf('foundation') >= 0) {
 								answers.foundation = true;
 							}
 							if (optionsAnswers.projectfeatures.indexOf('slick') >= 0) {
 								answers.slick = true;
+							}
+							if (optionsAnswers.projectfeatures.indexOf('kitchensink') >= 0) {
+								answers.kitchensink = true;
 							}
 						});
 					}
@@ -180,6 +210,8 @@ module.exports = class extends Generator {
 			answers.subviews = matiseArguments[6] === 'true';
 			answers.foundation = matiseArguments[7] === 'true';
 			answers.slick = matiseArguments[8] === 'true';
+			answers.clean = matiseArguments[9] === 'true';
+			answers.kitchensink = matiseArguments[10] === 'true';
 		}
 	}
 
@@ -209,9 +241,12 @@ module.exports = class extends Generator {
 		var copyFolders = ['color', 'components', 'elements', 'functions', 'icons', 'mixins', 'typography'];
 		var th = this;
 		copyFolders.forEach(function(folder) {
-			th.fs.copy(
+			th.fs.copyTpl(
 				th.templatePath('scss/' + folder + '/*'),
-				th.destinationPath(scssDestination + 'scss/' + folder)
+				th.destinationPath(scssDestination + 'scss/' + folder), {
+					foundationInclude: answers.foundation,
+					cleanInstall: answers.clean
+				}
 			);
 		});
 
@@ -256,11 +291,12 @@ module.exports = class extends Generator {
 			);
 		}
 
-		//global sccss
+		//global scss
 		this.fs.copyTpl(
 			this.templatePath('scss/*'),
 			this.destinationPath(scssDestination + 'scss'), {
-				foundationInclude: answers.foundation
+				foundationInclude: answers.foundation,
+				cleanInstall: answers.clean
 			}
 		);
 
@@ -460,7 +496,8 @@ module.exports = class extends Generator {
 					this.destinationPath('src/app/' + answers.appName + '.js'), {
 						appName: answers.appName,
 						ngModules: angularModules,
-						requires: requireLines
+						requires: requireLines,
+						showKitchensink: answers.kitchensink
 					}
 				);
 			}
@@ -473,15 +510,19 @@ module.exports = class extends Generator {
 				this.templatePath('angular/components.js'),
 				this.destinationPath('src/app/components.js')
 			);
-			this.fs.copy(
+			this.fs.copyTpl(
 				this.templatePath('angular/controllers.js'),
-				this.destinationPath('src/app/controllers.js')
+				this.destinationPath('src/app/controllers.js'), {
+					showKitchensink: answers.kitchensink
+				}
 			);
 
 			// ============= App default files ==============
-			this.fs.copy(
+			this.fs.copyTpl(
 				this.templatePath('angular/sections/root/footer.html'),
-				this.destinationPath('src/app/sections/root/footer.html')
+				this.destinationPath('src/app/sections/root/footer.html'), {
+					cleanInstall: answers.clean
+				}
 			);
 			this.fs.copyTpl(
 				this.templatePath('angular/sections/root/footer-controller.js'),
@@ -489,9 +530,13 @@ module.exports = class extends Generator {
 					appName: answers.appName
 				}
 			);
-			this.fs.copy(
+			this.fs.copyTpl(
 				this.templatePath('angular/sections/root/header.html'),
-				this.destinationPath('src/app/sections/root/header.html')
+				this.destinationPath('src/app/sections/root/header.html'), {
+					cleanInstall: answers.clean,
+					showKitchensink: answers.kitchensink,
+					siteTitle: answers.siteTitle
+				}
 			);
 			this.fs.copyTpl(
 				this.templatePath('angular/sections/root/header-controller.js'),
@@ -499,9 +544,12 @@ module.exports = class extends Generator {
 					appName: answers.appName
 				}
 			);
-			this.fs.copy(
+			this.fs.copyTpl(
 				this.templatePath('angular/sections/home/home.html'),
-				this.destinationPath('src/app/sections/home/home.html')
+				this.destinationPath('src/app/sections/home/home.html'), {
+					cleanInstall: answers.clean,
+					siteTitle: answers.siteTitle
+				}
 			);
 			this.fs.copyTpl(
 				this.templatePath('angular/sections/home/home-controller.js'),
@@ -509,16 +557,19 @@ module.exports = class extends Generator {
 					appName: answers.appName
 				}
 			);
-			this.fs.copy(
-				this.templatePath('angular/sections/kitchensink/kitchensink.html'),
-				this.destinationPath('src/app/sections/kitchensink/kitchensink.html')
-			);
-			this.fs.copyTpl(
-				this.templatePath('angular/sections/kitchensink/kitchensink-controller.js'),
-				this.destinationPath('src/app/sections/kitchensink/kitchensink-controller.js'), {
-					appName: answers.appName
-				}
-			);
+
+			if (answers.kitchensink) {
+				this.fs.copy(
+					this.templatePath('angular/sections/kitchensink/kitchensink.html'),
+					this.destinationPath('src/app/sections/kitchensink/kitchensink.html')
+				);
+				this.fs.copyTpl(
+					this.templatePath('angular/sections/kitchensink/kitchensink-controller.js'),
+					this.destinationPath('src/app/sections/kitchensink/kitchensink-controller.js'), {
+						appName: answers.appName
+					}
+				);
+			}
 
 		}
 
@@ -631,7 +682,9 @@ module.exports = class extends Generator {
 			this.fs.copyTpl(
 				this.templatePath('wordpress/theme/index.php'),
 				this.destinationPath('themesrc/index.php'), {
-					appName: answers.appName
+					appName: answers.appName,
+					siteTitle: answers.siteTitle,
+					cleanInstall: answers.clean
 				}
 			);
 			this.fs.copyTpl(
@@ -643,7 +696,8 @@ module.exports = class extends Generator {
 			this.fs.copyTpl(
 				this.templatePath('wordpress/theme/footer.php'),
 				this.destinationPath('themesrc/footer.php'), {
-					appName: answers.appName
+					appName: answers.appName,
+					cleanInstall: answers.clean
 				}
 			);
 			this.fs.copyTpl(
@@ -655,7 +709,8 @@ module.exports = class extends Generator {
 			this.fs.copyTpl(
 				this.templatePath('wordpress/theme/header.php'),
 				this.destinationPath('themesrc/header.php'), {
-					appName: answers.appName
+					appName: answers.appName,
+					cleanInstall: answers.clean
 				}
 			);
 			this.fs.copyTpl(
