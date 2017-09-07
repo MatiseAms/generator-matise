@@ -509,6 +509,16 @@ module.exports = class extends Generator {
 					appName: answers.appName
 				}
 			);
+			this.fs.copy(
+				this.templatePath('angular/sections/kitchensink/kitchensink.html'),
+				this.destinationPath('src/app/sections/kitchensink/kitchensink.html')
+			);
+			this.fs.copyTpl(
+				this.templatePath('angular/sections/kitchensink/kitchensink-controller.js'),
+				this.destinationPath('src/app/sections/kitchensink/kitchensink-controller.js'), {
+					appName: answers.appName
+				}
+			);
 
 		}
 

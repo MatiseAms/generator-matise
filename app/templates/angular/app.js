@@ -47,37 +47,12 @@ app.config([
 				parent: 'root',
 				templateUrl: 'sections/home/home.html',
 				controller: 'HomeController as homeCtrl'
-<<<<<<< HEAD
-			})
-			.state('about', {
-				url: '/about',
-				parent: 'root',
-				views: {
-					'': {
-						templateUrl: 'sections/about/about.html',
-						controller: 'AboutController as aboutCtrl'
-					},
-					'top@about': {
-						templateUrl: 'sections/about/top.html',
-						controller: 'TopController as topCtrl'
-					},
-					'middle@about': {
-						templateUrl: 'sections/about/middle.html',
-						controller: 'MiddleController as middleCtrl'
-					},
-					'bottom@about': {
-						templateUrl: 'sections/about/bottom.html',
-						controller: 'BottomController as bottomCtrl'
-					}
-				}
 			})
 			.state('kitchensink', {
 				url: '/kitchensink',
 				parent: 'root',
 				templateUrl: 'sections/kitchensink/kitchensink.html',
 				controller: 'KitchensinkController as kitchensinkCtrl'
-=======
->>>>>>> master
 			});
 
 		// use the HTML5 History API
