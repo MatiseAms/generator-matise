@@ -678,6 +678,11 @@ module.exports = class extends Generator {
 				this.destinationPath('grunt/watch.js')
 			);
 
+			this.fs.copy(
+				this.templatePath('wordpress/grunt/webfont.js'),
+				this.destinationPath('grunt/webfont.js')
+			);
+
 			// ============= Theme php files ==============
 			this.fs.copyTpl(
 				this.templatePath('wordpress/theme/index.php'),
