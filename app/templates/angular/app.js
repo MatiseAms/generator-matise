@@ -1,37 +1,31 @@
-angular.module('<%= appName %>', [
-		'ui.router',
-		'angulartics',
-		'angulartics.google.analytics'
-	])
-	.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
+// require('modernizr');
+
+var angular = require('angular');
+
+require('@uirouter/angularjs');
+require('angulartics');
+<%- requires %>
+
+var app = angular.module('<%= appName %>', [
+	'ui.router',
+	'<%- ngModules %>',
+	require('angulartics-google-analytics')
+]);
+
+require('./components');
+require('./controllers');
+
+app.config([
+	'$stateProvider',
+	'$urlRouterProvider',
+	'$locationProvider',
+	function($stateProvider, $urlRouterProvider, $locationProvider) {
 		'use strict';
 
 		// For any unmatched url, redirect to /state1
 		$urlRouterProvider.otherwise('/');
 
 		$stateProvider
-			.state('error', {
-				'abstract': true,
-				views: {
-					header: {
-						templateUrl: 'sections/error/header.html',
-						controller: 'ErrorHeaderController as errorheaderCtrl'
-					},
-					content: {
-						templateUrl: '<div ui-view></div>'
-					},
-					footer: {
-						templateUrl: 'sections/error/footer.html',
-						controller: 'ErrorFooterController as errorfooterCtrl'
-					}
-				}
-			})
-			.state('oldbrowser', {
-				url: '/oldbrowser',
-				parent: 'error',
-				templateUrl: 'sections/error/oldbrowser.html',
-				controller: 'OldbrowserController as oldbrowserCtrl'
-			})
 			.state('root', {
 				'abstract': true,
 				views: {
@@ -53,6 +47,7 @@ angular.module('<%= appName %>', [
 				parent: 'root',
 				templateUrl: 'sections/home/home.html',
 				controller: 'HomeController as homeCtrl'
+<<<<<<< HEAD
 			})
 			.state('about', {
 				url: '/about',
@@ -81,13 +76,21 @@ angular.module('<%= appName %>', [
 				parent: 'root',
 				templateUrl: 'sections/kitchensink/kitchensink.html',
 				controller: 'KitchensinkController as kitchensinkCtrl'
+=======
+>>>>>>> master
 			});
+
 		// use the HTML5 History API
 		$locationProvider.html5Mode(true);
-	}])
-	.run(['$rootScope', '$document', function($rootScope, $document) {
-		'use strict';
+		$locationProvider.hashPrefix('!');
+	}
+]);
 
+app.run([
+	'$rootScope',
+	'$document',
+	function($rootScope, $document) {
+		'use strict';
 
 		$document.on('keydown', function(e) {
 			if (e.which === 8) {
@@ -96,13 +99,5 @@ angular.module('<%= appName %>', [
 				}
 			}
 		});
-
-		/* global $ */
-		$rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState) {
-			$('body')
-				.removeClass('state-' + fromState.name)
-				.addClass('state-' + toState.name);
-			window.scrollTo(0, 0);
-		});
-
-	}]);
+	}
+]);

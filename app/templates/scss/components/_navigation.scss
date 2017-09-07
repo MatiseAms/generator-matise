@@ -1,0 +1,12 @@
+.nav{
+	&__list{
+		&--item{
+			&-text{
+				@extend %body-font-family; font-size: 1rem;
+			}
+			&-link{
+				font-size: 1rem; padding: 1rem;
+			}
+		}
+	}
+}

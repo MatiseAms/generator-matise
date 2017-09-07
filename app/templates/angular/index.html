@@ -9,12 +9,30 @@
 	</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
 	<link rel="stylesheet" href="css/app.css">
 
 	<script>
 		var Browser = {
 			isIE: false
 		};
+
 	</script>
 	<!-- By default we will assume that the browser is not IE -->
 	<!--[if IE 5]><script>Browser = {isIE:true,version:5};</script><![endif]-->
@@ -28,7 +46,7 @@
 <body ng-app="<%= appName %>" class="ng-cloak">
 
 	<header id="header" ui-view="header"></header>
-	<main id="main" ui-view="content"></main>
+	<div id="main" ui-view="content"></div>
 	<footer id="footer" ui-view="footer"></footer>
 
 	<script>
@@ -43,26 +61,23 @@
 			a.src = g;
 			m.parentNode.insertBefore(a, m)
 		})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
 	</script>
 
 	<!-- build:remove dist,staging -->
 	<script>
+		<%= devScript %>
 		ga('create', 'UA-XXXXXXXX-X', 'none');
-	</script>
-	<script src="vendor/modernizr.js"></script>
-	<script src="vendor/jquery.js"></script>
-	<script src="vendor/angular.js"></script>
-	<script src="vendor/angular-ui-router.js"></script>
 
-	<script src="vendor/angulartics.js"></script>
-	<script src="vendor/angulartics-ga.js"></script>
+	</script>
 	<!-- /build -->
 
 	<!-- build:remove dev -->
 	<script>
+		<%= prodScript %>
 		ga('create', 'UA-XXXXXXXX-X', 'auto');
+
 	</script>
-	<script src="/vendor.js"></script>
 	<!-- /build -->
 
 	<script src="/<%= appName %>.js"></script>

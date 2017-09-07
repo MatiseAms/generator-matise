@@ -52,6 +52,26 @@ module.exports = {
 			dest: '<%= config.themedist.root %>'
 		}]
 	},
+	php: {
+		files: [{
+			expand: true,
+			cwd: '<%= config.themesrc.root %>',
+			src: [
+				'**/*.php'
+			],
+			dest: '<%= config.themedist.root %>'
+		}]
+	},
+	js: {
+		files: [{
+			expand: true,
+			cwd: '<%= config.themedist.browserify %>',
+			src: [
+				'app.js'
+			],
+			dest: '<%= config.themedist.root %>js/'
+		}]
+	},
 	config_dev: {
 		files: [{
 			expand: true,

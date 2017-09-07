@@ -4,7 +4,8 @@ module.exports = {
 			expand: true,
 			cwd: '<%= config.src.app %>',
 			src: [
-				'*.html'
+				'*.html',
+				'.htaccess'
 			],
 			dest: '<%= config.dist.root %>'
 		}]
@@ -38,16 +39,16 @@ module.exports = {
 			dest: '<%= config.dist.root %>fonts/'
 		}]
 	},
-	vendor: {
+	jsmodule: {
 		files: [{
 			expand: true,
-			cwd: '<%= config.src.vendor %>',
+			cwd: '<%= config.dist.browserify %>',
 			src: [
 				'*.js',
 				'!*.min.js',
 				'*/*.js'
 			],
-			dest: '<%= config.dist.vendor %>'
+			dest: '<%= config.dist.root %>'
 		}]
 	}
 };

@@ -4,11 +4,10 @@ module.exports = {
 	},
 	scripts: {
 		files: [
-			'<%= config.src.app %>**/*.js'
+			'<%= config.dist.browserify %><?= appName ?>.js'
 		],
 		tasks: [
-			'jshint:src',
-			'concat:scripts',
+			'copy:jsmodule',
 			'ngtemplates:dev'
 		]
 	},
@@ -25,7 +24,6 @@ module.exports = {
 			'!<%= config.src.app %>*.html'
 		],
 		tasks: [
-			'concat:scripts',
 			'ngtemplates:dev'
 		]
 	},
@@ -38,10 +36,10 @@ module.exports = {
 		tasks: ['copy:fonts']
 	},
 	scss: {
-		files:  [
+		files: [
 			'<%= config.src.app %>scss/*',
 			'<%= config.src.app %>scss/**/*'
 		],
-		tasks: ['sass','postcss']
+		tasks: ['sass:dev', 'postcss']
 	}
 };

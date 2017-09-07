@@ -1,0 +1,89 @@
+// headers
+%header-default{
+	font-family: $heading-font-family; text-align: left; font-weight: $font-bold; padding: 0; margin: 0;
+	&.sub{
+		font-weight: $font-light;
+	}
+}
+
+$minus: 0.1066;
+%h1{
+	@extend %header-default; font-size: grid(0.75); line-height: grid((0.75 * 1.25)); font-weight: $font-bold;
+	@include min-fontsize(0.75,24){
+		font-size: rem(24); line-height: rem(24 * 1.25);
+	}
+}
+%h2{
+	@extend %header-default; font-size: grid(0.75); line-height: grid((0.75 * 1.25)); font-weight: $font-bold;
+	@include min-fontsize(0.75,24){
+		line-height: rem(24 * 1.25);
+	}
+}
+%h3{
+	@extend %header-default; font-size: grid(0.4); line-height: grid((0.4 * 1.25)); font-weight: $font-bold;
+	@include min-fontsize(0.4,20){
+		line-height: rem(20 * 1.25);
+	}
+}
+%h4{
+	@extend %header-default; font-size: grid(0.3); line-height: grid((0.3 * 1.25)); font-weight: $font-bold;
+	@include min-fontsize(0.3,16){
+		line-height: rem(16 * 1.25);
+	}
+}
+%h5{
+	@extend %header-default; font-size: rem(14); line-height: rem((14 * 1.25));
+}
+%h6{
+	@extend %header-default; font-size: rem(12); line-height: rem(12 * 1.25);
+}
+
+
+
+
+// make font styles
+
+%font-regular{
+	font-weight: $font-regular;
+}
+%font-bold{
+	font-weight: $font-bold;
+}
+%small{
+	font-size: smaller;
+}
+%del{
+	text-decoration: line-through;
+}
+%ins{
+	text-decoration: underline;
+}
+%sub{
+	vertical-align: sub; font-size: smaller;
+}
+%sup{
+	vertical-align: sup; font-size: smaller;
+}
+
+%p{
+	margin: 0; padding: 0; font-size: rem(16); line-height: rem(32); font-family: $body-font-family; font-weight: 400;
+	&.text-tiny{
+		font-size: rem(12);
+	}
+	&.text-small{
+		font-size: rem(14);
+	}
+	&.text-regular{
+		font-size: rem(16);
+	}
+	&.text-large{
+		font-size: rem(18);
+	}
+	&.text-xlarge{
+		font-size: rem(24);
+	}
+}
+
+%blockquote{
+	margin: 0; padding: 0.5rem  1rem;
+}

@@ -1,11 +1,16 @@
 {
-  "name": "<%= appName %>",
-  "version": "1.0.0",
-  "description": "<%= appDesc %>",
-  "author": "",
-  "license": "ISC",
-  "engines": {
-    "node": "~4.4.7"
-  },
-  "devDependencies": {}
+	"name": "<%= appName %>",
+	"version": "1.0.0",
+	"description": "<%= appDesc %>",
+	"author": "",
+	"license": "ISC",
+	"engines": {
+		"node": "^7.9.0"
+	},
+	"scripts": {
+		"dev": "node_modules/.bin/grunt",
+		"dist": "node_modules/.bin/grunt"
+	},
+	"dependencies": {},
+	"devDependencies": {}
 }

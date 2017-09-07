@@ -4,8 +4,5 @@ module.exports = {
 	],
 	vendor: [
 		'public/content/themes/<%= appName %>/vendor/'
-	],
-	bower: [
-		'bower_components'
 	]
 };

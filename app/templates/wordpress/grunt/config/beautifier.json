@@ -1,0 +1,10 @@
+{
+  "js": {
+    "indentWithTabs": true,
+    "endWithNewline": true
+  },
+  "html": {
+    "indentWithTabs": true,
+    "endWithNewline": true
+  }
+}

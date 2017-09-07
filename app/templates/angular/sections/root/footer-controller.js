@@ -1,4 +1,4 @@
-angular.module('<%= appName %>')
+require('angular').module('<%= appName %>')
 	.controller('FooterController', [function() {
 		'use strict';
 

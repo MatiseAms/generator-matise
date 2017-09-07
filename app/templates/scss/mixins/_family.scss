@@ -1,4 +1,4 @@
-/// Select all children from the first to `$num`.
+/// Select all children from the first to '$num'.
 /// @group with-arguments
 /// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
 /// @param {number} $num - id of the child
@@ -23,7 +23,7 @@
   @include first($num){ @content; }
 }
 
-/// Select all children from the last to `$num`.
+/// Select all children from the last to '$num'.
 /// @group with-arguments
 /// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
 /// @param {number} $num - id of the child
@@ -37,7 +37,7 @@
 }
 
 
-/// Select all children after the first '$first' to `$num`.
+/// Select all children after the first '$first' to '$num'.
 /// @group with-arguments
 /// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
 /// @param {number} $num - id of the child
@@ -47,7 +47,7 @@
   }
 }
 
-/// Select all children before `$num` from the last.
+/// Select all children before '$num' from the last.
 /// @group with-arguments
 /// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
 /// @param {number} $num - id of the child
@@ -55,7 +55,7 @@
   @include last($num,$from){ @content; }
 }
 
-/// Select all children between `$first` and `$last`.
+/// Select all children between '$first' and '$last'.
 /// @group with-arguments
 /// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
 @mixin between($first:1, $last:3, $count: 1, $type: all) {
@@ -70,21 +70,21 @@
   }
 }
 
-/// Select all even children between `$first` and `$last`.
+/// Select all even children between '$first' and '$last'.
 /// @group with-arguments
 /// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
 @mixin even-between($first, $last, $count: 1) {
   @include between($first, $last, $count, even){ @content; }
 }
 
-/// Select all odd children between `$first` and `$last`.
+/// Select all odd children between '$first' and '$last'.
 /// @group with-arguments
 /// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
 @mixin odd-between($first, $last, $count: 1) {
   @include between($first, $last, $count, odd){ @content; }
 }
 
-/// Select all `$num` children between `$first` and `$last`.
+/// Select all '$num' children between '$first' and '$last'.
 /// @group with-arguments
 /// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
 @mixin n-between($num, $first, $last) {
@@ -92,7 +92,7 @@
 }
 
 
-/// Select all children but `$num`.
+/// Select all children but '$num'.
 /// @group with-arguments
 /// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
 /// @param {number} $num - id of the child
@@ -102,7 +102,7 @@
   }
 }
 
-/// Select children each `$num`.
+/// Select children each '$num'.
 /// @group with-arguments
 /// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
 /// @param {number} $num - id of the child
@@ -113,7 +113,7 @@
   }
 }
 
-/// Select children each `$num`.
+/// Select children each '$num'.
 /// @group with-arguments
 /// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
 /// @param {number} $num - id of the child
@@ -121,7 +121,7 @@
   @include each($num){ @content; }
 }
 
-/// Select the `$num` child from the start and the `$num` child from the last.
+/// Select the '$num' child from the start and the '$num' child from the last.
 /// @group with-arguments
 /// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
 /// @param {number} $num - id of the child
@@ -133,7 +133,7 @@
 }
 
 
-/// Select the item in the middle of `$num` child. Only works with odd number
+/// Select the item in the middle of '$num' child. Only works with odd number
 /// chain.
 /// @group with-arguments
 /// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
@@ -155,7 +155,7 @@
 }
 
 
-/// Select all children between the `$num` first and the `$num` last.
+/// Select all children between the '$num' first and the '$num' last.
 /// @group with-arguments
 /// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
 /// @param {number} $num - id of the child
@@ -186,8 +186,8 @@
   }
 }
 
-/// This quantity-query mixin will select every items if there is at least `$num` items. It will not
-/// if there is not as much as item as you set in `$num`.
+/// This quantity-query mixin will select every items if there is at least '$num' items. It will not
+/// if there is not as much as item as you set in '$num'.
 /// @group Quantity queries
 /// @param {number} $limit
 /// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
@@ -200,8 +200,8 @@
     }
 }
 
-/// This quantity-query mixin will select every items if there is at most `$num` items. It will not
-/// if there is not as much as item as you set in `$num`.
+/// This quantity-query mixin will select every items if there is at most '$num' items. It will not
+/// if there is not as much as item as you set in '$num'.
 /// @group Quantity queries
 /// @param {number} $limit
 /// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
@@ -214,7 +214,7 @@
     }
 }
 
-/// This quantity-query mixin will select every items only if there is between `$min` and `$max` items.
+/// This quantity-query mixin will select every items only if there is between '$min' and '$max' items.
 /// @group Quantity queries
 /// @param {number} $limit
 /// @content [Write the style you want to apply to the children, and it will be added within the @content directive]

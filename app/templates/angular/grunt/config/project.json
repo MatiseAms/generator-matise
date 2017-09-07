@@ -6,6 +6,7 @@
 	},
 	"dist": {
 		"root": "dist/",
-		"vendor": "dist/vendor/"
+		"vendor": "dist/vendor/",
+		"browserify": "src/browserify/"
 	}
 }
