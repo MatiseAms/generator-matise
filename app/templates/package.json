@@ -9,7 +9,7 @@
 	},
 	"scripts": {
 		"dev": "node_modules/.bin/grunt",
-		"dist": "node_modules/.bin/grunt"
+		"dist": "node_modules/.bin/grunt dist"
 	},
 	"dependencies": {},
 	"devDependencies": {}
