@@ -6,6 +6,7 @@ browserify
 public/wordpress
 public/local-config.php
 public/vendor
+public/.htaccess
 
 public/content/themes/<%= appName %>
 public/content/uploads

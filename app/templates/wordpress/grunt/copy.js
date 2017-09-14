@@ -77,7 +77,8 @@ module.exports = {
 			expand: true,
 			cwd: '<%= config.wpconfig.src %>dev/',
 			src: [
-				'**/*',
+				'.htaccess',
+				'**/*'
 			],
 			dest: '<%= config.wpconfig.dist %>'
 		}]
@@ -87,7 +88,8 @@ module.exports = {
 			expand: true,
 			cwd: '<%= config.wpconfig.src %>staging/',
 			src: [
-				'**/*',
+				'.htaccess',
+				'**/*'
 			],
 			dest: '<%= config.wpconfig.dist %>'
 		}]
@@ -97,7 +99,8 @@ module.exports = {
 			expand: true,
 			cwd: '<%= config.wpconfig.src %>dist/',
 			src: [
-				'**/*',
+				'.htaccess',
+				'**/*'
 			],
 			dest: '<%= config.wpconfig.dist %>'
 		}]

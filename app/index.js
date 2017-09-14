@@ -778,7 +778,15 @@ module.exports = class extends Generator {
 			);
 			this.fs.copy(
 				this.templatePath('wordpress/htaccess'),
-				this.destinationPath('public/.htaccess')
+				this.destinationPath('wpconfig/dist/.htaccess')
+			);
+			this.fs.copy(
+				this.templatePath('wordpress/htaccess'),
+				this.destinationPath('wpconfig/dev/.htaccess')
+			);
+			this.fs.copy(
+				this.templatePath('wordpress/htaccess'),
+				this.destinationPath('wpconfig/staging/.htaccess')
 			);
 		}
 	}
