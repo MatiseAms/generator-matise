@@ -3,7 +3,7 @@ $cssgrid: false;
 @mixin createGridClasses($child: false){
 	$childClass: "";
 	@if $child == true{
-		$childClass: " .column";
+		$childClass: "> .column";
 	}
 	@for $a from 0 through $grid-columns{
 		$percentage: percentage($a/$grid-columns); //
