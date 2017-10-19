@@ -15,12 +15,12 @@ module.exports = {
 			expand: true,
 			cwd: '<%= config.src.app %>img/',
 			src: [
-				'*.jpg',
-				'*.jpeg',
-				'*.png',
-				'*.gif',
-				'*.svg',
-				'*.ico'
+				'**/*.jpg',
+				'**/*.jpeg',
+				'**/*.png',
+				'**/*.gif',
+				'**/*.svg',
+				'**/*.ico'
 			],
 			dest: '<%= config.dist.root %>img/'
 		}]
