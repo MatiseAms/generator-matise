@@ -1,7 +1,7 @@
 module.exports = {
 	dev: {
 		options: {
-			includePaths: ['node_modules/foundation-sites'],
+			includePaths: ['node_modules/matise-stack','node_modules/matise-grid'],
 			sourceMap: true
 		},
 		files: {
@@ -10,7 +10,7 @@ module.exports = {
 	},
 	dist: {
 		options: {
-			includePaths: ['node_modules/foundation-sites'],
+			includePaths: ['node_modules/matise-stack','node_modules/matise-grid'],
 			sourceMap: false
 		},
 		files: {

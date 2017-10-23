@@ -238,7 +238,7 @@ module.exports = class extends Generator {
 			scssDestination = 'themesrc/';
 		}
 
-		var copyFolders = ['color', 'components', 'elements', 'functions', 'icons', 'mixins', 'typography'];
+		var copyFolders = ['color', 'components', 'elements', 'icons', 'typography'];
 		var th = this;
 		copyFolders.forEach(function(folder) {
 			th.fs.copyTpl(
@@ -250,13 +250,6 @@ module.exports = class extends Generator {
 			);
 		});
 
-		this.fs.copyTpl(
-			this.templatePath('scss/grid/*.scss'),
-			this.destinationPath(scssDestination + 'scss/grid/'), {
-				foundationInclude: answers.foundation
-			}
-		);
-
 		if (answers.foundation) {
 			// Zurb folder
 			var utilPath = '@import \'scss/util/util\';';
@@ -266,9 +259,10 @@ module.exports = class extends Generator {
 				foundationPath = '@import \'foundation/scss/foundation\';';
 			}
 			this.fs.copyTpl(
-				this.templatePath('scss/zurb/_foundation.scss'),
-				this.destinationPath(scssDestination + 'scss/zurb/_foundation.scss'), {
-					foundationImport: foundationPath
+				this.templatePath('scss/zurb/*'),
+				this.destinationPath(scssDestination + 'scss/zurb'), {
+					foundationImport: foundationPath,
+					utilImport: utilPath
 				}
 			);
 			this.fs.copy(
@@ -836,6 +830,8 @@ module.exports = class extends Generator {
 			npmDevDeps.push('serve-static');
 			npmDevDeps.push('time-grunt');
 			npmDevDeps.push('grunt-fontgen');
+			npmDevDeps.push('matise-stack');
+			npmDevDeps.push('matise-grid');
 
 			npmDeps.push('modernizr');
 			npmDeps.push('angular');
@@ -889,6 +885,8 @@ module.exports = class extends Generator {
 			npmDevDeps.push('postcss-vmin');
 			npmDevDeps.push('time-grunt');
 			npmDevDeps.push('grunt-fontgen');
+			npmDevDeps.push('matise-stack');
+			npmDevDeps.push('matise-grid');
 
 			if (answers.slick) {
 				npmDeps.push('slick-carousel');
