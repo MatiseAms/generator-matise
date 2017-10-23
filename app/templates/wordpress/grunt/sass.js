@@ -1,7 +1,11 @@
 module.exports = {
 	dist: {
 		options: {
-			includePaths: ['<%= config.themesrc.vendor %>','node_modules/matise-stack','node_modules/matise-grid'],
+			<? if (foundationInclude) { ?>
+			includePaths: ['node_modules/foundation-sites','node_modules/matise-stack','node_modules/matise-grid'],
+			<? } else { ?>
+			includePaths: ['node_modules/matise-stack','node_modules/matise-grid'],
+			<? } ?>
 			sourcemap: false
 		},
 		files: {

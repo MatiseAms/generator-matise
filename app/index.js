@@ -259,10 +259,9 @@ module.exports = class extends Generator {
 				foundationPath = '@import \'foundation/scss/foundation\';';
 			}
 			this.fs.copyTpl(
-				this.templatePath('scss/zurb/*'),
-				this.destinationPath(scssDestination + 'scss/zurb'), {
-					foundationImport: foundationPath,
-					utilImport: utilPath
+				this.templatePath('scss/zurb/_foundation.scss'),
+				this.destinationPath(scssDestination + 'scss/zurb/_foundation.scss'), {
+					foundationImport: foundationPath
 				}
 			);
 			this.fs.copy(
@@ -421,9 +420,13 @@ module.exports = class extends Generator {
 				this.templatePath('angular/grunt/postcss.js'),
 				this.destinationPath('grunt/postcss.js')
 			);
-			this.fs.copy(
+			this.fs.copyTpl(
 				this.templatePath('angular/grunt/sass.js'),
-				this.destinationPath('grunt/sass.js')
+				this.destinationPath('grunt/sass.js'), {
+					foundationInclude: answers.foundation
+				}, {
+					delimiter: '?'
+				}
 			);
 			this.fs.copyTpl(
 				this.templatePath('angular/grunt/uglify.js'),
@@ -657,9 +660,13 @@ module.exports = class extends Generator {
 					delimiter: '?'
 				}
 			);
-			this.fs.copy(
+			this.fs.copyTpl(
 				this.templatePath('wordpress/grunt/sass.js'),
-				this.destinationPath('grunt/sass.js')
+				this.destinationPath('grunt/sass.js'), {
+					foundationInclude: answers.foundation
+				}, {
+					delimiter: '?'
+				}
 			);
 			this.fs.copyTpl(
 				this.templatePath('wordpress/grunt/shell.js'),
