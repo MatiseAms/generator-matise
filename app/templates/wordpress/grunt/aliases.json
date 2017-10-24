@@ -13,7 +13,6 @@
     "copy:images",
     "copy:fonts",
     "copy:vendor",
-    "newer:csscomb:dynamic_mappings",
     "sass",
     "postcss"
   ],
