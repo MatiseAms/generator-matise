@@ -13,6 +13,7 @@
     "copy:images",
     "copy:fonts",
     "copy:vendor",
+    "newer:csscomb",
     "sass",
     "postcss"
   ],

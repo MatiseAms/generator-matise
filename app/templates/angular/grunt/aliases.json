@@ -12,7 +12,8 @@
 		"copy:jsmodule",
 		"copy:html",
 		"copy:images",
-		"copy:fonts"
+		"copy:fonts",
+    "newer:csscomb"
 	],
 	"dev": [
 		"jsbeautifier",

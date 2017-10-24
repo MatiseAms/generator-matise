@@ -405,7 +405,7 @@ module.exports = class extends Generator {
 				this.destinationPath('grunt/jshint.js')
 			);
 			this.fs.copy(
-				this.templatePath('angular/grunt/jshint.js'),
+				this.templatePath('angular/grunt/csscomb.js'),
 				this.destinationPath('grunt/csscomb.js')
 			);
 			this.fs.copyTpl(
