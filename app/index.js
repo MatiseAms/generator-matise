@@ -353,6 +353,10 @@ module.exports = class extends Generator {
 				this.destinationPath('grunt/config/beautifier.json')
 			);
 			this.fs.copy(
+				this.templatePath('angular/grunt/config/csscomb.json'),
+				this.destinationPath('grunt/config/csscomb.json')
+			);
+			this.fs.copy(
 				this.templatePath('angular/grunt/aliases.json'),
 				this.destinationPath('grunt/aliases.json')
 			);
@@ -405,7 +409,7 @@ module.exports = class extends Generator {
 				this.destinationPath('grunt/jshint.js')
 			);
 			this.fs.copy(
-				this.templatePath('angular/grunt/jshint.js'),
+				this.templatePath('angular/grunt/csscomb.js'),
 				this.destinationPath('grunt/csscomb.js')
 			);
 			this.fs.copyTpl(
@@ -623,6 +627,10 @@ module.exports = class extends Generator {
 			this.fs.copy(
 				this.templatePath('wordpress/grunt/aliases.json'),
 				this.destinationPath('grunt/aliases.json')
+			);
+			this.fs.copy(
+				this.templatePath('wordpress/grunt/csscomb.json'),
+				this.destinationPath('grunt/csscomb.json')
 			);
 			this.fs.copyTpl(
 				this.templatePath('wordpress/grunt/tinypng.js'),
