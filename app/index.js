@@ -629,8 +629,8 @@ module.exports = class extends Generator {
 				this.destinationPath('grunt/aliases.json')
 			);
 			this.fs.copy(
-				this.templatePath('wordpress/grunt/csscomb.json'),
-				this.destinationPath('grunt/csscomb.json')
+				this.templatePath('wordpress/grunt/config/csscomb.json'),
+				this.destinationPath('grunt/config/csscomb.json')
 			);
 			this.fs.copyTpl(
 				this.templatePath('wordpress/grunt/tinypng.js'),
