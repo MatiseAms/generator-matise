@@ -404,6 +404,10 @@ module.exports = class extends Generator {
 				this.templatePath('angular/grunt/jshint.js'),
 				this.destinationPath('grunt/jshint.js')
 			);
+			this.fs.copy(
+				this.templatePath('angular/grunt/jshint.js'),
+				this.destinationPath('grunt/csscomb.js')
+			);
 			this.fs.copyTpl(
 				this.templatePath('angular/grunt/ngtemplates.js'),
 				this.destinationPath('grunt/ngtemplates.js'), {
@@ -651,6 +655,10 @@ module.exports = class extends Generator {
 			this.fs.copy(
 				this.templatePath('wordpress/grunt/notify.js'),
 				this.destinationPath('grunt/notify.js')
+			);
+			this.fs.copy(
+				this.templatePath('wordpress/grunt/csscomb.js'),
+				this.destinationPath('grunt/csscomb.js')
 			);
 			this.fs.copyTpl(
 				this.templatePath('wordpress/grunt/postcss.js'),

@@ -4,8 +4,8 @@ module.exports = {
   },
 	dynamic_mappings: {
 		expand: true,
-		cwd: '<%= config.src.app %>scss/',
+		cwd: '<%= config.themesrc.root %>scss/',
 		src: ['**/*.scss', '!*.resorted.css'],
-		dest: '<%= config.src.app %>scss/',
+		dest: '<%= config.themesrc.root %>scss/app.scss',
 	}
 };
