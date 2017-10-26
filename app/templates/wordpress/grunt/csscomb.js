@@ -6,6 +6,6 @@ module.exports = {
 		expand: true,
 		cwd: '<%= config.themesrc.root %>scss/',
 		src: ['**/*.scss', '!*.resorted.css'],
-		dest: '<%= config.themesrc.root %>scss/app.scss',
+		dest: '<%= config.themesrc.root %>scss/',
 	}
 };
