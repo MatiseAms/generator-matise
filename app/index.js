@@ -294,13 +294,24 @@ module.exports = class extends Generator {
 		);
 
 		// ============= Common project files ==============
-		this.fs.copyTpl(
-			this.templatePath('package.json'),
-			this.destinationPath('package.json'), {
-				appDesc: answers.siteTitle,
-				appName: answers.appName
-			}
-		);
+		if (answers.projectType === 'wordpress') {
+			this.fs.copyTpl(
+				this.templatePath('wordpress/package.json'),
+				this.destinationPath('package.json'), {
+					appDesc: answers.siteTitle,
+					appName: answers.appName
+				}
+			);
+		}
+		if (answers.projectType === 'angular') {
+			this.fs.copyTpl(
+				this.templatePath('angular/package.json'),
+				this.destinationPath('package.json'), {
+					appDesc: answers.siteTitle,
+					appName: answers.appName
+				}
+			);
+		}
 
 		this.fs.copyTpl(
 			this.templatePath('Gruntfile.js'),
