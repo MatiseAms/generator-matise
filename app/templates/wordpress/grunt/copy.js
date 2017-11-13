@@ -47,7 +47,8 @@ module.exports = {
 				'!scss/**',
 				'!vendor/**',
 				'!fonts/**',
-				'!img/**'
+				'!img/**',
+				'!js/**'
 			],
 			dest: '<%= config.themedist.root %>'
 		}]
