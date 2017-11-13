@@ -14,12 +14,12 @@
     "copy:fonts",
     "copy:vendor",
 		"copy:js",
-    "newer:csscomb",
-    "sass",
-    "postcss"
+    "newer:csscomb"
   ],
   "dev": [
     "standard",
+    "sass:dev",
+    "postcss",
     "copy:config_dev"
   ],
   "staging": [
@@ -28,6 +28,8 @@
   ],
   "dist": [
     "standard",
+    "sass:dist",
+    "postcss",
     "copy:config_live"
   ],
   "getdb": [
