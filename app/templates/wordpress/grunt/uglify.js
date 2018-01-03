@@ -4,6 +4,8 @@ module.exports = {
 			compress: {
         drop_console: true
       },
+			sourceMap: false,
+			report: 'gzip',
 			banner: '/*! Created by Matise | https://www.matise.nl | <%= grunt.template.today("yyyy-mm-dd") %> */'
 		},
 		files: [{
