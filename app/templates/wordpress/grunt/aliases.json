@@ -24,12 +24,18 @@
   ],
   "staging": [
     "standard",
+		"sass:dist",
+		"postcss",
+		"csso:dist",
+		"uglify:dist",
     "copy:config_staging"
   ],
   "dist": [
     "standard",
     "sass:dist",
     "postcss",
+		"csso:dist",
+		"uglify:dist",
     "copy:config_live"
   ],
   "getdb": [

@@ -705,10 +705,21 @@ module.exports = class extends Generator {
 				this.templatePath('wordpress/grunt/watch.js'),
 				this.destinationPath('grunt/watch.js')
 			);
-
+			this.fs.copy(
+				this.templatePath('wordpress/grunt/fontgen.js'),
+				this.destinationPath('grunt/fontgen.js')
+			);
 			this.fs.copy(
 				this.templatePath('wordpress/grunt/webfont.js'),
 				this.destinationPath('grunt/webfont.js')
+			);
+			this.fs.copy(
+				this.templatePath('wordpress/grunt/csso.js'),
+				this.destinationPath('grunt/csso.js')
+			);
+			this.fs.copy(
+				this.templatePath('wordpress/grunt/uglify.js'),
+				this.destinationPath('grunt/uglify.js')
 			);
 
 			// ============= Theme php files ==============
@@ -900,6 +911,7 @@ module.exports = class extends Generator {
 			npmDevDeps.push('grunt-cli');
 			npmDevDeps.push('grunt-contrib-clean');
 			npmDevDeps.push('grunt-contrib-copy');
+			npmDevDeps.push('grunt-contrib-uglify');
 			npmDevDeps.push('grunt-contrib-watch');
 			npmDevDeps.push('grunt-jsbeautifier');
 			npmDevDeps.push('grunt-browserify');
@@ -911,6 +923,7 @@ module.exports = class extends Generator {
 			npmDevDeps.push('grunt-tinypng');
 			npmDevDeps.push('grunt-webfont');
 			npmDevDeps.push('grunt-csscomb');
+			npmDevDeps.push('grunt-csso');
 			npmDevDeps.push('grunt-newer');
 			npmDevDeps.push('jit-grunt');
 			npmDevDeps.push('load-grunt-config');
