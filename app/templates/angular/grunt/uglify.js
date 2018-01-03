@@ -1,7 +1,16 @@
 module.exports = {
-	demo: {
+	dist: {
+		options: {
+			compress: {
+        drop_console: true
+      },
+			banner: '/*! Created by Matise | https://www.matise.nl | <%= grunt.template.today("yyyy-mm-dd") %> */'
+		},
 		files: [{
-			'<%= config.dist.root %><?= appName ?>.js': ['<%= config.dist.root %><?= appName ?>.js']
+			expand: true,
+			cwd: '<%= config.themedist.root %>js',
+			src: ['*.js', '!*.min.js'],
+			dest: '<%= config.themedist.root %>js',
 		}]
 	}
 };
