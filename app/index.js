@@ -776,16 +776,8 @@ module.exports = class extends Generator {
 				}
 			);
 			this.fs.copy(
-				this.templatePath('wordpress/local-config.php'),
-				this.destinationPath('wpconfig/dist/local-config.php')
-			);
-			this.fs.copy(
-				this.templatePath('wordpress/local-config.php'),
-				this.destinationPath('wpconfig/dev/local-config.php')
-			);
-			this.fs.copy(
-				this.templatePath('wordpress/local-config.php'),
-				this.destinationPath('wpconfig/staging/local-config.php')
+				this.templatePath('wordpress/wpconfig'),
+				this.destinationPath('wpconfig/')
 			);
 			this.fs.copy(
 				this.templatePath('wordpress/index.php'),
