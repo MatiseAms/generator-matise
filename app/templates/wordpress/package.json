@@ -8,10 +8,10 @@
 		"node": "^8.0.0"
 	},
 	"scripts": {
-		"dev": "node_modules/.bin/grunt",
-		"staging": "node_modules/.bin/grunt staging",
-		"dist": "node_modules/.bin/grunt dist",
-		"getdb": "node_modules/.bin/grunt getdb"
+		"dev": "grunt",
+		"staging": "grunt staging",
+		"dist": "grunt dist",
+		"getdb": "grunt getdb"
 	},
 	"dependencies": {},
 	"devDependencies": {}

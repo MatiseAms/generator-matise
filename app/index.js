@@ -1,26 +1,21 @@
-var Generator = require('yeoman-generator'),
+let Generator = require('yeoman-generator'),
 	chalk = require('chalk'),
 	figlet = require('figlet'),
 	git = require('simple-git')(),
-	mkdirp = require('mkdirp'),
 	updateNotifier = require('update-notifier'),
 	pkg = require('../package.json'),
 	notifier = updateNotifier({
 		'pkg': pkg,
 		updateCheckInterval: 0
 	}),
-	shelljs = require('shelljs/global'),
 	request = require('request'),
 	matiseArguments = [];
 
 notifier.notify();
 
-var wordpressRepo = 'git://github.com/WordPress/WordPress.git',
-	wpDir = 'public/wordpress',
-	latestVersion = '4.7',
-	wpSaltKeys = '';
+let wpSaltKeys = '';
 
-var answers = {
+let answers = {
 	appName: '',
 	siteTitle: '',
 	projectType: '',
@@ -34,16 +29,6 @@ var answers = {
 
 request('https://api.wordpress.org/secret-key/1.1/salt/', function(error, response, body) {
 	wpSaltKeys = body;
-});
-
-git.listRemote(['--tags', wordpressRepo], function(err, tagsList) {
-	if (err) console.log(err);
-	let tagList = ('' + tagsList).split('\n');
-	tagList.pop();
-	let lastTag = /\d\.\d(\.\d)?/ig.exec(tagList.pop());
-	if (lastTag !== null) {
-		latestVersion = lastTag[0];
-	}
 });
 
 module.exports = class extends Generator {
@@ -70,7 +55,7 @@ module.exports = class extends Generator {
 
 	prompting() {
 		if (matiseArguments.length != 8) {
-			var self = this;
+			let self = this;
 			return self.prompt([{
 				type: 'input',
 				name: 'appname',
@@ -222,7 +207,7 @@ module.exports = class extends Generator {
 		// ============= Config files ==============
 
 		// ============= App scss files ==============
-		var scssDestination = '';
+		let scssDestination = '';
 		if (answers.projectType === 'angular') {
 			scssDestination = 'src/app/';
 		}
@@ -230,8 +215,8 @@ module.exports = class extends Generator {
 			scssDestination = 'themesrc/';
 		}
 
-		var copyFolders = ['color', 'components', 'elements', 'icons', 'typography'];
-		var th = this;
+		let copyFolders = ['color', 'components', 'elements', 'icons', 'typography'];
+		let th = this;
 		copyFolders.forEach(function(folder) {
 			th.fs.copyTpl(
 				th.templatePath('scss/' + folder + '/*'),
@@ -244,8 +229,8 @@ module.exports = class extends Generator {
 
 		if (answers.foundation) {
 			// Zurb folder
-			var utilPath = '@import \'scss/util/util\';';
-			var foundationPath = '@import \'scss/foundation\';';
+			let utilPath = '@import \'scss/util/util\';';
+			let foundationPath = '@import \'scss/foundation\';';
 			if (answers.projectType === 'wordpress') {
 				utilPath = '@import \'foundation/scss/util/util\';';
 				foundationPath = '@import \'foundation/scss/foundation\';';
@@ -460,12 +445,12 @@ module.exports = class extends Generator {
 				this.destinationPath('grunt/fontgen.js')
 			);
 			// ============= App base files ==============
-			var developScript = '',
+			let developScript = '',
 				productionScript = '';
 
 			if (answers.parse) {
-				developScript = '// "grunt dev"\n		var localParse = true;';
-				productionScript = '// "grunt staging" and "grunt dist"\n		var localParse = false;';
+				developScript = '// "grunt dev"\n		let localParse = true;';
+				productionScript = '// "grunt staging" and "grunt dist"\n		let localParse = false;';
 			}
 
 			this.fs.copyTpl(
@@ -478,8 +463,8 @@ module.exports = class extends Generator {
 				}
 			);
 
-			var angularModules = 'angulartics';
-			var requireLines = '';
+			let angularModules = 'angulartics';
+			let requireLines = '';
 			if (answers.hipsum) {
 				requireLines += 'require(\'angular-hipsum\');\n';
 				angularModules += '\',\n	\'ngHipsum';
