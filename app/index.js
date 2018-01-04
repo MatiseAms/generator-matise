@@ -38,9 +38,9 @@ request('https://api.wordpress.org/secret-key/1.1/salt/', function(error, respon
 
 git.listRemote(['--tags', wordpressRepo], function(err, tagsList) {
 	if (err) console.log(err);
-	tagList = ('' + tagsList).split('\n');
+	let tagList = ('' + tagsList).split('\n');
 	tagList.pop();
-	lastTag = /\d\.\d(\.\d)?/ig.exec(tagList.pop());
+	let lastTag = /\d\.\d(\.\d)?/ig.exec(tagList.pop());
 	if (lastTag !== null) {
 		latestVersion = lastTag[0];
 	}

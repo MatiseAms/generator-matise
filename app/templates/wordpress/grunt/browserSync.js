@@ -4,7 +4,7 @@ module.exports = {
 			files: [
 				'public/content/themes/**/*.*'
 			],
-			proxy: '<%= appName %>.dev',
+			proxy: '<%= appName %>.matise',
 			watchTask: true
 		}
 	}

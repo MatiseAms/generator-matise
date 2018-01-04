@@ -1,12 +1,12 @@
 {
-	"src": {
-		"root": "src/",
-		"vendor": "src/vendor/",
-		"app": "src/app/"
-	},
-	"dist": {
-		"root": "dist/",
-		"vendor": "dist/vendor/",
-		"browserify": "src/browserify/"
-	}
+  "src": {
+    "root": "src/",
+    "vendor": "src/vendor/",
+    "app": "src/app/"
+  },
+  "dist": {
+    "root": "dist/",
+    "vendor": "dist/vendor/",
+    "browserify": "src/browserify/"
+  }
 }

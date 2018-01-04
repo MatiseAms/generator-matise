@@ -13,7 +13,7 @@
     "copy:images",
     "copy:fonts",
     "copy:vendor",
-		"copy:js",
+    "copy:js",
     "newer:csscomb"
   ],
   "dev": [
@@ -24,18 +24,18 @@
   ],
   "staging": [
     "standard",
-		"sass:dist",
-		"postcss",
-		"csso:dist",
-		"uglify:dist",
+    "sass:dist",
+    "postcss",
+    "csso:dist",
+    "uglify:dist",
     "copy:config_staging"
   ],
   "dist": [
     "standard",
     "sass:dist",
     "postcss",
-		"csso:dist",
-		"uglify:dist",
+    "csso:dist",
+    "uglify:dist",
     "copy:config_live"
   ],
   "getdb": [

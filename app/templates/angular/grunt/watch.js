@@ -40,6 +40,6 @@ module.exports = {
 			'<%= config.src.app %>scss/*',
 			'<%= config.src.app %>scss/**/*'
 		],
-		tasks: ['newer:csscomb','sass:dev', 'postcss']
+		tasks: ['newer:csscomb', 'sass:dev', 'postcss']
 	}
 };
