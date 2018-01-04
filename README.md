@@ -12,22 +12,22 @@ Yeoman generator for matise projects
 
 # Angular
 - npm install
-- grunt
+- npm run dev
 
 of
 
-- yarn
-- yarn dev
+- npm install
+- grunt
 
 # Wordpress
 - CHANGE vagrant IP in Vagrantfile!!!!!
 - vagrant up
+- composer install
 - npm install
-- grunt bowerinit
-- grunt
+- npm run dev
 
 #### Font generation
-In order to be able to generate icon fonts and webfonts from ttf/otf. 
+In order to be able to generate icon fonts and webfonts from ttf/otf.
 - `brew install batik fontforge ttfautohint ttf2eot`
 - Generate icons: `grunt icons`
 - Convert fonts: `grunt fonts`
