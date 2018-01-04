@@ -820,7 +820,6 @@ module.exports = class extends Generator {
 			npmDevDeps.push('grunt-cli');
 			npmDevDeps.push('grunt-contrib-clean');
 			npmDevDeps.push('grunt-contrib-copy');
-			npmDevDeps.push('grunt-contrib-jshint');
 			npmDevDeps.push('grunt-contrib-uglify');
 			npmDevDeps.push('grunt-contrib-watch');
 			npmDevDeps.push('grunt-sass');
@@ -832,9 +831,9 @@ module.exports = class extends Generator {
 			npmDevDeps.push('grunt-webfont');
 			npmDevDeps.push('grunt-csscomb');
 			npmDevDeps.push('grunt-newer');
+			npmDevDeps.push('grunt-eslint');
 			npmDevDeps.push('grunt-jsbeautifier');
 			npmDevDeps.push('jit-grunt');
-			npmDevDeps.push('jshint-stylish');
 			npmDevDeps.push('load-grunt-config');
 			npmDevDeps.push('postcss-alias');
 			npmDevDeps.push('postcss-assets');
@@ -893,6 +892,7 @@ module.exports = class extends Generator {
 			npmDevDeps.push('grunt-webfont');
 			npmDevDeps.push('grunt-csscomb');
 			npmDevDeps.push('grunt-csso');
+			npmDevDeps.push('grunt-eslint');
 			npmDevDeps.push('grunt-newer');
 			npmDevDeps.push('jit-grunt');
 			npmDevDeps.push('load-grunt-config');

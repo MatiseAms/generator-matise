@@ -1,43 +1,43 @@
 {
-	"default": [
-		"notify",
-		"dev",
-		"browserSync",
-		"watch"
-	],
-	"standard":[
-		"jshint:src",
-		"clean",
-		"browserify",
-		"copy:jsmodule",
-		"copy:html",
-		"copy:images",
-		"copy:fonts",
+  "default": [
+    "notify",
+    "dev",
+    "browserSync",
+    "watch"
+  ],
+  "standard": [
+    "eslint",
+    "clean",
+    "browserify",
+    "copy:jsmodule",
+    "copy:html",
+    "copy:images",
+    "copy:fonts",
     "newer:csscomb"
-	],
-	"dev": [
-		"jsbeautifier",
-		"standard",
-		"sass:dev",
-		"htmlbuild:dev",
-		"imagemin",
-		"ngtemplates:dev",
-		"postcss"
-	],
-	"dist": [
-		"standard",
-		"sass:dist",
-		"htmlbuild:dist",
-		"ngtemplates:dist",
-		"postcss",
-		"cssnano",
-		"uglify",
-		"cacheBust"
-	],
-	"fonts": [
-		"fontgen"
-	],
-	"icons": [
-		"webfont"
-	]
+  ],
+  "dev": [
+    "jsbeautifier",
+    "standard",
+    "sass:dev",
+    "htmlbuild:dev",
+    "imagemin",
+    "ngtemplates:dev",
+    "postcss"
+  ],
+  "dist": [
+    "standard",
+    "sass:dist",
+    "htmlbuild:dist",
+    "ngtemplates:dist",
+    "postcss",
+    "cssnano",
+    "uglify",
+    "cacheBust"
+  ],
+  "fonts": [
+    "fontgen"
+  ],
+  "icons": [
+    "webfont"
+  ]
 }

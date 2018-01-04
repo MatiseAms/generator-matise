@@ -1,7 +1,6 @@
 {
 	"themesrc": {
-		"root": "themesrc/",
-		"vendor": "themesrc/vendor/"
+		"root": "themesrc/"
 	},
 	"themedist":{
 		"root": "public/content/themes/<%= appName %>/",
