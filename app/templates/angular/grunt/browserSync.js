@@ -1,6 +1,6 @@
-var fs = require("fs"),
+var fs = require('fs'),
 	path = require('path'),
-	url = require("url");
+	url = require('url');
 
 module.exports = {
 	dev: {
@@ -9,15 +9,15 @@ module.exports = {
 				'<%= config.dist.root %>**/*'
 			],
 			server: {
-				baseDir: "dist"
+				baseDir: 'dist'
 			},
 			watchTask: true,
 			middleware: function(req, res, next) {
 				var fileName = url.parse(req.url);
-				fileName = fileName.href.split(fileName.search).join("");
-				var fileExists = fs.existsSync("dist/" + fileName);
-				if (!fileExists && fileName.indexOf("browser-sync-client") < 0) {
-					req.url = "/index.html";
+				fileName = fileName.href.split(fileName.search).join('');
+				var fileExists = fs.existsSync('dist/' + fileName);
+				if (!fileExists && fileName.indexOf('browser-sync-client') < 0) {
+					req.url = '/index.html';
 				}
 
 				next();

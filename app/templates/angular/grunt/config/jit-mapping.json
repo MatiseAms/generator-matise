@@ -1,4 +1,4 @@
 {
-	"ngtemplates": "grunt-angular-templates",
-	"htmlbuild": "grunt-html-build"
+  "ngtemplates": "grunt-angular-templates",
+  "htmlbuild": "grunt-html-build"
 }

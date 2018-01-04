@@ -1,7 +1,7 @@
 module.exports = {
-  options: {
+	options: {
 		config: 'grunt/config/csscomb.json',
-  },
+	},
 	dynamic_mappings: {
 		expand: true,
 		cwd: '<%= config.src.app %>scss/',
