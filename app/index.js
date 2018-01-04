@@ -19,7 +19,6 @@ let answers = {
 	appName: '',
 	siteTitle: '',
 	projectType: '',
-	tinyPNGKey: '',
 	parse: false,
 	hipsum: false,
 	subviews: false,
@@ -68,11 +67,6 @@ module.exports = class extends Generator {
 				message: 'Your site title',
 				default: 'Amazing website'
 			}, {
-				type: 'input',
-				name: 'tinypng',
-				message: 'Tiny png api key',
-				default: ''
-			}, {
 				type: 'list',
 				name: 'projecttype',
 				message: 'What kind of project are you looking for?',
@@ -82,7 +76,6 @@ module.exports = class extends Generator {
 				answers.projectType = promptAnswers.projecttype;
 				answers.appName = promptAnswers.appname.replace(' ', '');
 				answers.siteTitle = promptAnswers.title;
-				answers.tinyPNGKey = promptAnswers.tinypng;
 				if (promptAnswers.projecttype === 'angular') {
 					return self.prompt([{
 						type: 'checkbox',
@@ -189,7 +182,6 @@ module.exports = class extends Generator {
 			answers.projectType = matiseArguments[0];
 			answers.appName = matiseArguments[1];
 			answers.siteTitle = matiseArguments[2];
-			answers.tinyPNGKey = matiseArguments[3];
 			answers.parse = matiseArguments[4] === 'true';
 			answers.hipsum = matiseArguments[5] === 'true';
 			answers.subviews = matiseArguments[6] === 'true';
@@ -360,13 +352,9 @@ module.exports = class extends Generator {
 				this.templatePath('angular/grunt/clean.js'),
 				this.destinationPath('grunt/clean.js')
 			);
-			this.fs.copyTpl(
-				this.templatePath('angular/grunt/tinypng.js'),
-				this.destinationPath('grunt/tinypng.js'), {
-					tinyPNGKey: answers.tinyPNGKey
-				}, {
-					delimiter: '?'
-				}
+			this.fs.copy(
+				this.templatePath('angular/grunt/imagemin.js'),
+				this.destinationPath('grunt/imagemin.js')
 			);
 			this.fs.copyTpl(
 				this.templatePath('angular/grunt/browserify.js'),
@@ -628,13 +616,9 @@ module.exports = class extends Generator {
 				this.templatePath('wordpress/grunt/config/csscomb.json'),
 				this.destinationPath('grunt/config/csscomb.json')
 			);
-			this.fs.copyTpl(
-				this.templatePath('wordpress/grunt/tinypng.js'),
-				this.destinationPath('grunt/tinypng.js'), {
-					tinyPNGKey: answers.tinyPNGKey
-				}, {
-					delimiter: '?'
-				}
+			this.fs.copy(
+				this.templatePath('wordpress/grunt/imagemin.js'),
+				this.destinationPath('grunt/imagemin.js')
 			);
 			this.fs.copy(
 				this.templatePath('wordpress/grunt/browserify.js'),
@@ -844,7 +828,7 @@ module.exports = class extends Generator {
 			npmDevDeps.push('grunt-notify');
 			npmDevDeps.push('grunt-postcss');
 			npmDevDeps.push('grunt-cssnano');
-			npmDevDeps.push('grunt-tinypng');
+			npmDevDeps.push('grunt-contrib-imagemin');
 			npmDevDeps.push('grunt-webfont');
 			npmDevDeps.push('grunt-csscomb');
 			npmDevDeps.push('grunt-newer');
@@ -905,7 +889,7 @@ module.exports = class extends Generator {
 			npmDevDeps.push('grunt-postcss');
 			npmDevDeps.push('grunt-sass');
 			npmDevDeps.push('grunt-shell');
-			npmDevDeps.push('grunt-tinypng');
+			npmDevDeps.push('grunt-contrib-imagemin');
 			npmDevDeps.push('grunt-webfont');
 			npmDevDeps.push('grunt-csscomb');
 			npmDevDeps.push('grunt-csso');

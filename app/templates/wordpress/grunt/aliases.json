@@ -7,7 +7,7 @@
   ],
   "standard": [
     "clean:dist",
-    "tinypng",
+    "imagemin",
     "browserify",
     "copy:theme",
     "copy:images",
