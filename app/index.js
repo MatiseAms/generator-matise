@@ -290,9 +290,14 @@ module.exports = class extends Generator {
 			);
 		}
 
-		this.fs.copyTpl(
+		this.fs.copy(
 			this.templatePath('Gruntfile.js'),
-			this.destinationPath('Gruntfile.js'), {}
+			this.destinationPath('Gruntfile.js')
+		);
+
+		this.fs.copy(
+			this.templatePath('eslintrc.json'),
+			this.destinationPath('.eslintrc.json')
 		);
 
 		if (answers.projectType === 'wordpress') {
@@ -389,8 +394,8 @@ module.exports = class extends Generator {
 				this.destinationPath('grunt/jsbeautifier.js')
 			);
 			this.fs.copy(
-				this.templatePath('angular/grunt/jshint.js'),
-				this.destinationPath('grunt/jshint.js')
+				this.templatePath('angular/grunt/eslint.js'),
+				this.destinationPath('grunt/eslint.js')
 			);
 			this.fs.copy(
 				this.templatePath('angular/grunt/csscomb.js'),
@@ -611,6 +616,10 @@ module.exports = class extends Generator {
 			this.fs.copy(
 				this.templatePath('wordpress/grunt/aliases.json'),
 				this.destinationPath('grunt/aliases.json')
+			);
+			this.fs.copy(
+				this.templatePath('wordpress/grunt/eslint.js'),
+				this.destinationPath('grunt/eslint.js')
 			);
 			this.fs.copy(
 				this.templatePath('wordpress/grunt/config/csscomb.json'),
