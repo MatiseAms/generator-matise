@@ -20,7 +20,7 @@
 		"standard",
 		"sass:dev",
 		"htmlbuild:dev",
-		"tinypng",
+		"imagemin",
 		"ngtemplates:dev",
 		"postcss"
 	],
