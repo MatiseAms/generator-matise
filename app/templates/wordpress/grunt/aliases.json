@@ -6,6 +6,7 @@
     "watch"
   ],
   "standard": [
+    "eslint",
     "clean:dist",
     "imagemin",
     "browserify",
