@@ -33,8 +33,6 @@
 	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff">
 
-	<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/app.css">
-
 	<?php wp_head();?>
 </head>
 <body <?php body_class(); ?>>
