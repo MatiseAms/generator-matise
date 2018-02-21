@@ -16,7 +16,7 @@
 	<footer id="footer">
 		<h4>Matise</h4>
 	</footer>
-	<?php wp_footer(); ?>
 <% } %>
+	<?php wp_footer(); ?>
 </body>
 </html>
