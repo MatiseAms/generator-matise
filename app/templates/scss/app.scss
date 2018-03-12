@@ -1,22 +1,22 @@
 <% if (foundationInclude) { %>
 // foundation
 @import
-  "zurb/zurb";
+	"zurb/zurb";
 <% } %>
 
 // main styles
 @import
-  "functions",
-  "mixins",
-  "color/color",
+	"functions",
+	"mixins",
+	"color/color",
 	"base",
 	"grid",
-  "typography/typography",
-  "icons/icons";
+	"typography/typography",
+	"icons/icons";
 
 @import
-  "elements/elements",
-  "components/components";
+	"elements/elements",
+	"components/components";
 
 
 <% if (foundationInclude) { %>// Foundation margin and padding reset

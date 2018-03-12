@@ -454,8 +454,8 @@ module.exports = class extends Generator {
 				productionScript = '';
 
 			if (answers.parse) {
-				developScript = '// "grunt dev"\n		let localParse = true;';
-				productionScript = '// "grunt staging" and "grunt dist"\n		let localParse = false;';
+				developScript = '// \"grunt dev\"\n		let localParse = true;';
+				productionScript = '// \"grunt staging\" and \"grunt dist\"\n		let localParse = false;';
 			}
 
 			this.fs.copyTpl(
@@ -875,6 +875,7 @@ module.exports = class extends Generator {
 		if (answers.projectType === 'wordpress') {
 			npmDevDeps.push('autoprefixer');
 			npmDevDeps.push('css-byebye');
+			npmDevDeps.push('cssnano');
 			npmDevDeps.push('grunt');
 			npmDevDeps.push('grunt-browser-sync');
 			npmDevDeps.push('grunt-cli');
@@ -885,7 +886,6 @@ module.exports = class extends Generator {
 			npmDevDeps.push('grunt-jsbeautifier');
 			npmDevDeps.push('grunt-browserify');
 			npmDevDeps.push('grunt-notify');
-			npmDevDeps.push('grunt-php');
 			npmDevDeps.push('grunt-postcss');
 			npmDevDeps.push('grunt-sass');
 			npmDevDeps.push('grunt-shell');

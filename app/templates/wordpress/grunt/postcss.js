@@ -1,18 +1,41 @@
 module.exports = {
-	options: {
-		map: true,
-		verbose: true,
-		processors: [
-			require('postcss-assets')({ loadPaths: ['./dist/img/'] }),
-			require('autoprefixer')({ browsers: ['last 2 versions'] }),
-			// require('postcss-sprites')({stylesheetPath: './dist/css', spritePath: './dist/img/sprite.png', retina: true}),
-			// require('postcss-svg')({ paths: ['dist/img/svg/'] }), ERROR!!! (WHEN NO SVG'S ARE IN THE FOLDER)
-			require('postcss-size')({}),
-			//require('postcss-alias')({}),
-			//require('postcss-center')({}),
-			//require('postcss-vmin')({}),
-			require('css-byebye')({ rulesToRemove: [''], map: false })
-		]
+	dev: {
+		options: {
+			map: true,
+			verbose: true,
+			processors: [
+				require('postcss-assets')({
+					loadPaths: ['./dist/img/']
+				}),
+				require('autoprefixer')({
+					browsers: ['last 2 versions']
+				}),
+				// require('postcss-svg')({ paths: ['dist/img/svg/'] }), ERROR!!! (WHEN NO SVG'S ARE IN THE FOLDER)
+				require('postcss-size')({})
+			]
+		},
+		src: '<%= config.themedist.root %>css/app.css'
 	},
-	dist: { src: '<%= config.themedist.root %>css/app.css' }
+	dist: {
+		options: {
+			map: false,
+			verbose: false,
+			processors: [
+				require('postcss-assets')({
+					loadPaths: ['./dist/img/']
+				}),
+				require('autoprefixer')({
+					browsers: ['last 2 versions']
+				}),
+				// require('postcss-svg')({ paths: ['dist/img/svg/'] }), ERROR!!! (WHEN NO SVG'S ARE IN THE FOLDER)
+				require('postcss-size')({}),
+				require('css-byebye')({
+					rulesToRemove: [''],
+					map: false
+				}),
+				require('cssnano')() // minify the result
+			]
+		},
+		src: '<%= config.themedist.root %>css/app.css'
+	}
 };

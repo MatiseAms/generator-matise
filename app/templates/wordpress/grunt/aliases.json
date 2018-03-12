@@ -20,22 +20,20 @@
   "dev": [
     "standard",
     "sass:dev",
-    "postcss",
+    "postcss:dev",
     "copy:config_dev"
   ],
   "staging": [
     "standard",
     "sass:dist",
-    "postcss",
-    "csso:dist",
+    "postcss:dist",
     "uglify:dist",
     "copy:config_staging"
   ],
   "dist": [
     "standard",
     "sass:dist",
-    "postcss",
-    "csso:dist",
+    "postcss:dist",
     "uglify:dist",
     "copy:config_live"
   ],

@@ -15,7 +15,7 @@ module.exports = {
 	},
 	scss: {
 		files: '<%= config.themesrc.root %>scss/**/*',
-		tasks: ['sass', 'postcss']
+		tasks: ['sass:dev', 'postcss:dev']
 	},
 	images: {
 		files: '<%= config.themesrc.root %>img/**/*',
