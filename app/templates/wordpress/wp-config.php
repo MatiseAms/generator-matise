@@ -75,16 +75,16 @@ define('WPLANG', '');
 * These are required because wordpress is installed in a subdirectory.
 */
 if (!defined('WP_SITEURL')) {
-	define('WP_SITEURL', 'http://'.$_SERVER['SERVER_NAME'].$folder.'/wordpress');
+	define('WP_SITEURL', 'http://'.$_SERVER['SERVER_NAME'].'/wordpress');
 }
 if (!defined('WP_HOME')) {
-	define('WP_HOME',    'http://'.$_SERVER['SERVER_NAME'].$folder.'/');
+	define('WP_HOME',    'http://'.$_SERVER['SERVER_NAME'].'/');
 }
 if (!defined('WP_CONTENT_DIR')) {
 	define('WP_CONTENT_DIR', dirname(__FILE__).'/content');
 }
 if (!defined('WP_CONTENT_URL')) {
-	define('WP_CONTENT_URL', 'http://'.$_SERVER['SERVER_NAME'].$folder.'/content');
+	define('WP_CONTENT_URL', 'http://'.$_SERVER['SERVER_NAME'].'/content');
 }
 
 /*
