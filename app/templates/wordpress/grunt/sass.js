@@ -19,7 +19,8 @@ module.exports = {
 			<? } else { ?>
 			includePaths: ['node_modules/matise-stack','node_modules/matise-grid'],
 			<? } ?>
-			sourceMap: false
+			sourceMap: false,
+			omitSourceMapUrl: true
 		},
 		files: {
 			'<%= config.themedist.root %>css/app.css': '<%= config.themesrc.root %>scss/app.scss'

@@ -19,7 +19,8 @@ module.exports = {
 			<? } else { ?>
 			includePaths: ['node_modules/matise-stack','node_modules/matise-grid'],
 			<? } ?>
-			sourceMap: false
+			sourceMap: false,
+			omitSourceMapUrl: true
 		},
 		files: {
 			'<%= config.dist.root %>css/app.css': '<%= config.src.app %>scss/app.scss'
