@@ -1,7 +1,7 @@
 let Generator = require('yeoman-generator'),
   chalk = require('chalk'),
   figlet = require('figlet'),
-	git = require('simple-git')(),
+  git = require('simple-git')(),
   updateNotifier = require('update-notifier'),
   pkg = require('../package.json');
 
@@ -72,6 +72,7 @@ module.exports = class extends Generator {
 
       this.log(answers.projectType)
 
+      // Vue prompt
       if (answers.projectType === 'vue-nuxt') {
         // this.log(vueNuxt.go(this));
       }
@@ -88,14 +89,39 @@ module.exports = class extends Generator {
     this.log('Git init complete');
   }
 
-	writing() {
-		this.log(chalk.yellow('writing files...'));
-	}
+  writing() {
+    this.log(chalk.yellow('writing files...'));
 
+    this.fs.copyTpl(
+      this.templatePath('../templates/vue-nuxt/nuxt.config.js'),
+      this.destinationPath('nuxt.config.js'), {
+        appName: 'Dennis'
+      }
+    );
+  }
 
-	install() {
-		this.log('installing dependencies...');
-	}
+  // Install all the dependencies
+  install() {
+    this.log(chalk.blue('installing dependencies...'));
+
+    // Nuxt
+    if (answers.projectType === 'vue-nuxt') {
+      this.npmInstall(['nuxt'], {
+        'save': true
+      });
+
+      let npmDeps = [
+        'node-sass',
+        'sass-loader'
+      ];
+
+      npmDeps.push('autoprefixer');
+
+      this.npmInstall(npmDeps, {
+  			'save': true
+  		});
+    }
+  }
 
 
 
