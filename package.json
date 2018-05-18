@@ -21,18 +21,5 @@
   "bugs": {
     "url": "https://github.com/MatiseAms/generator-matise/issues"
   },
-  "homepage": "https://github.com/MatiseAms/generator-matise#readme",
-  "dependencies": {
-    "chalk": "2.3.2",
-    "figlet": "1.2.0",
-    "mkdirp": "0.5.1",
-    "request": "2.85.0",
-    "shelljs": "0.8.1",
-    "simple-git": "1.92.0",
-    "update-notifier": "2.3.0",
-    "yeoman-generator": "2.0.3"
-  },
-  "devDependencies": {
-    "eslint": "^4.18.2"
-  }
+  "homepage": "https://github.com/MatiseAms/generator-matise#readme"
 }
