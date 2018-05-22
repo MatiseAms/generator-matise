@@ -3,7 +3,9 @@ let Generator = require('yeoman-generator'),
   figlet = require('figlet'),
   git = require('simple-git')(),
   updateNotifier = require('update-notifier'),
-  pkg = require('../package.json');
+  pkg = require('../package.json'),
+
+  fs = require("fs");
 
 // let vueNuxt = require('./generators/vue-nuxt');
 
@@ -91,39 +93,101 @@ module.exports = class extends Generator {
 
   writing() {
     this.log(chalk.yellow('writing files...'));
-
-    this.fs.copyTpl(
-      this.templatePath('../templates/vue-nuxt/nuxt.config.js'),
-      this.destinationPath('nuxt.config.js'), {
-        appName: 'Dennis'
-      }
-    );
   }
 
   // Install all the dependencies
   install() {
+    let self = this;
     this.log(chalk.blue('installing dependencies...'));
 
     // Nuxt
+    // spawn('vue init nuxt-community/starter-template test');
+
     if (answers.projectType === 'vue-nuxt') {
-      this.npmInstall(['nuxt'], {
+
+      this.npmInstall('vue-cli', {
         'save': true
-      });
+      }).then(function() {
+        self.spawnCommandSync('./node_modules/.bin/vue', ['init', 'nuxt-community/starter-template'])
+      }).then(function() {
 
-      let npmDeps = [
-        'node-sass',
-        'sass-loader'
-      ];
+        // Writing all the custom files
+        fs.unlink('nuxt.config.js');
+        self.fs.copyTpl(
+          self.templatePath('../templates/vue-nuxt/nuxt.config.js'),
+          self.destinationPath('nuxt.config.js'), {
+            appName: 'Dennis'
+          }
+        );
 
-      npmDeps.push('autoprefixer');
+        self.fs.copyTpl(
+          self.templatePath('../templates/vue-nuxt/assets/scss/app.scss'),
+          self.destinationPath('assets/scss/app.scss')
+        );
 
-      this.npmInstall(npmDeps, {
-  			'save': true
-  		});
+        // ASSETS
+        self.fs.copyTpl(
+          self.templatePath('../templates/vue-nuxt/assets/images/matise.svg'),
+          self.destinationPath('assets/scss/images/matise.svg')
+        );
+
+        self.fs.copyTpl(
+          self.templatePath('../templates/vue-nuxt/assets/scss/color/_colors.scss'),
+          self.destinationPath('assets/scss/color/_colors.scss')
+        );
+
+        self.fs.copyTpl(
+          self.templatePath('../templates/vue-nuxt/assets/scss/components/_matise-image.scss'),
+          self.destinationPath('assets/scss/components/_matise-image.scss')
+        );
+
+        self.fs.copyTpl(
+          self.templatePath('../templates/vue-nuxt/assets/scss/settings/_settings.scss'),
+          self.destinationPath('assets/scss/settings/_settings.scss')
+        );
+
+        self.fs.copyTpl(
+          self.templatePath('../templates/vue-nuxt/assets/scss/typography/_typography.scss'),
+          self.destinationPath('assets/scss/typography/_typography.scss')
+        );
+
+        // LAYOUTS
+        fs.unlink('layouts/default.vue');
+        self.fs.copyTpl(
+          self.templatePath('../templates/vue-nuxt/layouts/default.vue'),
+          self.destinationPath('layouts/default.vue')
+        );
+
+        self.fs.copyTpl(
+          self.templatePath('../templates/vue-nuxt/layouts/footer/footerElement.vue'),
+          self.destinationPath('layouts/footer/footerElement.vue')
+        );
+
+        self.fs.copyTpl(
+          self.template('../templates/vue-nuxt/layouts/header/headerElement.vue'),
+          self.destinationPath('layouts/header/headerElement.vue')
+        );
+
+        //PAGES DIT VERDIEND AANDACHT!!!!
+        fs.unlink('nuxt.config.js');
+        self.fs.copyTpl(
+          self.templatePath('../templates/vue-nuxt/pages/index.vue'),
+          self.destinationPath('layouts/header/pages/index.vue')
+        );
+
+      }).then(function() {
+        // Installing Nuxt
+        let npmDeps = [
+          'node-sass',
+          'sass-loader'
+        ]
+        self.npmInstall(npmDeps, {
+        	'save': true
+        })
+      })
+
     }
   }
-
-
 
   end() {
     this.log(`Your project name is: ${chalk.yellow(answers.appName)}`);
